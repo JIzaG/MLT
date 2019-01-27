@@ -1,0 +1,58 @@
+@import '~assets/sass/variables';
+
+:host {
+  background: #FBFBFB;
+  border-top: 1px solid #E9E9E9;
+  bottom: 0;
+  display: block;
+  height: $footer-height;
+  left: $vertical-navbar-width;
+  position: absolute;
+  right: 0;
+  @media #{$max991} {
+    left: 0;
+  }
+
+  .footer-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+    padding: $module-rem;
+
+    .page-breadcrumbs {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      .item {
+        display: block;
+        vertical-align: top;
+        white-space: nowrap;
+
+        .link {
+          color: currentColor;
+          opacity: .5;
+          text-decoration: none;
+          transition: opacity .2s $animation;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+        .separator {
+          margin: 0 ($module-rem / 2) -2px;
+        }
+      }
+    }
+  }
+  &.boxed {
+    .footer-wrap {
+      max-width: var(--boxed-width);
+    }
+  }
+}

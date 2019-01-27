@@ -1,0 +1,54 @@
+<div class="app-container" [ngClass]="{ 'boxed': appSettings?.boxed }" *ngIf="appSettings">
+  <!-- Horizontal navbar 1 -->
+  <navbar
+    [boxed]="appSettings.boxed"
+    [tcBgColor]="appSettings.topbarBg"
+    [tcColor]="appSettings.topbarColor"
+    [minHeight]="'4.28571429rem'"
+  >
+    <button
+      class="no-style navbar-toggle icofont-navigation-menu d-lg-none"
+      (click)="toggleSidebar(true)"
+    ></button>
+
+    <logo [src]="'assets/img/logo.png'" [width]="147" [height]="33" class="d-none d-lg-block"></logo>
+
+    <search [data]="searchData" [layout]="'horizontal-layout'" class="d-none d-md-block"></search>
+
+    <actions></actions>
+  </navbar>
+  <!-- end Horizontal navbar 1 -->
+
+  <!-- Horizontal navbar 2 -->
+  <navbar
+    [orientation]="'horizontal-vertical'"
+    [boxed]="appSettings.boxed"
+    [tcBgColor]="appSettings.sidebarBg"
+    [tcColor]="appSettings.sidebarColor"
+    [opened]="appSettings.sidebarOpened"
+  >
+    <button
+      class="no-style navbar-close icofont-close-line d-lg-none"
+      (click)="toggleSidebar(false)"
+    ></button>
+
+    <logo [src]="'assets/img/logo.png'" [width]="147" [height]="33" [tcBgColor]="'rgba(0,0,0,.3)'" class="d-lg-none"></logo>
+
+    <app-menu [src]="'assets/data/menu.json'" [orientation]="'horizontal'"></app-menu>
+  </navbar>
+  <!-- end Horizontal navbar 2 -->
+
+  <main class="main-content">
+    <div class="main-content-wrap">
+      <header class="page-header">
+        <h1 class="page-title h5">{{ pageData.title }}</h1>
+      </header>
+
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer [boxed]="appSettings.boxed"></footer>
+  </main>
+
+  <div class="content-overlay" [ngClass]="{ 'show': appSettings.sidebarOpened }" (click)="toggleSidebar(false)"></div>
+</div>

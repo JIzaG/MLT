@@ -1,0 +1,21 @@
+@import '~assets/sass/variables';
+
+:host {
+  .app-container {
+    ::ng-deep {
+      .navbar {
+        .navbar-wrap {
+          .logo {
+            .logo-wrap {
+              padding-left: 0;
+              padding-right: 0;
+            }
+          }
+        }
+      }
+    }
+    .main-content {
+
+    }
+  }
+}

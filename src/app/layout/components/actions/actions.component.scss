@@ -1,0 +1,57 @@
+@import '~assets/sass/variables';
+:host {
+  display: flex;
+  flex-grow: 2;
+  height: 100%;
+  justify-content: flex-end;
+  margin: 0 !important;
+
+  .item {
+    height: 100%;
+    margin: 0 $module-rem;
+
+    .tc-dropdown-link {
+      height: 100%;
+
+      .tc-icon {
+        opacity: .5;
+        transition:
+          background .2s $animation,
+          border .2s $animation,
+          color .2s $animation,
+          opacity .2s $animation;
+      }
+      .tc-badge {
+        border: 2px solid #fff;
+        min-width: 22px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+      }
+      &:hover {
+        .tc-icon {
+          opacity: 1;
+        }
+      }
+      &.active {
+        .tc-icon {
+          color: accent-palette(500);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+::ng-deep {
+  .settings-list {
+    .settings-box {
+      border-top: 1px solid rgba(main-palette(500),.2);
+      padding: $module-rem * 2;
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+  }
+}

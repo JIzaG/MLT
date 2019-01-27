@@ -1,0 +1,262 @@
+@import '~assets/sass/variables';
+
+$_accent-palette: accent-palette(500);
+$_animation: $animation;
+
+//item
+$_item-color: currentColor;
+$_item-hover-color: accent-palette(500);
+$_item-active-color: accent-palette(500);
+$_item-group-color: currentColor;
+$_item-bg: transparent;
+$_item-hover-bg: transparent;
+$_item-active-bg: rgba(main-palette(600),.1);
+$_item-group-bg-compress: main-palette(200);
+$_item-h-indents: 0;
+
+//separator
+$_separator: main-palette(300);
+
+//icon
+$_icon-color: inherit;
+$_icon-hover-color: inherit;
+$_icon-active-color: accent-palette(500);
+$_icon-br: 50%;
+
+//badge
+$_badge-color: rgba(accent-palette(500),.2);
+$_badge-bg: accent-palette(500);
+
+//sub
+$_sub-bg: transparent;
+$_sub-separator: main-palette(300);
+
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: inherit;
+
+  ::ng-deep .main-menu-wrap {
+    width: inherit;
+
+    .menu-ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0 ($module-rem * 2);
+
+      .menu-item {
+        font-weight: 700;
+        padding: 0 ($module-rem * 1.5);
+        position: relative;
+
+        &:first-child {
+          > .group-title {
+            padding-top: $module-rem * 3;
+          }
+        }
+        .group-title {
+          color: $_item-group-color;
+          display: block;
+          opacity: .3;
+          padding: ($module-rem * 5) ($_item-h-indents + ($module-rem / 2)) $module-rem;
+          text-transform: uppercase;
+        }
+        .item-link {
+          align-items: center;
+          background: $_item-bg;
+          color: $_item-color;
+          display: flex;
+          height: 100%;
+          justify-content: space-between;
+          min-height: ($module-rem * 3);
+          padding: ($module-rem / 2) $_item-h-indents;
+          position: relative;
+          text-decoration: none;
+          transition:
+            background .2s $_animation,
+            color .2s $_animation;
+
+          .link-text {
+            flex-grow: 2;
+            flex-shrink: 1;
+            margin: 0 ($module-rem / 2);
+          }
+          .link-badge {
+            margin: 0 ($module-rem / 2);
+          }
+          .link-icon {
+            margin: 0 ($module-rem / 2);
+            opacity: .25;
+            padding: 0;
+            transition: none;
+          }
+          .link-caret {
+            margin: 0 ($module-rem / 2);
+            transition: transform .1s $_animation;
+          }
+          &:hover {
+            background: $_item-hover-bg;
+            color: $_item-hover-color;
+          }
+        }
+        .sub {
+          background: $_sub-bg;
+          list-style-type: none;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+
+          .menu-item {
+            font-weight: 400;
+            padding-left: $module-rem / 2;
+            padding-right: $module-rem / 2;
+
+            &:after {
+              display: none;
+            }
+          }
+        }
+        &.active {
+          &:after {
+            transform: translateX(4px);
+            transition: .2s transform .2s $_animation;
+          }
+          > .item-link {
+            color: $_item-active-color;
+
+            .link-caret {
+              transform: rotate(90deg);
+            }
+          }
+        }
+        &.has-sub {
+          position: relative;
+
+          > .item-link {
+            position: relative;
+
+            .caret {
+              display: block;
+            }
+          }
+          &.active {
+            > .item-link {
+              .caret {
+                transform: rotate(90deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.horizontal {
+    @media #{$min992} {
+      overflow: visible;
+    }
+
+    ::ng-deep .main-menu-wrap {
+      @media #{$min992} {
+        .mCustomScrollBox {
+          overflow: visible;
+
+          .mCSB_container {
+            overflow: visible;
+          }
+        }
+        .mCSB_scrollTools {
+          display: none !important;
+        }
+        .menu-ul {
+          display: flex;
+
+          > .menu-item {
+            > .group-title {
+              display: none;
+            }
+          }
+          .menu-item {
+            .item-link {
+              .link-text {
+                order: 2;
+              }
+              .link-badge {
+                order: 3;
+              }
+              .link-icon {
+                order: 1;
+              }
+              .link-caret {
+                order: 4;
+              }
+            }
+            .sub {
+              background: main-palette(500);
+              box-shadow: 0px 20px 40px rgba(#000,.2);
+              display: block !important;
+              color: main-contrast(500);
+              height: auto !important;
+              left: 0;
+              opacity: 0;
+              padding: $module-rem 0;
+              position: absolute;
+              transition:
+                .2s opacity 0s $animation,
+                0s visibility .2s $animation;
+              visibility: hidden;
+              width: $module-rem * 25;
+              z-index: 99;
+
+              &:before {
+                bottom: ($module-rem * 4);
+              }
+              .menu-item {
+                width: 100%;
+
+                .item-link {
+                  height: auto;
+                  min-height: initial;
+                }
+              }
+            }
+            &:hover {
+              > .item-link {
+                background: main-palette(500);
+
+                .link-caret {
+                  transform: rotate(90deg);
+                }
+              }
+              > .sub {
+                opacity: 1;
+                transition:
+                  .2s opacity 0s $animation,
+                  0s visibility 0s $animation;
+                visibility: visible;
+              }
+            }
+            &.active {
+              > .item-link {
+                background: rgba(#000,.2);
+              }
+            }
+            &:last-child {
+              .sub {
+                left: auto;
+                right: 0;
+              }
+            }
+            &.full-sub {
+              position: static;
+
+              .sub {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

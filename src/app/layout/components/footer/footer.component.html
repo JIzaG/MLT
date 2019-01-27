@@ -1,0 +1,17 @@
+<div class="footer-wrap">
+  <div class="col-12 col-md-6">
+    <ul class="page-breadcrumbs" *ngIf="pageData && pageData.breadcrumbs">
+      <li class="item" *ngFor="let item of pageData.breadcrumbs; let last = last">
+        <a class="link" routerLink="{{ item.route }}" *ngIf="item.route">{{ item.title }}</a>
+
+        <span *ngIf="!item.route">{{ item.title }}</span>
+
+        <i class="separator icofont-thin-right" *ngIf="!last"></i>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-12 col-md-6 text-right">
+    Version 1.0.0
+  </div>
+</div>

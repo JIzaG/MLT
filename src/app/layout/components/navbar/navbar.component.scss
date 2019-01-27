@@ -1,0 +1,145 @@
+@import '~assets/sass/variables';
+
+:host {
+  $_bg: #fff;
+  $_color: var(--main-color);
+
+  background: $_bg;
+  color: $_color;
+  display: block;
+  transition: box-shadow .2s $animation;
+
+  .navbar-wrap {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-height: inherit;
+    padding: 0 $module-rem;
+
+    ::ng-deep {
+      > * {
+        margin: 0 $module-rem;
+      }
+      .navbar-toggle {
+        color: inherit;
+        cursor: pointer;
+        font-size: 37px;
+      }
+      .navbar-close {
+        color: inherit;
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        right: $module-rem;
+        top: $module-rem * 1.5;
+        width: auto !important;
+        z-index: 1;
+      }
+      .add-patient {
+        height: 100%;
+        padding: ($module-rem * 2) ($module-rem * 4);
+      }
+      .assistant-menu {
+        display: block;
+        padding: ($module-rem * 2) ($module-rem * 4);
+
+        .link {
+          color: inherit;
+          display: block;
+          font-weight: 700;
+          opacity: .3;
+          padding: ($module-rem / 2) 0;
+          transition: opacity .2s $animation;
+
+          .tc-icon {
+            margin-right: $module-rem;
+            padding: 0;
+          }
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  &.boxed {
+    .navbar-wrap {
+      max-width: var(--boxed-width);
+    }
+  }
+  .scrolled &.horizontal {
+    box-shadow: 0 2px 5px rgba(#000,.05);
+    z-index: 9997;
+  }
+  &.horizontal-vertical {
+    @media #{$max991} {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform: translateX(-$vertical-navbar-width);
+      transition: transform .2s $animation;
+      width: $vertical-navbar-width;
+      will-change: transform, width;
+      z-index: 9997;
+
+      .navbar-wrap {
+        align-items: flex-start;
+        flex-direction: column;
+        height: 100%;
+        justify-content: flex-start;
+        padding: 0;
+        width: $vertical-navbar-width;
+
+        ::ng-deep {
+          > * {
+            margin: 0;
+            width: 100%;
+          }
+        }
+      }
+      &.opened {
+        transform: translateX(0);
+      }
+    }
+  }
+  &.vertical {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    transition: transform .2s $animation;
+    width: $vertical-navbar-width;
+    will-change: transform, width;
+    z-index: 9997;
+    @media #{$max991} {
+      transform: translateX(-$vertical-navbar-width);
+    }
+
+    .navbar-wrap {
+      align-items: flex-start;
+      flex-direction: column;
+      height: 100%;
+      justify-content: flex-start;
+      padding: 0;
+      width: $vertical-navbar-width;
+
+      ::ng-deep {
+        > * {
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
+    &.opened {
+      transform: translateX(0);
+    }
+  }
+}
