@@ -44,12 +44,15 @@ import { PageAppointmentsComponent } from '../pages/medicine/appointments';
 import { PageDepartmentsComponent } from '../pages/medicine/departments';
 import { Page404Component } from '../pages/page-404';
 import { PageLeafletMapsComponent } from '../pages/ui/maps/leaflet-maps';
+import { PageVTimelineComponent } from '../pages/ui/components/v-timeline';
+import { PagePatientProfileComponent } from '../pages/medicine/patient-profile';
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'default-dashboard', component: PageDashboardComponent },
   { path: 'doctors', component: PageDoctorsComponent },
   { path: 'doctor-profile', component: PageDoctorProfileComponent },
   { path: 'patients', component: PagePatientsComponent },
+  { path: 'patient-profile', component: PagePatientProfileComponent },
   { path: 'payments', component: PagePaymentsComponent },
   { path: 'appointments', component: PageAppointmentsComponent },
   { path: 'departments', component: PageDepartmentsComponent },
@@ -68,6 +71,7 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'radio-buttons', component: PageRadioButtonsComponent },
   { path: 'switchers', component: PageSwitchersComponent },
   { path: 'modal-windows', component: PageModalWindowsComponent },
+  { path: 'v-timeline', component: PageVTimelineComponent },
   { path: 'simple-table', component: PageSimpleTablesComponent },
   { path: 'sorting-table', component: PageSortingTableComponent },
   { path: 'search-table', component: PageSearchTableComponent },

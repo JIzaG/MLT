@@ -53,6 +53,8 @@ import { PageAppointmentsComponent } from './medicine/appointments';
 import { PageDepartmentsComponent } from './medicine/departments';
 import { Page404Component } from './page-404';
 import { PageLeafletMapsComponent } from './ui/maps/leaflet-maps';
+import { PageVTimelineComponent } from './ui/components/v-timeline';
+import { PagePatientProfileComponent } from './medicine/patient-profile';
 
 @NgModule({
   imports: [
@@ -112,7 +114,9 @@ import { PageLeafletMapsComponent } from './ui/maps/leaflet-maps';
     PageAppointmentsComponent,
     PageDepartmentsComponent,
     Page404Component,
-    PageLeafletMapsComponent
+    PageLeafletMapsComponent,
+    PageVTimelineComponent,
+    PagePatientProfileComponent
   ],
   exports: [ ],
   entryComponents: [ ]

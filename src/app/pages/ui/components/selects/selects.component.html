@@ -129,6 +129,59 @@
     </div>
   </tc-card>
 
+  <tc-card [title]="'Size'">
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <tc-form-group>
+          <tc-select
+            [placeholder]="'Small size'"
+            [options]="data"
+            [size]="'sm'"
+          ></tc-select>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-select
+            [placeholder]="'Default size'"
+            [options]="data"
+          ></tc-select>
+        </tc-form-group>
+
+        <tc-select
+          [placeholder]="'Large size'"
+          [options]="data"
+          [size]="'lg'"
+        ></tc-select>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <tc-form-group>
+          <tc-select
+            [placeholder]="'Small size'"
+            [options]="data"
+            [size]="'sm'"
+            [multiple]="true"
+          ></tc-select>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-select
+            [placeholder]="'Default size'"
+            [options]="data"
+            [multiple]="true"
+          ></tc-select>
+        </tc-form-group>
+
+        <tc-select
+          [placeholder]="'Large size'"
+          [options]="data"
+          [size]="'lg'"
+          [multiple]="true"
+        ></tc-select>
+      </div>
+    </div>
+  </tc-card>
+
   <tc-card [title]="'Disabled'">
     <div class="row">
       <div class="col-12 col-md-6 mb-3 mb-md-0">

@@ -1,18 +1,10 @@
 [
   {
     "sectionLabel": {
-      "text": "Today",
-      "view": "accent"
+      "text": "Events",
+      "view": "error"
     },
     "sectionData": [
-      {
-        "date": "Now",
-        "title": "New prescription",
-        "content": "Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-        "icon": "icofont-capsule",
-        "iconBg": "#ed5564",
-        "iconColor": "#fff"
-      },
       {
         "date": "2m ago",
         "title": "Appointment",
@@ -28,20 +20,12 @@
         "icon": "icofont-drug",
         "iconBg": "#ED6C9C",
         "iconColor": "#fff"
-      },
-      {
-        "date": "15h ago",
-        "title": "Operation",
-        "content": "Aenean lacinia bibendum nulla sed consectetur. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-        "icon": "icofont-injection-syringe",
-        "iconBg": "",
-        "iconColor": ""
       }
     ]
   },
   {
     "sectionLabel": {
-      "text": "Yesterday",
+      "text": "Meetings",
       "view": "success"
     },
     "sectionData": [

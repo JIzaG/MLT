@@ -1,8 +1,12 @@
 export interface ITimelineBox {
-  sectionLabel: string;
+  sectionLabel: ITimelineLabel;
   sectionData: ITimeline[];
 }
 
+export interface ITimelineLabel {
+  text: string;
+  view?: string;
+}
 export interface ITimeline {
   date: string;
   content: string;

@@ -42,6 +42,12 @@ export class TCSelectComponent implements OnInit, ControlValueAccessor {
   @HostBinding('class.disabled') @Input() disabled: boolean;
   @HostBinding('class.multiple') @Input() multiple: boolean;
   @HostBinding('class.selected') @Input() selected: string | string[];
+  @HostBinding('class.select-sm') get smSize() {
+    return this.size === 'sm';
+  }
+  @HostBinding('class.select-lg') get lgSize() {
+    return this.size === 'lg';
+  }
 
   @Input() borderColor: string | string[];
   @Input() bgColor: string | string[];
@@ -56,6 +62,7 @@ export class TCSelectComponent implements OnInit, ControlValueAccessor {
   @Input() filter: boolean;
   @Input() placeholder: string;
   @Input() notFoundMsg: string;
+  @Input() size: string;
 
   @Output() valueSelected: EventEmitter<any | any[]>;
 
@@ -87,6 +94,7 @@ export class TCSelectComponent implements OnInit, ControlValueAccessor {
     this.notFoundMsg = 'No results found!';
     this.opened = false;
     this.valueSelected = new EventEmitter();
+    this.size = 'md';
   }
 
   ngOnInit() {

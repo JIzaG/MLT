@@ -20,6 +20,10 @@ $_color: (
 );
 
 $_module-rem: $module-rem;
+$_fs: 1rem;
+$_lh: $_module-rem * 2 / $_fs;
+$_padding-h: $_module-rem * 2;
+$_padding-v: $_module-rem;
 $_error-color: $error-color;
 $_shape: 20px;
 $_animation: $animation;
@@ -29,9 +33,23 @@ $_list-bg: #fff;
 $_list-border-color: #fff;
 $_list-shadow: $shadow;
 
+// size sm
+$_fs-sm: ($_fs * .9);
+$_lh-sm: $_module-rem * 2 / $_fs-sm;
+$_shape-sm: ($_shape * .8);
+$_padding-v-sm: ($_module-rem / 2);
+
+// size lg
+$_fs-lg: ($_fs * 1.3);
+$_lh-lg: $_module-rem * 2 / $_fs-lg;
+$_shape-lg: ($_shape * 1.5);
+$_padding-v-lg: $_module-rem * 1.5;
+
 :host {
   border-radius: $_shape;
   display: block;
+  font-size: $_fs;
+  line-height: $_lh;
   position: relative;
 
   .select-box {
@@ -44,7 +62,7 @@ $_list-shadow: $shadow;
     display: flex;
     justify-content: flex-end;
     overflow: hidden;
-    padding: calc(#{$_module-rem} - 1px) calc(#{$_module-rem} - .2em) calc(#{$_module-rem} - 1px) calc(#{$_module-rem} * 2 - .2em);
+    padding: calc(#{$_padding-v} - 1px) calc((#{$_padding-h} / 2) - .2em) calc(#{$_padding-v} - 1px) calc(#{$_padding-h} - .2em);
     transition:
       background .2s $_animation,
       border-color .2s $_animation,
@@ -130,7 +148,7 @@ $_list-shadow: $shadow;
     z-index: 9995;
 
     .filter {
-      padding: $_module-rem ($_module-rem * 2);
+      padding: $_module-rem $_padding-h;
       width: 100%;
     }
     .not-found {
@@ -144,7 +162,7 @@ $_list-shadow: $shadow;
 
       .option {
         cursor: pointer;
-        padding: ($_module-rem / 2) ($_module-rem * 2);
+        padding: ($_module-rem / 2) $_padding-h;
         transition:
           background .2s $_animation,
           color .2s $_animation;
@@ -185,7 +203,7 @@ $_list-shadow: $shadow;
   &.multiple {
     .select-box {
       height: unset;
-      min-height: $_module-rem * 4;
+      min-height: $_padding-v + ($_fs * $_lh);
 
       > .value {
         margin: -($_module-rem / 2);
@@ -218,6 +236,26 @@ $_list-shadow: $shadow;
     .select-box {
       background-color: rgba($error-color, .1);
       border: 1px solid $error-color;
+    }
+  }
+  &.select-sm {
+    border-radius: $_shape-sm;
+    font-size: $_fs-sm;
+    line-height: $_lh-sm;
+
+    .select-box {
+      padding-top: calc(#{$_padding-v-sm} - 1px);
+      padding-bottom: calc(#{$_padding-v-sm} - 1px);
+    }
+  }
+  &.select-lg {
+    border-radius: $_shape-lg;
+    font-size: $_fs-lg;
+    line-height: $_lh-lg;
+
+    .select-box {
+      padding-top: calc(#{$_padding-v-lg} - 1px);
+      padding-bottom: calc(#{$_padding-v-lg} - 1px);
     }
   }
 }

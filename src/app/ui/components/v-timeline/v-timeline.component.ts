@@ -8,7 +8,10 @@ import { ITimelineBox } from '../../interfaces/timeline';
 })
 export class TCVTimelineComponent implements OnInit {
   @HostBinding('class.tc-v-timeline') true;
-  @HostBinding('class.show-years') @Input() showYears: boolean;
+  @HostBinding('class.show-years') @Input() showLabels: boolean;
+  @HostBinding('class.dots')  get dots() {
+    return !this.showIcons;
+  };
   @HostBinding('class.align-left') get left() {
     return this.align === 'left';
   };
@@ -22,12 +25,13 @@ export class TCVTimelineComponent implements OnInit {
     return this.align === 'between';
   };
   @Input() align: string;
-  @Input() style: any = '';
+  @Input() showIcons: boolean;
   @Input() data: ITimelineBox[];
 
   constructor() {
     this.align = 'left';
-    this.showYears = false;
+    this.showLabels = false;
+    this.showIcons = true;
     this.data = [];
   }
 
