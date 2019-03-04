@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TCToDoListComponent } from './to-do-list.component';
+import { PageSignInComponent } from './sign-in.component';
 
-describe('TCToDoListComponent', () => {
-  let component: TCToDoListComponent;
-  let fixture: ComponentFixture<TCToDoListComponent>;
+describe('PageSignInComponent', () => {
+  let component: PageSignInComponent;
+  let fixture: ComponentFixture<PageSignInComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TCToDoListComponent ]
+      declarations: [ PageSignInComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TCToDoListComponent);
+    fixture = TestBed.createComponent(PageSignInComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

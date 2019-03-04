@@ -12,8 +12,8 @@
     </tc-table-col>
     <tc-table-col [columnTitle]="'Email'" [columnName]="'email'" [enableSorting]="true">
       <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#336cfb'">
-          <tc-icon [iconClass]="'icofont-ui-email'"></tc-icon> {{ value }}
+        <span class="d-flex align-items-center nowrap" [tcColor]="'#336cfb'">
+          <tc-icon [iconClass]="'icofont-ui-email'" [tcFontSize]="16" [padding]="0" class="mr-1"></tc-icon> {{ value }}
         </span>
       </ng-template>
     </tc-table-col>
@@ -29,8 +29,9 @@
     </tc-table-col>
     <tc-table-col [columnTitle]="'Number'" [columnName]="'number'">
       <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#336cfb'">
-          <tc-icon [iconClass]="'icofont-ui-cell-phone'"></tc-icon> {{ value }}
+        <span class="d-flex align-items-center nowrap" [tcColor]="'#336cfb'">
+          <tc-icon [iconClass]="'icofont-ui-cell-phone'" [tcFontSize]="16" [padding]="0" class="mr-1"></tc-icon>
+          {{ value }}
         </span>
       </ng-template>
     </tc-table-col>

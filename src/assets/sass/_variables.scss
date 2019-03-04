@@ -134,12 +134,6 @@ $vertical-navbar-width: $module-rem * 24;
 $footer-height: $module-rem * 6;
 
 //Preloader
-$loader-overlay-bg: main-palette(500);
-$loader-colors: (
-  1: main-palette(900),
-  2: accent-palette(500),
-  3: main-palette(900),
-  4: main-palette(900),
-  5: main-palette(900)
-);
+$loader-overlay-bg: #fff;
+$loader-color: accent-palette(500);
 

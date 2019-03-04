@@ -66,7 +66,13 @@ export class MenuComponent implements OnInit {
       item.active = true;
     }
 
-    this.changeRoute(item.routing, !item.sub && !this.isActive([this.orientation, item.routing]));
+    console.log(item)
+
+    this.changeRoute(
+      item.routing,
+      !item.sub && !this.isActive([this.orientation, item.routing]),
+      item.layout ? item.layout : this.orientation
+    );
   }
 
   subState(item: IMenuItem, rla: boolean) {
@@ -94,12 +100,13 @@ export class MenuComponent implements OnInit {
   }
 
   // change route
-  changeRoute(routing: string, bool: boolean = true) {
+  changeRoute(routing: string, bool: boolean = true, layout: string = this.orientation) {
+    console.log(bool)
     if (bool) {
       this.store.dispatch(new PageActions.Reset());
 
       setTimeout(() => {
-        this.router.navigate([`./${this.orientation}`, routing]);
+        this.router.navigate([`./${layout}`, routing]);
       }, 0);
     }
   }

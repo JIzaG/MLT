@@ -1,15 +1,17 @@
 @import '~assets/sass/variables';
 
+$_module-rem: $module-rem;
 $_border-width: 1px;
 $_border-style: solid;
-$_fs: 1rem;
-$_padding: .25em;
+$_fs: #{$main-lh}rem;
+$_padding: $_module-rem / 2;
 $_shape: $shape;
 $_transition: $animation;
 
 :host {
   border-radius: $_shape;
   display: inline-flex;
+  font-size: $_fs;
   padding: $_padding;
   transition:
     background .2s $_transition,

@@ -6,8 +6,9 @@
     "age": "42",
     "address": "71 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126596578",
-    "last-visit": "18 Dec 2018",
-    "status": "Approved"
+    "lastVisit": "18 Dec 2018",
+    "status": "Approved",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-2.jpg",
@@ -16,8 +17,9 @@
     "age": "21",
     "address": "46 Pilgrim Avenue Chevy Chase, MD 20816",
     "number": "0126596452",
-    "last-visit": "5 Dec 2018",
-    "status": "Pending"
+    "lastVisit": "5 Dec 2018",
+    "status": "Pending",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-3.jpg",
@@ -26,8 +28,9 @@
     "age": "43",
     "address": "17 Pilgrim Avenue Chevy Chase, MD 20843",
     "number": "0126598853",
-    "last-visit": "13 Oct 2018",
-    "status": "Approved"
+    "lastVisit": "13 Oct 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-4.jpg",
@@ -36,8 +39,9 @@
     "age": "21",
     "address": "53 Pilgrim Avenue Chevy Chase, MD 20843",
     "number": "0126590443",
-    "last-visit": "26 Dec 2018",
-    "status": "Approved"
+    "lastVisit": "26 Dec 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-5.jpg",
@@ -46,8 +50,9 @@
     "age": "22",
     "address": "44 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126598525",
-    "last-visit": "15 Jun 2018",
-    "status": "Pending"
+    "lastVisit": "15 Jun 2018",
+    "status": "Pending",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-6.jpg",
@@ -56,8 +61,9 @@
     "age": "35",
     "address": "75 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126599411",
-    "last-visit": "2 Jul 2018",
-    "status": "Approved"
+    "lastVisit": "2 Jul 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-7.jpg",
@@ -66,8 +72,9 @@
     "age": "54",
     "address": "40 Pilgrim Avenue Chevy Chase, MD 20854",
     "number": "0126596284",
-    "last-visit": "9 Oct 2018",
-    "status": "Approved"
+    "lastVisit": "9 Oct 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-8.jpg",
@@ -76,8 +83,9 @@
     "age": "24",
     "address": "95 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126595200",
-    "last-visit": "17 Mar 2018",
-    "status": "Approved"
+    "lastVisit": "17 Mar 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-9.jpg",
@@ -86,8 +94,9 @@
     "age": "31",
     "address": "61 Pilgrim Avenue Chevy Chase, MD 20817",
     "number": "0126590043",
-    "last-visit": "18 Apl 2018",
-    "status": "Approved"
+    "lastVisit": "18 Apl 2018",
+    "status": "Approved",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-10.jpg",
@@ -96,8 +105,9 @@
     "age": "19",
     "address": "53 Pilgrim Avenue Chevy Chase, MD 20886",
     "number": "0126591123",
-    "last-visit": "6 Apl 2018",
-    "status": "Approved"
+    "lastVisit": "6 Apl 2018",
+    "status": "Approved",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-1.jpg",
@@ -106,8 +116,9 @@
     "age": "32",
     "address": "44 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126590045",
-    "last-visit": "23 Apl 2018",
-    "status": "Pending"
+    "lastVisit": "23 Apl 2018",
+    "status": "Pending",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-2.jpg",
@@ -116,8 +127,9 @@
     "age": "24",
     "address": "30 Pilgrim Avenue Chevy Chase, MD 20849",
     "number": "0126592295",
-    "last-visit": "4 Mar 2018",
-    "status": "Approved"
+    "lastVisit": "4 Mar 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-3.jpg",
@@ -126,8 +138,9 @@
     "age": "38",
     "address": "20 Pilgrim Avenue Chevy Chase, MD 20815",
     "number": "0126597743",
-    "last-visit": "10 Mar 2018",
-    "status": "Approved"
+    "lastVisit": "10 Mar 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-4.jpg",
@@ -136,8 +149,9 @@
     "age": "26",
     "address": "66 Pilgrim Avenue Chevy Chase, MD 20807",
     "number": "0126591324",
-    "last-visit": "5 Apl 2018",
-    "status": "Approved"
+    "lastVisit": "5 Apl 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-5.jpg",
@@ -146,8 +160,9 @@
     "age": "30",
     "address": "69 Pilgrim Avenue Chevy Chase, MD 20838",
     "number": "0126594352",
-    "last-visit": "17 Mar 2018",
-    "status": "Approved"
+    "lastVisit": "17 Mar 2018",
+    "status": "Approved",
+    "gender": "Male"
   },
   {
     "img": "/assets/content/user-40-6.jpg",
@@ -156,8 +171,9 @@
     "age": "20",
     "address": "20 Pilgrim Avenue Chevy Chase, MD 20875",
     "number": "0126593344",
-    "last-visit": "4 Feb 2018",
-    "status": "Approved"
+    "lastVisit": "4 Feb 2018",
+    "status": "Approved",
+    "gender": "Female"
   },
   {
     "img": "/assets/content/user-40-7.jpg",
@@ -166,7 +182,8 @@
     "age": "45",
     "address": "55 Pilgrim Avenue Chevy Chase, MD 20899",
     "number": "0126595743",
-    "last-visit": "10 Feb 2018",
-    "status": "Pending"
+    "lastVisit": "10 Feb 2018",
+    "status": "Pending",
+    "gender": "Female"
   }
 ]

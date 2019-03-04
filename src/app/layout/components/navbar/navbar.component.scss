@@ -17,7 +17,17 @@
     margin: 0 auto;
     min-height: inherit;
     padding: 0 $module-rem;
+    position: relative;
 
+    .skeleton {
+      background: rgba($_bg,.5);
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 999;
+    }
     ::ng-deep {
       > * {
         margin: 0 $module-rem;
@@ -43,7 +53,7 @@
       }
       .assistant-menu {
         display: block;
-        padding: ($module-rem * 2) ($module-rem * 4);
+        padding: 0 ($module-rem * 4) ($module-rem * 2);
 
         .link {
           color: inherit;

@@ -21,7 +21,7 @@ $_label-color: main-contrast(500);
     background: $_line-color;
     bottom: $_module-rem * 2;
     left: $_icon-size / 2;
-    margin: 0 0 0 (-$_line-size / 2);
+    margin: 0 (-$_line-size / 2);
     position: absolute;
     top: $_module-rem * 2;
     width: $_line-size;

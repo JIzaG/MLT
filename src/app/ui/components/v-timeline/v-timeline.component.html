@@ -21,7 +21,7 @@
           <div class="item-date" *ngIf="item.date"><span>{{ item.date }}</span></div>
         </div>
 
-        <div class="item-desc" [innerHTML]="item.content"></div>
+        <div class="item-desc" [innerHTML]="item.content" *ngIf="item.content"></div>
       </div>
     </div>
   </div>

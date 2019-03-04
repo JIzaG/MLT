@@ -59,12 +59,14 @@ export class TCTableComponent implements OnInit, OnChanges {
 	}
 
   ngOnInit() {
-    this.getColumns();
+	  this.getColumns();
     this.data = this.rows;
     this.pagesCount = Math.ceil(this.rows.length / this.itemsPerPage);
 
     if (this.data.length > 0) {
-      this.onChangeTable(this.config, null);
+      setTimeout(() => {
+        this.onChangeTable(this.config, null);
+      });
     }
   }
 
@@ -126,10 +128,10 @@ export class TCTableComponent implements OnInit, OnChanges {
 		});
 	}
 
-	changeFilter(data: any, config: any): any {
+	changeFilter(data: any, config: any, columnList: TCTableColComponent[]): any {
 		let filteredData: Array<any> = data;
 
-		this.columnList.forEach((column: any) => {
+    columnList.forEach((column: any) => {
 			if (column.config.name) {
 				filteredData = filteredData.filter((item: any) => {
 					if (typeof item[column.config.name] === 'undefined' && item[column.config.name] !== undefined) {
@@ -141,33 +143,35 @@ export class TCTableComponent implements OnInit, OnChanges {
 			}
 		});
 
-		if (!config.filtering) {
-			return filteredData;
-		}
+		if (!config.filtering) return filteredData;
 		
 		let tempArray: Array<any> = [];
+
 		filteredData.forEach((item: any) => {
 			let flag = false;
-			this.columnList.forEach((column: any) => {
-			if (column.config.filtering && column.config.name) {
-				if (typeof item[column.config.name] !== 'undefined' && item[column.config.name] !== undefined) {
-					if (item[column.config.name].toString().toLowerCase().startsWith(config.filtering.filterString.toLowerCase())) {
-						flag = true;
-					}
+
+      columnList.forEach((column: any) => {
+        if (column.config.filtering && column.config.name) {
+          if (typeof item[column.config.name] !== 'undefined' && item[column.config.name] !== undefined) {
+            if (item[column.config.name].toString().toLowerCase().startsWith(config.filtering.filterString.toLowerCase())) {
+              flag = true;
+            }
+          }
         }
-			}
-			});
-			if (flag) {
-				tempArray.push(item);
-			}
-		});
+      });
+
+      if (flag) {
+        tempArray.push(item);
+      }
+    });
+
 		filteredData = tempArray;
 
 		return filteredData;
 	}
 
 	onChangeTable(config: any, column: TCTableColComponent): any {
-		if (config.filtering) {
+    if (config.filtering) {
 			Object.assign(this.config.filtering, config.filtering);
 		}
 
@@ -176,13 +180,15 @@ export class TCTableComponent implements OnInit, OnChanges {
 		}
 
 		let filteredData;
+
 		if (column) {
-			filteredData = this.changeFilter(this.data, column.config);
+			filteredData = this.changeFilter(this.data, column.config, this.columnList);
 		} else {
-			filteredData = this.changeFilter(this.data, config);
+			filteredData = this.changeFilter(this.data, config, this.columnList);
 		}
 
-		let sortedData = this.changeSort(filteredData, this.config);
+    let sortedData = this.changeSort(filteredData, this.config);
+
 		this.rows = this.pagination ? this.changePage(this.page, this.itemsPerPage, sortedData) : sortedData;
 	}
 }

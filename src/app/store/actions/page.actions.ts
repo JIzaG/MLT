@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store';
 
 import { IPageData } from '../../interfaces/page-data';
 
-export const SET = 'Set';
-export const UPDATE = 'Update';
-export const RESET = 'Reset';
+export const SET = '[PageData] Set';
+export const UPDATE = '[PageData] Update';
+export const RESET = '[PageData] Reset';
 
 export class Set implements Action {
   readonly type = SET;

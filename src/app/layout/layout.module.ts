@@ -9,13 +9,16 @@ import { UIModule } from '../ui/ui.module';
 import { BaseLayoutComponent } from './base-layout';
 import { HorizontalLayoutComponent } from './horizontal';
 import { VerticalLayoutComponent } from './vertical';
+import { PublicLayoutComponent } from './public';
 
 import { NavbarComponent } from './components/navbar';
 import { MenuComponent } from './components/menu';
 import { FooterComponent } from './components/footer';
 import { LogoComponent } from './components/logo';
 import { SearchComponent } from './components/search';
-import { ActionsComponent } from './components/actions/actions.component';
+import { ActionsComponent } from './components/actions';
+import { LoginFormComponent } from './components/login-form';
+import { RegisterFormComponent } from './components/register-form';
 
 @NgModule({
   imports: [
@@ -36,10 +39,14 @@ import { ActionsComponent } from './components/actions/actions.component';
     FooterComponent,
     LogoComponent,
     SearchComponent,
-    ActionsComponent
+    ActionsComponent,
+    PublicLayoutComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   exports: [
-
+    LoginFormComponent,
+    RegisterFormComponent
   ]
 })
 export class LayoutModule { }

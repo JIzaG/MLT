@@ -13,6 +13,7 @@ import { UIModule } from './ui/ui.module';
 import { PagesModule } from './pages/pages.module';
 import { pageDataReducer } from './store/reducers/page-data.reducer';
 import { appSettingsReducer } from './store/reducers/app-settings.reducer';
+import { patientsReducer } from './store/reducers/patients.reducer';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { appSettingsReducer } from './store/reducers/app-settings.reducer';
     RouterModule.forRoot(ROUTES, { useHash: false }),
     StoreModule.forRoot({
       pageData: pageDataReducer,
-      appSettings: appSettingsReducer
+      appSettings: appSettingsReducer,
+      patients: patientsReducer
     }),
 
     RoutingModule,

@@ -17,20 +17,6 @@
       position: relative;
       transition: .2s padding 0s $animation;
 
-      .page-loader {
-        align-items: center;
-        background: #fff;
-        color: accent-palette(500);
-        display: flex;
-        height: 100%;
-        font-size: 30px;
-        justify-content: center;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 9999;
-      }
       .main-content-wrap {
         min-height: calc(100% - #{$module-rem * 4});
         margin: 0 auto;

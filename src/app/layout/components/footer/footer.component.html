@@ -12,6 +12,26 @@
   </div>
 
   <div class="col-12 col-md-6 text-right">
-    Version 1.0.0
+    <div class="d-flex align-items-center justify-content-end">
+      <span>Version 1.0.0</span>
+      <button class="no-style ml-2" (click)="openModal(modalBody, 'Application\'s settings', modalFooter)">
+        <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="26" [tcColor]="['#336cfb', '#b7ce63']"></tc-icon>
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- Settings modal window -->
+<ng-container>
+  <ng-template #modalBody>
+
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div class="actions justify-content-between">
+      <button tc-button [block]="true" [view]="'error'">Reset to default</button>
+      <a tc-button [block]="true" [view]="'accent'" [href]="downloadJsonHref" download="app-settings.json">Download settings</a>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Settings modal window -->

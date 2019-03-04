@@ -1,4 +1,4 @@
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { TCTableComponent } from '../table.component';
 
 @Component({
@@ -36,6 +36,11 @@ export class TCTableColComponent implements OnInit {
     };
   }
 
+  ngOnInit() {
+    this.setConfig();
+    this.table.addColumn(this);
+  }
+
   setConfig() {
     this.config.name = this.columnName;
     this.config.title = this.columnTitle;
@@ -45,10 +50,5 @@ export class TCTableColComponent implements OnInit {
     if (this.columnName === '') {
       this.config.filtering = false;
     }
-  }
-
-  ngOnInit() {
-    this.setConfig();
-    this.table.addColumn(this);
   }
 }

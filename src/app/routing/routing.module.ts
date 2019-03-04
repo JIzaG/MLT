@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { VerticalLayoutComponent } from '../layout/vertical';
 import { HorizontalLayoutComponent } from '../layout/horizontal';
+import { PublicLayoutComponent } from '../layout/public';
 
 import { PageDashboardComponent } from '../pages/dashboards/dashboard-1';
 import { PageButtonsComponent } from '../pages/ui/components/buttons';
@@ -46,6 +47,14 @@ import { Page404Component } from '../pages/page-404';
 import { PageLeafletMapsComponent } from '../pages/ui/maps/leaflet-maps';
 import { PageVTimelineComponent } from '../pages/ui/components/v-timeline';
 import { PagePatientProfileComponent } from '../pages/medicine/patient-profile';
+import { PageInvoiceComponent } from '../pages/apps/service-pages/invoice';
+import { PagePricingComponent } from '../pages/apps/service-pages/pricing';
+import { PageTimelineComponent } from '../pages/apps/service-pages/timeline';
+import { PageUserProfileComponent } from '../pages/apps/service-pages/user-profile';
+import { PageEditAccountComponent } from '../pages/apps/service-pages/edit-account';
+import { PageCalendarComponent } from '../pages/apps/service-pages/calendar';
+import { PageSignInComponent } from '../pages/apps/sessions/sign-in';
+import { PageSignUpComponent } from '../pages/apps/sessions/sign-up';
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'default-dashboard', component: PageDashboardComponent },
@@ -90,7 +99,20 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'icons-options', component: PageIconsOptionsComponent },
   { path: 'icons-if', component: PageIconsIfComponent },
   { path: 'icons-sli', component: PageIconsSliComponent },
+
+  { path: 'invoices', component: PageInvoiceComponent },
+  { path: 'pricing', component: PagePricingComponent },
+  { path: 'events-timeline', component: PageTimelineComponent },
+  { path: 'user-profile', component: PageUserProfileComponent },
+  { path: 'edit-account', component: PageEditAccountComponent },
+  { path: 'events-calendar', component: PageCalendarComponent },
+
   { path: '**', component: Page404Component }
+];
+
+const PUBLIC_ROUTES: Routes = [
+  { path: 'sign-in', component: PageSignInComponent },
+  { path: 'sign-up', component: PageSignUpComponent },
 ];
 
 export const ROUTES: Routes = [
@@ -108,6 +130,11 @@ export const ROUTES: Routes = [
     path: 'horizontal',
     component: HorizontalLayoutComponent,
     children: VERTICAL_ROUTES
+  },
+  {
+    path: 'public',
+    component: PublicLayoutComponent,
+    children: PUBLIC_ROUTES
   },
   {
     path: '**',

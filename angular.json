@@ -32,6 +32,8 @@
               "src/assets/css/icofont.min.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
+              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"
             ],
             "scripts": [
@@ -97,6 +99,8 @@
               "src/assets/css/icofont.min.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
+              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"
             ],
             "scripts": [

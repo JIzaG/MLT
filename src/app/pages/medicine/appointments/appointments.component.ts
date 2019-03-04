@@ -1,11 +1,10 @@
-import { Component, ContentChild, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BasePageComponent } from '../../base-page';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../interfaces/app-state';
 import { HttpService } from '../../../services/http/http.service';
 import { TCModalService } from '../../../ui/services/modal/modal.service';
-import { Content } from '../../../ui/interfaces/modal';
 import { IUser } from '../../../ui/interfaces/user';
 
 @Component({

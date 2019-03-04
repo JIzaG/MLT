@@ -6,11 +6,11 @@
     </tc-badge>
   </tc-dropdown-button>
 
-  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[15, 0]">
+  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[11, 0]">
     <div class="menu-header">
-      <h4 class="menu-title">Notifications</h4>
+      <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
 
-      <a href="#" (click)="$event.preventDefault(); notifications = []"><small>Clear All</small></a>
+      <a href="#" (click)="$event.preventDefault(); notifications = []" [tcColor]="['#ed5564', '#8E333C']">Clear All</a>
     </div>
 
     <ul class="list">
@@ -34,8 +34,15 @@
     </ul>
 
     <div class="menu-footer" *ngIf="notifications && notifications.length">
-      <a href="#" (click)="$event.preventDefault()">
-        View all notifications <span class="icofont-circled-right"></span>
+      <a
+        tc-button
+        href="#"
+        (click)="$event.preventDefault()"
+        [view]="'accent'"
+        [block]="true"
+        [afterIcon]="'icofont-tasks-alt'"
+      >
+        View all notifications
       </a>
     </div>
   </tc-dropdown-content>
@@ -49,35 +56,40 @@
     </div>
   </tc-dropdown-button>
 
-  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[15, 0]">
+  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[11, 0]" [width]="180">
     <ul class="list">
       <li>
-        <a href="#">
-          <tc-icon [iconClass]="'icofont-ui-home'" [tcFontSize]="18" [padding]="0"></tc-icon> My Account
+        <a [routerLink]="['./', 'edit-account']">
+          <tc-icon [iconClass]="'icofont-ui-home'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+          Edit account
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['./', 'user-profile']">
+          <tc-icon [iconClass]="'icofont-ui-user'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+          User profile
+        </a>
+      </li>
+
+      <li>
+        <a [routerLink]="['./', 'events-calendar']">
+          <tc-icon [iconClass]="'icofont-ui-calendar'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+          Calendar
         </a>
       </li>
 
       <li>
         <a href="#">
-          <tc-icon [iconClass]="'icofont-ui-user'" [tcFontSize]="18" [padding]="0"></tc-icon> Profile
+          <tc-icon [iconClass]="'icofont-ui-settings'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+          Settings
         </a>
       </li>
 
       <li>
         <a href="#">
-          <tc-icon [iconClass]="'icofont-ui-calendar'" [tcFontSize]="18" [padding]="0"></tc-icon> Calendar
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="18" [padding]="0"></tc-icon> Settings
-        </a>
-      </li>
-
-      <li>
-        <a href="#">
-          <tc-icon [iconClass]="'icofont-logout'" [tcFontSize]="18" [padding]="0"></tc-icon> Log Out
+          <tc-icon [iconClass]="'icofont-logout'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+          Log Out
         </a>
       </li>
     </ul>

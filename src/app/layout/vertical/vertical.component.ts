@@ -9,6 +9,8 @@ import { IOption } from '../../ui/interfaces/option';
 import { Content } from '../../ui/interfaces/modal';
 import { TCModalService } from '../../ui/services/modal/modal.service';
 import { Router } from '@angular/router';
+import { IPatient } from '../../interfaces/patient';
+import * as PatientsActions from '../../store/actions/patients.actions';
 
 @Component({
   selector: 'vertical-layout',
@@ -19,6 +21,7 @@ import { Router } from '@angular/router';
   ]
 })
 export class VerticalLayoutComponent extends BaseLayoutComponent implements OnInit {
+  patients: IPatient[];
   patientForm: FormGroup;
   gender: IOption[];
   currentAvatar: string | ArrayBuffer;
@@ -46,10 +49,18 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     ];
     this.defaultAvatar = 'assets/content/anonymous-400.jpg';
     this.currentAvatar = this.defaultAvatar;
+    this.patients = [];
   }
 
   ngOnInit() {
     super.ngOnInit();
+
+    this.getData('assets/data/patients.json', 'patients', 'setPatients');
+  }
+
+  // set patients to store
+  setPatients() {
+    this.store.dispatch(new PatientsActions.Set(this.patients));
   }
 
   // open modal window
@@ -93,5 +104,21 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
       gender: ['', Validators.required],
       address: ['', Validators.required]
     });
+  }
+
+  // add new patient
+  addPatient(form: FormGroup) {
+    if (form.valid) {
+      let newPatient: IPatient = form.value;
+
+      newPatient.img = this.currentAvatar;
+      newPatient.id = '23';
+      newPatient.status = 'Pending';
+      newPatient.lastVisit = '';
+
+      this.store.dispatch(new PatientsActions.Add(newPatient));
+      this.closeModal();
+      this.patientForm.reset();
+    }
   }
 }

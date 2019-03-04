@@ -8,9 +8,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AgmCoreModule } from '@agm/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { environment } from '../../environments/environment';
 import { UIModule } from '../ui/ui.module';
+import { LayoutModule } from '../layout/layout.module';
 import { BasePageComponent } from './base-page';
 
 import { PageDashboardComponent } from './dashboards/dashboard-1';
@@ -55,6 +57,14 @@ import { Page404Component } from './page-404';
 import { PageLeafletMapsComponent } from './ui/maps/leaflet-maps';
 import { PageVTimelineComponent } from './ui/components/v-timeline';
 import { PagePatientProfileComponent } from './medicine/patient-profile';
+import { PageInvoiceComponent } from './apps/service-pages/invoice';
+import { PagePricingComponent } from './apps/service-pages/pricing';
+import { PageTimelineComponent } from './apps/service-pages/timeline';
+import { PageUserProfileComponent } from './apps/service-pages/user-profile';
+import { PageEditAccountComponent } from './apps/service-pages/edit-account';
+import { PageCalendarComponent } from './apps/service-pages/calendar';
+import { PageSignInComponent } from './apps/sessions/sign-in/sign-in.component';
+import { PageSignUpComponent } from './apps/sessions/sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -70,8 +80,10 @@ import { PagePatientProfileComponent } from './medicine/patient-profile';
       apiKey: environment.googleMapApiKey
     }),
     LeafletModule,
+    FullCalendarModule,
 
-    UIModule
+    UIModule,
+    LayoutModule
   ],
   declarations: [
     BasePageComponent,
@@ -116,7 +128,15 @@ import { PagePatientProfileComponent } from './medicine/patient-profile';
     Page404Component,
     PageLeafletMapsComponent,
     PageVTimelineComponent,
-    PagePatientProfileComponent
+    PagePatientProfileComponent,
+    PageInvoiceComponent,
+    PagePricingComponent,
+    PageTimelineComponent,
+    PageUserProfileComponent,
+    PageEditAccountComponent,
+    PageCalendarComponent,
+    PageSignInComponent,
+    PageSignUpComponent
   ],
   exports: [ ],
   entryComponents: [ ]

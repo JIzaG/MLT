@@ -85,7 +85,12 @@
               <a
                 href="#"
                 class="item-link"
-                (click)="$event.preventDefault(); changeRoute(itemSub.routing, !isActive([orientation, itemSub.routing])); closeAll(); closeSidebar()"
+                (click)="
+                  $event.preventDefault();
+                  changeRoute(itemSub.routing, !isActive([orientation, itemSub.routing]), itemSub.layout ? itemSub.layout : orientation);
+                  closeAll();
+                  closeSidebar()
+                "
               >
                 <span class="link-text">{{ itemSub.title }}</span>
               </a>

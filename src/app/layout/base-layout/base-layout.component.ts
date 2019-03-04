@@ -1,5 +1,6 @@
-import { Component, ElementRef, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 import { IPageData } from '../../interfaces/page-data';
@@ -9,7 +10,6 @@ import { HttpService } from '../../services/http/http.service';
 import { IAppSettings } from '../../interfaces/settings';
 import { IMenuItem } from '../../interfaces/main-menu';
 import * as SettingsActions from '../../store/actions/app-settings.actions';
-import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'base-layout',
@@ -20,10 +20,8 @@ export class BaseLayoutComponent implements OnInit {
   pageData: IPageData;
   appSettings: IAppSettings;
   files: IFile[];
-  filesUrl: string;
   searchForm: FormGroup;
   searchData: any[];
-  searchDataUrl: string;
   scrolled: boolean;
 
   constructor(
@@ -33,8 +31,6 @@ export class BaseLayoutComponent implements OnInit {
     public router: Router,
     public elRef: ElementRef
   ) {
-    this.filesUrl = 'assets/data/navbar-files.json';
-    this.searchDataUrl = 'assets/data/menu.json';
     this.files = [];
     this.searchData = [];
     this.scrolled = false;
@@ -50,19 +46,27 @@ export class BaseLayoutComponent implements OnInit {
       settings ? this.appSettings = settings : null;
     });
 
-    this.getData(this.filesUrl, 'files');
-    this.getSearchData(this.searchDataUrl);
+    this.getData('assets/data/navbar-files.json', 'files');
+    this.getSearchData('assets/data/menu.json');
     this.initSearchForm();
     this.scrollToTop();
   }
 
-  getData(url: string, dataName: string) {
+  // get data
+  // parameters:
+  // * url - data url
+  // * dataName - set data to 'dataName'
+  // * callbackFnName run callback function with name 'callbackFnName'
+  getData(url: string, dataName: string, callbackFnName?: string) {
     this.httpSv.getData(url).subscribe(
       data => {
         this[dataName] = data;
       },
       err => {
         console.log(err);
+      },
+      () => {
+        (callbackFnName && typeof this[callbackFnName] === 'function') ? this[callbackFnName](this[dataName]) : null;
       }
     );
   }

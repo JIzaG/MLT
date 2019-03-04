@@ -25,11 +25,9 @@ import { TCFormDescriptionComponent } from './components/form-description';
 import { TCFormGroupComponent } from './components/form-group';
 import { TCFormLabelComponent } from './components/form-label';
 import { TCPaginationComponent } from './components/pagination';
-import { TCToDoListComponent } from './components/to-do-list';
 import { TCCheckboxComponent } from './components/checkbox';
 import { TCTextareaComponent } from './components/textarea';
 import { TCContactComponent } from './components/contact';
-import { TCTaskboardComponent } from './components/taskboard';
 import { TCSwitcherComponent } from './components/switcher';
 import { TCAutocompleteComponent } from './components/autocomplete';
 import { TCRadioComponent, TCRadioOptionComponent } from './components/radio';
@@ -76,10 +74,8 @@ import { TCPickerComponent } from './components/color-picker/picker/picker.compo
     TCFormGroupComponent,
     TCFormLabelComponent,
     TCPaginationComponent,
-    TCToDoListComponent,
     TCCheckboxComponent,
     TCContactComponent,
-    TCTaskboardComponent,
     TCSwitcherComponent,
     TCAutocompleteComponent,
     TCRadioComponent, TCRadioOptionComponent,
@@ -114,10 +110,8 @@ import { TCPickerComponent } from './components/color-picker/picker/picker.compo
     TCFormDescriptionComponent,
     TCFormGroupComponent,
     TCFormLabelComponent,
-    TCToDoListComponent,
     TCCheckboxComponent,
 		TCContactComponent,
-		TCTaskboardComponent,
 		TCSwitcherComponent,
 		TCAutocompleteComponent,
     TCRadioComponent,

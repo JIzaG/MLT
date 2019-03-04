@@ -50,16 +50,11 @@ $_sub-separator: main-palette(300);
         padding: 0 ($module-rem * 1.5);
         position: relative;
 
-        &:first-child {
-          > .group-title {
-            padding-top: $module-rem * 3;
-          }
-        }
         .group-title {
           color: $_item-group-color;
           display: block;
           opacity: .3;
-          padding: ($module-rem * 5) ($_item-h-indents + ($module-rem / 2)) $module-rem;
+          padding: ($module-rem * 3) ($_item-h-indents + ($module-rem / 2)) $module-rem;
           text-transform: uppercase;
         }
         .item-link {

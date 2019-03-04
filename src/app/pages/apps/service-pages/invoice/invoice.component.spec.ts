@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TCTaskboardComponent } from './taskboard.component';
+import { PageInvoiceComponent } from './invoice.component';
 
-describe('TCTaskboardComponent', () => {
-  let component: TCTaskboardComponent;
-  let fixture: ComponentFixture<TCTaskboardComponent>;
+describe('PageInvoiceComponent', () => {
+  let component: PageInvoiceComponent;
+  let fixture: ComponentFixture<PageInvoiceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TCTaskboardComponent ]
+      declarations: [ PageInvoiceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TCTaskboardComponent);
+    fixture = TestBed.createComponent(PageInvoiceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

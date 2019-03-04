@@ -1,5 +1,8 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+
 import { IPageData } from '../../../interfaces/page-data';
+import { Content } from '../../../ui/interfaces/modal';
+import { TCModalService } from '../../../ui/services/modal/modal.service';
 
 @Component({
   selector: 'footer',
@@ -12,7 +15,19 @@ export class FooterComponent implements OnInit {
 
   @Input() pageData: IPageData;
 
-  constructor() { }
+  constructor(
+    private modal: TCModalService
+  ) { }
 
   ngOnInit() { }
+
+  // open modal window
+  openModal<T>(body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null) {
+    this.modal.open({
+      body: body,
+      header: header,
+      footer: footer,
+      options: options
+    });
+  }
 }

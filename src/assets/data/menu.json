@@ -211,5 +211,53 @@
         "routing": "world-map"
       }
     ]
+  },
+  {
+    "title": "Apps",
+    "groupTitle": true
+  },
+  {
+    "title": "Service pages",
+    "sub": [
+      {
+        "title": "Invoices",
+        "routing": "invoices"
+      },
+      {
+        "title": "Pricing",
+        "routing": "pricing"
+      },
+      {
+        "title": "Edit account",
+        "routing": "edit-account"
+      },
+      {
+        "title": "User profile",
+        "routing": "user-profile"
+      },
+      {
+        "title": "Events timeline",
+        "routing": "events-timeline"
+      },
+      {
+        "title": "Events calendar",
+        "routing": "events-calendar"
+      }
+    ]
+  },
+  {
+    "title": "Sessions",
+    "sub": [
+      {
+        "title": "Sign in",
+        "routing": "sign-in",
+        "layout": "public"
+      },
+      {
+        "title": "Sign up",
+        "routing": "sign-up",
+        "layout": "public"
+      }
+    ]
   }
 ]

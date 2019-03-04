@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
+import { EChartOption } from 'echarts';
 import { BasePageComponent } from '../../base-page';
 import { IAppState } from '../../../interfaces/app-state';
 import { HttpService } from '../../../services/http/http.service';
@@ -22,6 +23,7 @@ export class PageDoctorProfileComponent extends BasePageComponent implements OnI
   defaultAvatar: string;
   specialists: string[];
   changes: boolean;
+  patientsOptions: EChartOption;
 
   constructor(
     store: Store<IAppState>,
@@ -68,6 +70,7 @@ export class PageDoctorProfileComponent extends BasePageComponent implements OnI
     this.getData('assets/data/doctor-info.json', 'doctorInfo', 'loadedDetect');
     this.getData('assets/data/doctors-specialists.json', 'specialists');
     this.getData('assets/data/doctor-timeline.json', 'doctorTimeline');
+    this.setPOptions();
   }
 
   ngOnDestroy() {
@@ -148,5 +151,60 @@ export class PageDoctorProfileComponent extends BasePageComponent implements OnI
     };
 
     reader.readAsDataURL(file);
+  }
+
+  // set patients chart options
+  setPOptions() {
+    this.patientsOptions = {
+      color: ['#336cfb'],
+      tooltip: {
+        trigger: 'none',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      grid: {
+        left: 30,
+        right: 0,
+        top: 50,
+        bottom: 50
+      },
+      xAxis: [
+        {
+          type: 'category',
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLine: {
+            onZero: false,
+            lineStyle: {
+              color: '#336cfb'
+            }
+          },
+          axisPointer: {
+            label: {
+              formatter: function (params) {
+                return 'Patients ' + params.value
+                  + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+              }
+            }
+          },
+          data: ['2018-1', '2018-2', '2018-3', '2018-4', '2018-5', '2018-6', '2018-7', '2018-8', '2018-9', '2018-10', '2018-11', '2018-12']
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value'
+        }
+      ],
+      series: [
+        {
+          name: 'Patients 2018',
+          type: 'line',
+          smooth: true,
+          data: [95, 124, 132, 143, 138, 178, 194, 211, 234, 257, 241, 226]
+        }
+      ]
+    };
   }
 }

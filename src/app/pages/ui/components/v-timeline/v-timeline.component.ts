@@ -40,7 +40,7 @@ export class PageVTimelineComponent extends BasePageComponent implements OnInit,
   ngOnInit() {
     super.ngOnInit();
 
-    this.getData('assets/data/timeline.json', 'data', 'setLoaded')
+    this.getData('assets/data/timeline.json', 'data', 'setLoaded');
   }
 
   ngOnDestroy() {

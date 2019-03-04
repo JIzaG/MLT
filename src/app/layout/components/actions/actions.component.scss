@@ -23,7 +23,10 @@
       }
       .tc-badge {
         border: 2px solid #fff;
-        min-width: 22px;
+        justify-content: center;
+        min-width: 21px;
+        padding-left: 2px;
+        padding-right: 2px;
         position: absolute;
         right: 0;
         text-align: center;
