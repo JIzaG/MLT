@@ -33,6 +33,7 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
               "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/animate.css/animate.min.css",
               "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"
             ],
@@ -53,7 +54,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -62,8 +63,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "30mb",
+                  "maximumError": "50mb"
                 }
               ]
             }
@@ -100,6 +101,7 @@
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
               "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/animate.css/animate.min.css",
               "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"
             ],

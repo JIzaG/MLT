@@ -7,13 +7,17 @@
     [minHeight]="'4.28571429rem'"
   >
     <button
-      class="no-style navbar-toggle icofont-navigation-menu d-lg-none"
+      class="no-style navbar-toggle d-lg-none"
       (click)="toggleSidebar(true)"
-    ></button>
+    >
+      <span></span><span></span><span></span>
+    </button>
 
-    <search [data]="searchData" [layout]="'vertical-layout'" class="d-none d-md-block"></search>
+    <search [data]="searchData" [layout]="'vertical'" class="d-none d-md-block"></search>
 
-    <actions></actions>
+    <actions [layout]="'vertical'"></actions>
+
+    <navbar-skeleton [type]="'horizontal'" [loaded]="loaded"></navbar-skeleton>
   </navbar>
   <!-- end Horizontal navbar -->
 
@@ -43,7 +47,7 @@
     </div>
 
     <menu class="assistant-menu">
-      <a href="#" class="link">
+      <a href="#" [routerLink]="['/vertical', 'settings']" class="link">
         <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="'1.3em'"></tc-icon>Settings
       </a>
 
@@ -51,6 +55,8 @@
         <tc-icon [iconClass]="'icofont-question-square'" [tcFontSize]="'1.3em'"></tc-icon>FAQ & Support
       </a>
     </menu>
+
+    <navbar-skeleton [type]="'vertical'" [loaded]="loaded"></navbar-skeleton>
   </navbar>
   <!-- end Vertical navbar -->
 
@@ -66,7 +72,7 @@
     </div>
   </main>
 
-  <footer [boxed]="appSettings.boxed" [pageData]="pageData"></footer>
+  <footer [boxed]="appSettings.boxed" [pageData]="pageData" [loaded]="loaded"></footer>
 
   <div class="content-overlay" [ngClass]="{ 'show': appSettings.sidebarOpened }" (click)="toggleSidebar(false)"></div>
 </div>

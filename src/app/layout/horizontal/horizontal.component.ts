@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { Store } from '@ngrx/store';
+
 import { HttpService } from '../../services/http/http.service';
 import { IAppState } from '../../interfaces/app-state';
 import { BaseLayoutComponent } from '../base-layout/base-layout.component';
-import { Router } from '@angular/router';
+import * as SettingsActions from '../../store/actions/app-settings.actions';
 
 @Component({
   selector: 'horizontal-layout',
@@ -27,5 +30,8 @@ export class HorizontalLayoutComponent extends BaseLayoutComponent implements On
 
   ngOnInit() {
     super.ngOnInit();
+
+    this.getSearchData('assets/data/menu-horizontal.json');
+    this.store.dispatch(new SettingsActions.Update({ layout: 'horizontal' }));
   }
 }

@@ -132,9 +132,8 @@ export class TCAutocompleteComponent extends TCInputComponent implements OnInit,
   }
 
   // detect blur event
-  autocompleteOnBlur(event) {
+  autocompleteOnBlur() {
     this.blur.emit();
-    //this.closeList();
   }
 
   // select item

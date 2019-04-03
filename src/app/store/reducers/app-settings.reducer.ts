@@ -24,7 +24,7 @@ export function appSettingsReducer(state: IAppSettings = defaultSettings, action
       return newState(state, action.data);
     }
     case SettingsActions.RESET: {
-      return state = action.data;
+      return state = defaultSettings;
     }
     case SettingsActions.SIDEBAR_STATE: {
       state.sidebarOpened = action.data;

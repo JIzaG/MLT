@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.data = [];
+    this.layout = 'vertical';
   }
 
   ngOnInit() {
@@ -30,18 +31,16 @@ export class SearchComponent implements OnInit {
   }
 
   goTo(event: Event, value: string) {
-    let currentPage;
+    if (value) {
+      let currentPage;
 
-    currentPage = this.data.find(item => {
-      return item.title === value;
-    });
+      currentPage = this.data.find(item => {
+        return item.title === value;
+      });
 
-    if (currentPage && currentPage.routing) {
-      this.router.navigate(
-        currentPage.routing.split('/').filter(n => n).length > 1
-          ? [currentPage.routing]
-          : [this.layout, currentPage.routing]
-      );
+      if (currentPage && currentPage.routing) {
+        this.router.navigate([currentPage.layout ? currentPage.layout : this.layout, currentPage.routing]);
+      }
     }
   }
 }

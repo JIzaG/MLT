@@ -3,7 +3,9 @@ html {
   line-height: $main-lh;
 }
 body {
+  background: $main-bg;
   background: var(--main-bg);
+  color: $main-color;
   color: var(--main-color);
   font-family: $main-ff;
   font-size: 1rem;
@@ -107,6 +109,9 @@ button {
     outline: none;
   }
 }
+textarea {
+  box-shadow: none;
+}
 mark,
 .mark {
   padding: 0 .2em;
@@ -120,4 +125,23 @@ mark,
 ::-moz-selection {
   background-color: accent-palette(500);
   color: accent-contrast(500);
+}
+
+//Scroll
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(#000,.1);
+}
+::-webkit-scrollbar {
+  background: rgba(#fff,.2);
+  position: absolute;
+  width: 2px;
+}
+::-webkit-scrollbar:hover {
+  display: block;
+}
+::-webkit-scrollbar-thumb {
+  background-color: main-palette(100);
+}
+::-webkit-scrollbar:horizontal {
+  height: 2px;
 }

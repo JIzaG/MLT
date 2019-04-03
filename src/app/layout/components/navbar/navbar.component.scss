@@ -2,15 +2,18 @@
 
 :host {
   $_bg: #fff;
+  $_color: $main-color;
   $_color: var(--main-color);
 
   background: $_bg;
   color: $_color;
   display: block;
   transition: box-shadow .2s $animation;
+  will-change: box-shadow;
 
   .navbar-wrap {
     align-items: center;
+    background: inherit;
     display: flex;
     height: 100%;
     justify-content: space-between;
@@ -19,23 +22,27 @@
     padding: 0 $module-rem;
     position: relative;
 
-    .skeleton {
-      background: rgba($_bg,.5);
-      height: 100%;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 999;
-    }
     ::ng-deep {
       > * {
         margin: 0 $module-rem;
       }
       .navbar-toggle {
+        align-items: center;
         color: inherit;
         cursor: pointer;
-        font-size: 37px;
+        display: flex;
+        flex-direction: column;
+        height: 40px;
+        justify-content: center;
+        width: 35px;
+
+        span {
+          background: main-palette(500);
+          display: block;
+          height: 3px;
+          margin: 4px 0;
+          width: 35px;
+        }
       }
       .navbar-close {
         color: inherit;
@@ -76,12 +83,9 @@
   }
   &.boxed {
     .navbar-wrap {
+      max-width: $boxed-width;
       max-width: var(--boxed-width);
     }
-  }
-  .scrolled &.horizontal {
-    box-shadow: 0 2px 5px rgba(#000,.05);
-    z-index: 9997;
   }
   &.horizontal-vertical {
     @media #{$max991} {
@@ -102,6 +106,7 @@
         flex-direction: column;
         height: 100%;
         justify-content: flex-start;
+        overflow: auto;
         padding: 0;
         width: $vertical-navbar-width;
 
@@ -128,6 +133,7 @@
     transition: transform .2s $animation;
     width: $vertical-navbar-width;
     will-change: transform, width;
+    -webkit-overflow-scrolling: touch;
     z-index: 9997;
     @media #{$max991} {
       transform: translateX(-$vertical-navbar-width);

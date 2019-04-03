@@ -1,25 +1,7 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
-
-import { Store } from '@ngrx/store';
-import { HttpService } from '../../../services/http/http.service';
-import { IOption } from '../../../ui/interfaces/option';
-import { IAppState } from '../../../interfaces/app-state';
-import * as SettingsActions from '../../../store/actions/app-settings.actions';
-import { IAppSettings } from '../../../interfaces/settings';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
 
-const LAYOUTS: IOption[] = [
-  {
-    "label" : "Vertical layout",
-    "value" : "vertical-layout"
-  },
-  {
-    "label" : "Horizontal layout",
-    "value" : "horizontal-layout"
-  }
-];
+import { HttpService } from '../../../services/http/http.service';
 
 @Component({
   selector: 'actions',
@@ -27,51 +9,27 @@ const LAYOUTS: IOption[] = [
   styleUrls: ['./actions.component.scss']
 })
 export class ActionsComponent implements OnInit {
-  notificationsUrl: string;
-  messagesUrl: string;
-  filesUrl: string;
   notifications: any[];
   messages: any[];
   files: any[];
-  layouts: IOption[];
-  settingsUrl: string;
-  defaultSettings: IAppSettings;
-  settings: IAppSettings;
-  downloadJsonHref: SafeUrl;
-  currentLayout: number;
   closeDropdown: EventEmitter<boolean>;
+  @Input() layout: string;
 
   constructor(
     private httpSv: HttpService,
-    private store: Store<IAppState>,
-    private sanitizer: DomSanitizer,
     private router: Router
   ) {
-    this.notificationsUrl = 'assets/data/navbar-notifications.json';
-    this.messagesUrl = 'assets/data/navbar-messages.json';
-    this.filesUrl = 'assets/data/navbar-files.json';
     this.notifications = [];
     this.messages = [];
     this.files = [];
-    this.layouts = LAYOUTS;
     this.closeDropdown = new EventEmitter<boolean>();
+    this.layout = 'vertical';
   }
 
   ngOnInit() {
-    this.getData(this.notificationsUrl, 'notifications');
-    this.getData(this.messagesUrl, 'messages');
-    this.getData(this.filesUrl, 'files');
-    this.defaultSettings = environment.appSettings;
-
-    this.store.select('appSettings').subscribe(st => {
-      if (st) {
-        this.settings = st;
-        this.downloadSettings(st);
-        //console.log(this.settings.sidebarBg)
-      }
-    });
-
-    this.currentLayout = (this.router.url.split('/').filter(n => n)[0] === 'horizontal-layout') ? 1 : 0;
+    this.getData('assets/data/navbar-notifications.json', 'notifications');
+    this.getData('assets/data/navbar-messages.json', 'messages');
+    this.getData('assets/data/navbar-files.json', 'files');
   }
 
   getData(url: string, dataName: string) {
@@ -85,48 +43,17 @@ export class ActionsComponent implements OnInit {
     );
   }
 
-  setSidebarColor(value: any) {
-    this.store.dispatch(new SettingsActions.Update({
-      sidebarBg: value.color,
-      sidebarColor: value.contrast
-    }));
-  }
-
-  setTopbarColor(value: any) {
-    this.store.dispatch(new SettingsActions.Update({
-      topbarBg: value.color,
-      topbarColor: value.contrast
-    }));
-  }
-
-  changeLayout(layout: string) {
-    this.onCloseDropdown();
-    this.store.dispatch(new SettingsActions.Update({ layout: layout }));
-
-    let url = this.router.url.split('/').filter(n => n);
-    url[0] = layout;
-    let route = url.join('/');
-    setTimeout(() => {
-      this.router.navigate([route]);
-    }, 0);
-  }
-
-  changeBoxed(boxed: boolean) {
-    this.store.dispatch(new SettingsActions.Update({ boxed: boxed }));
-  }
-
-  resetSettings(data: IAppSettings) {
-    this.store.dispatch(new SettingsActions.Reset(data));
-  }
-
-  downloadSettings(settings: IAppSettings) {
-    const JSON_FILE = JSON.stringify(settings);
-    const URI = this.sanitizer.bypassSecurityTrustUrl(`data:text/json;charset=UTF-8, ${encodeURIComponent(JSON_FILE)}`);
-
-    this.downloadJsonHref = URI;
-  }
-
   onCloseDropdown() {
     this.closeDropdown.emit(true);
+  }
+
+  goTo(event: Event, link: string, layout: string = '') {
+    event.preventDefault();
+
+    this.onCloseDropdown();
+
+    setTimeout(() => {
+      this.router.navigate([layout ? layout : this.layout, link]);
+    });
   }
 }

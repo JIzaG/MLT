@@ -3,13 +3,15 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+
 import { IPageData } from '../../interfaces/page-data';
 import { IAppState } from '../../interfaces/app-state';
-import { IFile } from '../../interfaces/file';
 import { HttpService } from '../../services/http/http.service';
 import { IAppSettings } from '../../interfaces/settings';
 import { IMenuItem } from '../../interfaces/main-menu';
 import * as SettingsActions from '../../store/actions/app-settings.actions';
+import * as PatientsActions from '../../store/actions/patients.actions';
+import { IPatient } from '../../interfaces/patient';
 
 @Component({
   selector: 'base-layout',
@@ -17,12 +19,13 @@ import * as SettingsActions from '../../store/actions/app-settings.actions';
   styleUrls: ['./base-layout.component.scss']
 })
 export class BaseLayoutComponent implements OnInit {
+  loaded: boolean;
   pageData: IPageData;
   appSettings: IAppSettings;
-  files: IFile[];
   searchForm: FormGroup;
   searchData: any[];
   scrolled: boolean;
+  patients: IPatient[];
 
   constructor(
     public store: Store<IAppState>,
@@ -31,23 +34,24 @@ export class BaseLayoutComponent implements OnInit {
     public router: Router,
     public elRef: ElementRef
   ) {
-    this.files = [];
     this.searchData = [];
     this.scrolled = false;
+    this.patients = [];
   }
 
   ngOnInit() {
     this.store.select('pageData').subscribe(data => {
       setTimeout(() => {
         this.pageData = data ? data : null;
+        data.loaded ? this.loaded = true : null;
       });
     });
     this.store.select('appSettings').subscribe(settings => {
       settings ? this.appSettings = settings : null;
     });
 
-    this.getData('assets/data/navbar-files.json', 'files');
     this.getSearchData('assets/data/menu.json');
+    this.getData('assets/data/patients.json', 'patients', 'setPatients');
     this.initSearchForm();
     this.scrollToTop();
   }
@@ -74,31 +78,39 @@ export class BaseLayoutComponent implements OnInit {
   getSearchData(url: string) {
     this.httpSv.getData(url).subscribe(
       data => {
-        this.searchData = data;
+        this.getItemsRouters(data);
       },
       err => {
         console.log(err);
-      },
-      () => {
-        this.getItemsRouters(this.searchData);
       }
     );
   }
 
   getItemsRouters(data: IMenuItem[]) {
-    let newData: any[] = [];
+    let links: any[] = [];
 
-    this.searchData.forEach((item: IMenuItem) => {
-      if (item.sub) {
-        item.sub.forEach((subItem) => {
-          newData.push(subItem);
-        });
-      } else {
-        !item.groupTitle ? newData.push(item) : null;
+    data.forEach((item: IMenuItem) => {
+      if (!item.groupTitle) {
+        if (item.sub) {
+          this.deploySubItems(item, links);
+        } else {
+          links.push(item);
+        }
       }
     });
 
-    this.searchData = newData;
+    this.searchData = links;
+  }
+
+  deploySubItems(item: any, links) {
+    item.sub.forEach((subItem) => {
+      if (subItem.sub) {
+        this.deploySubItems(subItem, links)
+      } else {
+        subItem.title = `${item.title} > ${subItem.title}`;
+        links.push(subItem);
+      }
+    });
   }
 
   initSearchForm() {
@@ -127,5 +139,10 @@ export class BaseLayoutComponent implements OnInit {
         CONTAINER.scrollTo(0, 0);
       });
     });
+  }
+
+  // set patients to store
+  setPatients() {
+    this.store.dispatch(new PatientsActions.Set(this.patients));
   }
 }

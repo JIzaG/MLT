@@ -12,7 +12,7 @@ export class HttpService {
 
   getData(source: string) {
     return this.http.get(source).pipe(
-      tap((res: any) => { return res }),
+      tap((res: any) => res),
       catchError(this.handleError)
     );
   }

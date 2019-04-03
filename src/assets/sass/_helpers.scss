@@ -64,3 +64,32 @@
 @keyframes spin {
   100% { transform:rotate(360deg); }
 }
+.animated {
+  &.delay-01s {
+    animation-delay: .1s;
+  }
+  &.delay-02s {
+    animation-delay: .2s;
+  }
+  &.delay-03s {
+    animation-delay: .3s;
+  }
+  &.delay-04s {
+    animation-delay: .4s;
+  }
+  &.delay-05s {
+    animation-delay: .5s;
+  }
+  &.delay-06s {
+    animation-delay: .6s;
+  }
+  &.delay-07s {
+    animation-delay: .7s;
+  }
+  &.delay-08s {
+    animation-delay: .8s;
+  }
+  &.delay-09s {
+    animation-delay: .9s;
+  }
+}

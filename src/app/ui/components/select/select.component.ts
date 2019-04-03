@@ -17,12 +17,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('active',style({
         height: '*',
         opacity: 1,
-        display: 'block'
+        visibility: 'visible'
       })),
       state('inactive',style({
         height: 0,
         opacity: 0,
-        display: 'none',
+        visibility: 'hidden'
       })),
       transition('inactive => active', animate('200ms ease-in-out')),
       transition('active => inactive', animate('200ms ease-in'))

@@ -7,15 +7,32 @@
         .navbar-wrap {
           .logo {
             .logo-wrap {
-              padding-left: 0;
-              padding-right: 0;
+              @media #{$min992} {
+                padding-left: 0;
+                padding-right: 0;
+              }
             }
           }
         }
       }
     }
-    .main-content {
-
+    &.scrolled {
+      ::ng-deep {
+        .navbar {
+          &.horizontal-vertical {
+            @media #{$min992} {
+              box-shadow: 0 2px 5px rgba(#000, .05);
+              z-index: 9997;
+            }
+          }
+          &.horizontal {
+            @media #{$max991} {
+              box-shadow: 0 2px 5px rgba(#000, .05);
+              z-index: 9997;
+            }
+          }
+        }
+      }
     }
   }
 }

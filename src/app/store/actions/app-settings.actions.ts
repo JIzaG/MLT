@@ -22,7 +22,7 @@ export class Update implements Action {
 export class Reset implements Action {
   readonly type = RESET;
 
-  constructor(public data: IAppSettings) {}
+  constructor() {}
 }
 
 export class SidebarState implements Action {

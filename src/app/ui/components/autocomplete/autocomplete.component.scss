@@ -3,6 +3,7 @@
 $_module-rem: $module-rem;
 $_list-bg: #fff;
 $_list-border-color: #fff;
+$_list-color: #000;
 $_shape: 20px;
 $_shape-lg: 30px;
 $_shape-sm: 15px;
@@ -37,6 +38,7 @@ $_list-shadow: $shadow;
       border: 1px solid $_list-border-color;
       box-shadow: $_list-shadow;
       border-radius: $_shape;
+      color: $_list-color;
 			list-style-type: none;
 			left: 0;
       margin: 0;

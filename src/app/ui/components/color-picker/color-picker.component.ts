@@ -1,15 +1,15 @@
-import { 
-	Component,
-	OnInit,
-	HostBinding,
-	HostListener,
-	Input,
-	ElementRef,
-	AfterContentInit,
-	ViewChild,
-	forwardRef, 
-	EventEmitter,
-	Output
+import {
+  Component,
+  OnInit,
+  HostBinding,
+  HostListener,
+  Input,
+  ElementRef,
+  AfterContentInit,
+  ViewChild,
+  forwardRef,
+  EventEmitter,
+  Output, OnDestroy
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -28,7 +28,7 @@ import { TCPickerComponent } from './picker/picker.component';
 		}
 	]
 })
-export class TCColorPickerComponent implements OnInit, AfterContentInit, ControlValueAccessor {
+export class TCColorPickerComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
 	@ViewChild('picker') public picker: TCPickerComponent;
 	@ViewChild('secondPicker') public secondPicker: TCPickerComponent;
 	@HostBinding('class.tc-color-picker') true;
@@ -151,6 +151,10 @@ export class TCColorPickerComponent implements OnInit, AfterContentInit, Control
 		this.onResize();
 	}
 
+	ngOnDestroy() {
+
+  }
+
 	@HostListener('window:resize')
 	public onResize() {
 		this.picker.setPosition(this.getOffsets().top, this.getOffsets().left);
@@ -184,10 +188,8 @@ export class TCColorPickerComponent implements OnInit, AfterContentInit, Control
 
 		if (!this.disabled) {
 			if (gradient) {
-				// this.secondPicker.setColor(this.secondColor);
 				this.secondPicker.show();
 			} else {
-				// this.picker.setColor(this.savedColor);
 				this.picker.show();
 			}
 		}

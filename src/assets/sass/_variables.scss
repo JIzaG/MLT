@@ -85,6 +85,9 @@ $accent-palette: (
   --main-bg: #fff;
   --boxed-width: 1140px;
 }
+$main-color: main-palette(500);
+$main-bg: #fff;
+$boxed-width: 1140px;
 
 $success-color: #b7ce63;
 $success-contrast: #000;

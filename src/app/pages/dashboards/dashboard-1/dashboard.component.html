@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col col-12 col-md-6 col-xl-3">
-    <tc-card [tcBgColor]="'#fbfbfb'">
+    <tc-card [tcBgColor]="'#fbfbfb'" class="animated fadeInUp delay-01s">
       <div class="row align-items-center">
         <div class="col col-5">
           <tc-icon
@@ -20,7 +20,7 @@
   </div>
 
   <div class="col col-12 col-md-6 col-xl-3">
-    <tc-card [tcBgColor]="'#fbfbfb'">
+    <tc-card [tcBgColor]="'#fbfbfb'" class="animated fadeInUp delay-02s">
       <div class="row align-items-center">
         <div class="col col-5">
           <tc-icon
@@ -40,7 +40,7 @@
   </div>
 
   <div class="col col-12 col-md-6 col-xl-3">
-    <tc-card [tcBgColor]="'#fbfbfb'">
+    <tc-card [tcBgColor]="'#fbfbfb'" class="animated fadeInUp delay-03s">
       <div class="row align-items-center">
         <div class="col col-5">
           <tc-icon
@@ -60,7 +60,7 @@
   </div>
 
   <div class="col col-12 col-md-6 col-xl-3">
-    <tc-card [tcBgColor]="'#fbfbfb'">
+    <tc-card [tcBgColor]="'#fbfbfb'" class="animated fadeInUp delay-04s">
       <div class="row align-items-center">
         <div class="col col-5">
           <tc-icon
@@ -73,7 +73,7 @@
 
         <div class="col col-7">
           <h6 class="mt-0 mb-1 nowrap">Hospital Earning</h6>
-          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">5238$</div>
+          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">$5238</div>
         </div>
       </div>
     </tc-card>
@@ -84,48 +84,25 @@
   <div echarts [options]="hsOptions" class="chat-container container-h-400"></div>
 </tc-card>
 
-<tc-card [title]="'Last appointments'">
-  <tc-table [rows]="appointments" [hovered]="true" [pagination]="true">
-    <tc-table-col [columnTitle]="'Photo'" [columnName]="'img'">
-      <ng-template #tableTDTemplate let-value>
-        <tc-avatar [src]="value"></tc-avatar>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Name'" [columnName]="'name'" [enableSorting]="true">
-      <ng-template #tableTDTemplate let-value>
-        <strong>{{ value }}</strong>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Email'" [columnName]="'email'" [enableSorting]="true">
-      <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#336cfb'">
-          <tc-icon [iconClass]="'icofont-ui-email'"></tc-icon> {{ value }}
-        </span>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Date'" [columnName]="'date'" [enableSorting]="true">
-      <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Visit time'" [columnName]="'fromTo'" [enableSorting]="true">
-      <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Number'" [columnName]="'number'">
-      <ng-template #tableTDTemplate let-value>
-        <span class="nowrap" [tcColor]="'#336cfb'">
-          <tc-icon [iconClass]="'icofont-ui-cell-phone'"></tc-icon> {{ value }}
-        </span>
-      </ng-template>
-    </tc-table-col>
-    <tc-table-col [columnTitle]="'Doctor'" [columnName]="'doctor'" [enableSorting]="true"></tc-table-col>
-    <tc-table-col [columnTitle]="'Injury / Condition'" [columnName]="'injury'" [enableSorting]="true"></tc-table-col>
-  </tc-table>
-</tc-card>
-
 <div class="row">
+  <div class="col col-12 col-md-6">
+    <tc-card>
+      <h4 class="mt-0 mb-1">$25038</h4>
+      <p class="mb-0" [tcColor]="'#9d9d9d'">Income in current month</p>
+
+      <div echarts [options]="piOptions" class="chat-container"></div>
+    </tc-card>
+  </div>
+
+  <div class="col col-12 col-md-6">
+    <tc-card>
+      <h4 class="mt-0 mb-1">$2195</h4>
+      <p class="mb-0" [tcColor]="'#9d9d9d'">Income in current week</p>
+
+      <div echarts [options]="heOptions" class="chat-container"></div>
+    </tc-card>
+  </div>
+
   <div class="col col-12 col-md-4">
     <tc-card [title]="'Patients age'">
       <div echarts [options]="paOptions" class="chat-container container-h-300"></div>
@@ -143,22 +120,45 @@
       <div echarts [options]="dOptions" class="chat-container container-h-300"></div>
     </tc-card>
   </div>
-
-  <div class="col col-12 col-md-6">
-    <tc-card class="mb-md-0">
-      <h4 class="mt-0 mb-1">$25038</h4>
-      <p class="mb-0" [tcColor]="'#9d9d9d'">Income in current month</p>
-
-      <div echarts [options]="piOptions" class="chat-container"></div>
-    </tc-card>
-  </div>
-
-  <div class="col col-12 col-md-6">
-    <tc-card class="mb-0">
-      <h4 class="mt-0 mb-1">$2195</h4>
-      <p class="mb-0" [tcColor]="'#9d9d9d'">Income in current week</p>
-
-      <div echarts [options]="heOptions" class="chat-container"></div>
-    </tc-card>
-  </div>
 </div>
+
+<tc-card [title]="'Last appointments'" class="mb-0">
+  <tc-table [rows]="appointments" [hovered]="true" [pagination]="true">
+    <tc-table-col [columnTitle]="'Photo'" [columnName]="'img'">
+      <ng-template #tableTDTemplate let-value>
+        <tc-avatar [src]="value"></tc-avatar>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Name'" [columnName]="'name'" [enableSorting]="true">
+      <ng-template #tableTDTemplate let-value>
+        <strong>{{ value }}</strong>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Email'" [columnName]="'email'" [enableSorting]="true">
+      <ng-template #tableTDTemplate let-value>
+        <span class="nowrap" [tcColor]="'#336cfb'">
+          <tc-icon [iconClass]="'icofont-ui-email'" [tcFontSize]="16" [padding]="0" class="mr-1"></tc-icon> {{ value }}
+        </span>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Date'" [columnName]="'date'" [enableSorting]="true">
+      <ng-template #tableTDTemplate let-value>
+        <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Visit time'" [columnName]="'fromTo'" [enableSorting]="true">
+      <ng-template #tableTDTemplate let-value>
+        <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Number'" [columnName]="'number'">
+      <ng-template #tableTDTemplate let-value>
+        <span class="nowrap" [tcColor]="'#336cfb'">
+          <tc-icon [iconClass]="'icofont-ui-cell-phone'" [tcFontSize]="16" [padding]="0" class="mr-1"></tc-icon> {{ value }}
+        </span>
+      </ng-template>
+    </tc-table-col>
+    <tc-table-col [columnTitle]="'Doctor'" [columnName]="'doctor'" [enableSorting]="true"></tc-table-col>
+    <tc-table-col [columnTitle]="'Injury / Condition'" [columnName]="'injury'" [enableSorting]="true"></tc-table-col>
+  </tc-table>
+</tc-card>

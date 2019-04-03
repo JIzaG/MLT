@@ -11,8 +11,36 @@ import {
 	Renderer2
 } from '@angular/core';
 
+export const pickerApear = trigger('pickerApear', [
+  state('open', style({
+    height: '100%',
+    width: '100%',
+    borderRadius: 0
+    // display: 'block'
+  })),
+  state('close', style({
+    height: '20px' ,
+    width: '20px',
+    borderRadius: '50%'
+    // display: 'none'
+  })),
+  transition('open => close', animate('500ms ease-in-out')),
+  transition('close => open', animate('600ms ease-in-out')),
+]);
+
+export const foreground = trigger('foreground', [
+  state('open', style({
+    zIndex: 3,
+  })),
+  state('close', style({
+    zIndex: 3
+    // display: 'none'
+  })),
+  transition('open => close', animate('500ms ease-in-out')),
+  transition('close => open', animate('100ms 500ms ease-in-out')),
+]);
 import { ColorService } from '../../../../services/color/color.service';
-import { pickerApear, foreground } from '../../../../animations/pickerAnimations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'tc-picker',
@@ -104,13 +132,7 @@ export class TCPickerComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 		this.getHueOfColor(this.savedColor);
 		this.pickerSize = this.pickerElement.nativeElement.offsetHeight;
-		this.NewColor = this.savedColor; 
-
-		// let paletteArr = 
-		// 	['#b3a400', 'rgba(5,22,240,0.85)', '#0a2d4d', 'rgba(10,45,77,0.29)', '#71d41e', 'rgba(163,230,158,0.57)', '#4c4a69', '#dff507'];
-		// paletteArr.forEach((color: string) => {
-		// 	this.palette.push({ color: color });
-		// });
+		this.NewColor = this.savedColor;
 	}
 
 	ngAfterViewInit() {
@@ -335,10 +357,13 @@ export class TCPickerComponent implements OnInit, AfterViewInit {
 		}
 	}
 
+	public removeFromBody() {
+    this.element.nativeElement.remove();
+  }
+
 	public show() {
 		this.openPicker = true;
 		this.pickerOpened.emit(this.savedColor);
-		let trp = this.transparencyPosition;
 	}
 
 	public hide() {

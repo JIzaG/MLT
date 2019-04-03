@@ -1,19 +1,32 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { HttpService } from '../../../services/http/http.service';
+import { Router } from '@angular/router';
 
+import { Store } from '@ngrx/store';
+import { HttpService } from '../../../services/http/http.service';
 import { IMenuItem } from '../../../interfaces/main-menu';
-import { SUB_MENU } from '../../../animations/sub-menu';
 import * as SettingsActions from '../../../store/actions/app-settings.actions';
 import { IAppState } from '../../../interfaces/app-state';
-import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
 import * as PageActions from '../../../store/actions/page.actions';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [SUB_MENU]
+  animations: [
+    trigger('subMenu',[
+      state('active', style({
+        height: '*',
+        visibility: 'visible'
+      })),
+      state('inactive', style({
+        height: 0,
+        visibility: 'hidden'
+      })),
+      transition('inactive => active', animate('200ms ease-in-out')),
+      transition('active => inactive', animate('200ms ease-in-out')),
+    ]
+  )]
 })
 export class MenuComponent implements OnInit {
   @HostBinding('class.main-menu') true;
@@ -66,8 +79,6 @@ export class MenuComponent implements OnInit {
       item.active = true;
     }
 
-    console.log(item)
-
     this.changeRoute(
       item.routing,
       !item.sub && !this.isActive([this.orientation, item.routing]),
@@ -101,7 +112,6 @@ export class MenuComponent implements OnInit {
 
   // change route
   changeRoute(routing: string, bool: boolean = true, layout: string = this.orientation) {
-    console.log(bool)
     if (bool) {
       this.store.dispatch(new PageActions.Reset());
 

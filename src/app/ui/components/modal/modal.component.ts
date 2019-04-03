@@ -66,10 +66,6 @@ export class TCModalComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.renderer.addClass(elem, this.opened ? 'opened' : 'closed');
     });
-
-    // this.renderer.setStyle(elem, 'min-height', this.options.height);
-    // this.renderer.setStyle(elem, 'min-width', this.options.width);
-    //this.renderer.setStyle(this.modal.nativeElement, 'width', this.width);
   }
 
   ngOnDestroy() {
@@ -78,6 +74,11 @@ export class TCModalComponent implements OnInit, OnDestroy {
 
   getStringData<T>(data: Content<T>, name: string) {
     this[name] = (typeof data === 'string') ? data : null;
+  }
+
+  hideModal() {
+    let elem = this.elementRef.nativeElement;
+    this.renderer.removeClass(elem,'opened');
   }
 
   closeWindow(bool: boolean) {

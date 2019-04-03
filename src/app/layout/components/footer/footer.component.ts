@@ -11,6 +11,7 @@ import { TCModalService } from '../../../ui/services/modal/modal.service';
 })
 export class FooterComponent implements OnInit {
   @HostBinding('class.footer') true;
+  @HostBinding('class.loaded') @Input() loaded: boolean;
   @HostBinding('class.boxed') @Input() boxed: boolean;
 
   @Input() pageData: IPageData;

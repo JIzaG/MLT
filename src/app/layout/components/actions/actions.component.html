@@ -1,12 +1,12 @@
 <tc-dropdown class="item">
   <tc-dropdown-button>
     <tc-icon [iconClass]="'icofont icofont-notification'" [tcFontSize]="26"></tc-icon>
-    <tc-badge *ngIf="notifications && notifications.length" [view]="'accent'" [size]="'sm'">
+    <tc-badge *ngIf="notifications && notifications.length" [view]="'error'" [size]="'sm'">
       {{ notifications.length }}
     </tc-badge>
   </tc-dropdown-button>
 
-  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[11, 0]">
+  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[10, 0]">
     <div class="menu-header">
       <h4 class="h5 menu-title mt-0 mb-0">Notifications</h4>
 
@@ -48,115 +48,50 @@
   </tc-dropdown-content>
 </tc-dropdown>
 
-<tc-dropdown class="item">
+<tc-dropdown class="item" [close]="closeDropdown">
   <tc-dropdown-button>
     <div class="d-flex align-items-center">
-      <tc-avatar [src]="'/assets/content/user-40-1.jpg'" class="mr-1"></tc-avatar>
+      <tc-avatar [src]="'/assets/content/user-400-1.jpg'" class="mr-1"></tc-avatar>
       <i class="icofont-simple-down"></i>
     </div>
   </tc-dropdown-button>
 
-  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[11, 0]" [width]="180">
+  <tc-dropdown-content [align]="'right'" [animation]="'fadeInUp'" [offset]="[10, 0]" [width]="180">
     <ul class="list">
       <li>
-        <a [routerLink]="['./', 'edit-account']">
-          <tc-icon [iconClass]="'icofont-ui-home'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+        <a href="#" (click)="goTo($event, 'edit-account')" class="align-items-center">
+          <span class="icon icofont-ui-home"></span>
           Edit account
         </a>
       </li>
 
       <li>
-        <a [routerLink]="['./', 'user-profile']">
-          <tc-icon [iconClass]="'icofont-ui-user'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+        <a href="#" (click)="goTo($event, 'user-profile')" class="align-items-center">
+          <span class="icon icofont-ui-user"></span>
           User profile
         </a>
       </li>
 
       <li>
-        <a [routerLink]="['./', 'events-calendar']">
-          <tc-icon [iconClass]="'icofont-ui-calendar'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+        <a href="#" (click)="goTo($event, 'events-calendar')" class="align-items-center">
+          <span class="icon icofont-ui-calendar"></span>
           Calendar
         </a>
       </li>
 
       <li>
-        <a href="#">
-          <tc-icon [iconClass]="'icofont-ui-settings'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+        <a href="#" (click)="goTo($event, 'settings')" class="align-items-center">
+          <span class="icon icofont-ui-settings"></span>
           Settings
         </a>
       </li>
 
       <li>
-        <a href="#">
-          <tc-icon [iconClass]="'icofont-logout'" [tcBgColor]="'#336cfb'" [tcColor]="'#fff'" [tcShape]="'50%'"></tc-icon>
+        <a href="#" (click)="goTo($event, 'sign-in', '../public/')" class="align-items-center">
+          <span class="icon icofont-logout"></span>
           Log Out
         </a>
       </li>
     </ul>
-  </tc-dropdown-content>
-</tc-dropdown>
-
-<tc-dropdown class="item" [close]="closeDropdown">
-  <tc-dropdown-button>
-    <tc-icon [iconClass]="'icofont icofont-options'" [tcFontSize]="26"></tc-icon>
-  </tc-dropdown-button>
-
-  <tc-dropdown-content
-    [align]="'right'"
-    [animation]="'fadeInLeft'"
-    [globalPositioning]="true"
-    [offset]="[15, 0]"
-  >
-    <div class="settings-list">
-      <div class="settings-box">
-        <h5 class="mt-0">Layouts</h5>
-
-        <tc-select
-          [placeholder]="'Select layout'"
-          [options]="layouts"
-          [selected]="currentLayout"
-          (valueSelected)="changeLayout($event)"
-        ></tc-select>
-      </div>
-
-      <div class="settings-box">
-        <h5 class="mt-0">Boxed</h5>
-
-        <tc-switcher [value]="settings.boxed" (valueChanged)="changeBoxed($event)"></tc-switcher>
-      </div>
-
-      <div class="settings-box">
-        <h5 class="mt-0">Topbar background</h5>
-
-        <!--<tc-color-picker-->
-          <!--(colorSelected)="setTopbarColor($event)"-->
-          <!--[palette]="true"-->
-          <!--[savedColor]="settings.topbarBg"-->
-          <!--[width]="240"-->
-          <!--[overlay]="true"-->
-        <!--&gt;</tc-color-picker>-->
-      </div>
-
-      <div class="settings-box">
-        <h5 class="mt-0">
-          <span *ngIf="!currentLayout">Sidebar</span>
-          <span *ngIf="currentLayout">Navbar</span>
-          background
-        </h5>
-
-        <!--<tc-color-picker-->
-          <!--(colorSelected)="setSidebarColor($event)"-->
-          <!--[palette]="true"-->
-          <!--[savedColor]="settings.sidebarBg"-->
-          <!--[width]="240"-->
-          <!--[overlay]="true"-->
-        <!--&gt;</tc-color-picker>-->
-      </div>
-
-      <div class="settings-box">
-        <button tc-button [block]="true" [view]="'error'" (click)="resetSettings(defaultSettings)">Reset to default</button>
-        <a tc-button [block]="true" [view]="'accent'" [href]="downloadJsonHref" download="app-settings.json">Download settings</a>
-      </div>
-    </div>
   </tc-dropdown-content>
 </tc-dropdown>

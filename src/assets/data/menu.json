@@ -101,7 +101,7 @@
         "routing": "selects"
       },
       {
-        "title" : "Switcher",
+        "title" : "Switchers",
         "routing": "switchers"
       },
       {

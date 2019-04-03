@@ -16,17 +16,18 @@
       margin-bottom: $footer-height;
       position: relative;
       transition: .2s padding 0s $animation;
+      -webkit-overflow-scrolling: touch;
 
       .main-content-wrap {
         min-height: calc(100% - #{$module-rem * 4});
         margin: 0 auto;
         opacity: 0;
-        padding: ($module-rem * 2) ($module-rem * 2) ($module-rem * 4);
+        padding: ($module-rem * 3) ($module-rem * 2) ($module-rem * 4);
         transition: .2s opacity 0s $animation;
 
         &.full-filled {
           height: 100%;
-          max-width: 100%;
+          max-width: 100% !important;
           min-height: 100%;
           padding: 0;
         }
@@ -73,6 +74,7 @@
     &.boxed {
       .main-content {
         .main-content-wrap {
+          max-width: $boxed-width;
           max-width: var(--boxed-width);
         }
       }

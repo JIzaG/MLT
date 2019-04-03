@@ -22,7 +22,7 @@ export class PageIconsIfComponent extends BasePageComponent implements OnInit {
     this.icons = [];
 
     this.pageData = {
-      title: 'Simple line icons',
+      title: 'Icofont icons',
       breadcrumbs: [
         {
           title: 'UI Kit',
@@ -33,7 +33,7 @@ export class PageIconsIfComponent extends BasePageComponent implements OnInit {
           route: 'default-dashboard'
         },
         {
-          title: 'Simple line'
+          title: 'Icofont'
         }
       ]
     };

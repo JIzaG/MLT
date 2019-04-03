@@ -19,6 +19,8 @@ import { SearchComponent } from './components/search';
 import { ActionsComponent } from './components/actions';
 import { LoginFormComponent } from './components/login-form';
 import { RegisterFormComponent } from './components/register-form';
+import { NavbarSkeletonComponent } from './components/navbar-skeleton';
+import { SettingsComponent } from './components/settings';
 
 @NgModule({
   imports: [
@@ -42,11 +44,14 @@ import { RegisterFormComponent } from './components/register-form';
     ActionsComponent,
     PublicLayoutComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    NavbarSkeletonComponent,
+    SettingsComponent
   ],
   exports: [
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    SettingsComponent
   ]
 })
 export class LayoutModule { }

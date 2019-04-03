@@ -55,6 +55,7 @@ import { PageEditAccountComponent } from '../pages/apps/service-pages/edit-accou
 import { PageCalendarComponent } from '../pages/apps/service-pages/calendar';
 import { PageSignInComponent } from '../pages/apps/sessions/sign-in';
 import { PageSignUpComponent } from '../pages/apps/sessions/sign-up';
+import { PageSettingsComponent } from '../pages/settings';
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'default-dashboard', component: PageDashboardComponent },
@@ -106,6 +107,7 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'user-profile', component: PageUserProfileComponent },
   { path: 'edit-account', component: PageEditAccountComponent },
   { path: 'events-calendar', component: PageCalendarComponent },
+  { path: 'settings', component: PageSettingsComponent },
 
   { path: '**', component: Page404Component }
 ];

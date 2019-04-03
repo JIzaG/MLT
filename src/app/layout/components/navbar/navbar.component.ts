@@ -24,21 +24,10 @@ export class NavbarComponent implements OnInit {
   @Input() orientation: string;
   @Input() minHeight: string | number;
 
-  scrollbarOptions: any;
-
   constructor() {
     this.boxed = false;
     this.orientation = 'horizontal';
   }
 
-  ngOnInit() {
-    if (this.orientation === 'vertical') {
-      this.scrollbarOptions = {
-        autoDraggerLength: true,
-        setHeight: '100%',
-        axis: 'y',
-        theme: 'minimal-dark'
-      };
-    }
-  }
+  ngOnInit() { }
 }

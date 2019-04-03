@@ -49,8 +49,12 @@ export class TCModalService {
 
   close() {
     if (this.componentRef) {
-      this.appRef.detachView(this.componentRef.hostView);
-      this.componentRef.destroy();
+      this.componentRef.instance.hideModal();
+
+      setTimeout(() => {
+        this.appRef.detachView(this.componentRef.hostView);
+        this.componentRef.destroy();
+      }, 300);
     }
   }
 }

@@ -1,16 +1,18 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+
 import { IAppState } from "../../interfaces/app-state";
 import { BaseLayoutComponent } from '../base-layout/base-layout.component';
 import { HttpService } from '../../services/http/http.service';
 import { IOption } from '../../ui/interfaces/option';
 import { Content } from '../../ui/interfaces/modal';
 import { TCModalService } from '../../ui/services/modal/modal.service';
-import { Router } from '@angular/router';
 import { IPatient } from '../../interfaces/patient';
 import * as PatientsActions from '../../store/actions/patients.actions';
+import * as SettingsActions from '../../store/actions/app-settings.actions';
 
 @Component({
   selector: 'vertical-layout',
@@ -21,7 +23,6 @@ import * as PatientsActions from '../../store/actions/patients.actions';
   ]
 })
 export class VerticalLayoutComponent extends BaseLayoutComponent implements OnInit {
-  patients: IPatient[];
   patientForm: FormGroup;
   gender: IOption[];
   currentAvatar: string | ArrayBuffer;
@@ -49,18 +50,12 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     ];
     this.defaultAvatar = 'assets/content/anonymous-400.jpg';
     this.currentAvatar = this.defaultAvatar;
-    this.patients = [];
   }
 
   ngOnInit() {
     super.ngOnInit();
 
-    this.getData('assets/data/patients.json', 'patients', 'setPatients');
-  }
-
-  // set patients to store
-  setPatients() {
-    this.store.dispatch(new PatientsActions.Set(this.patients));
+    this.store.dispatch(new SettingsActions.Update({ layout: 'vertical' }));
   }
 
   // open modal window

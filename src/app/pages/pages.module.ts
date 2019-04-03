@@ -63,8 +63,9 @@ import { PageTimelineComponent } from './apps/service-pages/timeline';
 import { PageUserProfileComponent } from './apps/service-pages/user-profile';
 import { PageEditAccountComponent } from './apps/service-pages/edit-account';
 import { PageCalendarComponent } from './apps/service-pages/calendar';
-import { PageSignInComponent } from './apps/sessions/sign-in/sign-in.component';
-import { PageSignUpComponent } from './apps/sessions/sign-up/sign-up.component';
+import { PageSignInComponent } from './apps/sessions/sign-in';
+import { PageSignUpComponent } from './apps/sessions/sign-up';
+import { PageSettingsComponent } from './settings';
 
 @NgModule({
   imports: [
@@ -136,7 +137,8 @@ import { PageSignUpComponent } from './apps/sessions/sign-up/sign-up.component';
     PageEditAccountComponent,
     PageCalendarComponent,
     PageSignInComponent,
-    PageSignUpComponent
+    PageSignUpComponent,
+    PageSettingsComponent
   ],
   exports: [ ],
   entryComponents: [ ]

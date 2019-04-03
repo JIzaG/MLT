@@ -1,18 +1,22 @@
 @import '~assets/sass/variables';
+
 :host {
   display: flex;
   flex-grow: 2;
-  height: 100%;
   justify-content: flex-end;
   margin: 0 !important;
 
   .item {
-    height: 100%;
     margin: 0 $module-rem;
 
     .tc-dropdown-link {
       height: 100%;
 
+      ::ng-deep {
+        .dropdown-link-wrap {
+          position: relative;
+        }
+      }
       .tc-icon {
         opacity: .5;
         transition:
@@ -28,9 +32,9 @@
         padding-left: 2px;
         padding-right: 2px;
         position: absolute;
-        right: 0;
+        right: -5px;
         text-align: center;
-        top: 0;
+        top: -5px;
       }
       &:hover {
         .tc-icon {
@@ -42,18 +46,6 @@
           color: accent-palette(500);
           opacity: 1;
         }
-      }
-    }
-  }
-}
-::ng-deep {
-  .settings-list {
-    .settings-box {
-      border-top: 1px solid rgba(main-palette(500),.2);
-      padding: $module-rem * 2;
-
-      &:first-child {
-        border-top: 0;
       }
     }
   }

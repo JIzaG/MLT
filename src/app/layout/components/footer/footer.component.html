@@ -1,22 +1,42 @@
 <div class="footer-wrap">
-  <div class="col-12 col-md-6">
-    <ul class="page-breadcrumbs" *ngIf="pageData && pageData.breadcrumbs">
-      <li class="item" *ngFor="let item of pageData.breadcrumbs; let last = last">
-        <a class="link" routerLink="{{ item.route }}" *ngIf="item.route">{{ item.title }}</a>
+  <div class="row align-items-center">
+    <div class="col-12 col-md-6 d-none d-md-block">
+      <ul class="page-breadcrumbs" *ngIf="pageData && pageData.breadcrumbs">
+        <li class="item" *ngFor="let item of pageData.breadcrumbs; let last = last">
+          <a class="link" routerLink="{{ item.route }}" *ngIf="item.route">{{ item.title }}</a>
 
-        <span *ngIf="!item.route">{{ item.title }}</span>
+          <span *ngIf="!item.route">{{ item.title }}</span>
 
-        <i class="separator icofont-thin-right" *ngIf="!last"></i>
-      </li>
-    </ul>
+          <i class="separator icofont-thin-right" *ngIf="!last"></i>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 col-md-6 text-right">
+      <div class="d-flex align-items-center justify-content-center justify-content-md-end">
+        <span>Version 1.0.0</span>
+        <button class="no-style ml-2" (click)="openModal(modalBody, 'Application\'s settings')">
+          <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="26" [tcColor]="['#336cfb', '#336cfb']"></tc-icon>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="col-12 col-md-6 text-right">
-    <div class="d-flex align-items-center justify-content-end">
-      <span>Version 1.0.0</span>
-      <button class="no-style ml-2" (click)="openModal(modalBody, 'Application\'s settings', modalFooter)">
-        <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="26" [tcColor]="['#336cfb', '#b7ce63']"></tc-icon>
-      </button>
+  <div class="footer-skeleton">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 d-none d-md-block">
+        <ul class="page-breadcrumbs">
+          <li class="item bg-1 animated-bg"></li>
+          <li class="item bg animated-bg"></li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="info justify-content-center justify-content-md-end">
+          <div class="version bg animated-bg"></div>
+          <div class="settings animated-bg"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -24,14 +44,7 @@
 <!-- Settings modal window -->
 <ng-container>
   <ng-template #modalBody>
-
-  </ng-template>
-
-  <ng-template #modalFooter>
-    <div class="actions justify-content-between">
-      <button tc-button [block]="true" [view]="'error'">Reset to default</button>
-      <a tc-button [block]="true" [view]="'accent'" [href]="downloadJsonHref" download="app-settings.json">Download settings</a>
-    </div>
+    <app-settings></app-settings>
   </ng-template>
 </ng-container>
 <!-- end Settings modal window -->

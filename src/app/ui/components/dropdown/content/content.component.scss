@@ -79,7 +79,8 @@ $_shadow: $shadow;
 
         > li {
           > a {
-            color: #000;
+            color: $main-color;
+            color: var(--main-color);
             display: flex;
             padding: $module-rem ($module-rem * 2);
             text-decoration: none;
@@ -133,6 +134,8 @@ $_shadow: $shadow;
               }
             }
             &:hover {
+              color: accent-palette(500);
+
               .icon {
                 background: accent-palette(500);
                 color: accent-contrast(500);

@@ -179,6 +179,6 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
   // close modal window
   closeModal() {
     this.modal.close();
-    this.eventBody = null;
+    this.eventBody = {};
   }
 }

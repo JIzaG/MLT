@@ -2,19 +2,19 @@
 
 <div class="picker-wrap"  [ngClass]="getAnimationClass()">
 
-	<div 
-		class="animation" 
-		[style.background]="savedColor" 
+	<div
+		class="animation"
+		[style.background]="savedColor"
 		[ngClass]="getAnimationClass()"
 	></div>
 
 	<div #picker class="color-picker">
 		<div class="color-values">
-			<input 
+			<input
 				#newColorInput
-				[ngStyle]="{'background-color': newColor , 'color' : contrastColor}" 
-				type="text" 
-				class="new-value" 
+				[ngStyle]="{'background-color': newColor , 'color' : contrastColor}"
+				type="text"
+				class="new-value"
 				[(ngModel)]="NewColor"
 				(keyup.enter)="applyColor(newColorInput.value)"
 			>
@@ -55,11 +55,11 @@
 			</div>
 		</div>
 		<div *ngIf="showPalette" class="palette">
-			<div 
-				*ngFor="let item of palette" 
-				class="palette-item" 
-				(click)="setColor(item)" 
-				[ngClass]="paletteItemClass(item)"  
+			<div
+				*ngFor="let item of palette"
+				class="palette-item"
+				(click)="setColor(item)"
+				[ngClass]="paletteItemClass(item)"
 				[ngStyle]="{ 'background': item }"
 			>
 				<div class="checkmark"></div>
@@ -72,5 +72,5 @@
 		</div>
 
 	</div>
-	
+
 </div>
