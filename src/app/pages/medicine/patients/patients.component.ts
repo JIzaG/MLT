@@ -12,47 +12,66 @@ import { Content } from '../../../ui/interfaces/modal';
 import * as PatientsActions from '../../../store/actions/patients.actions';
 import { TCModalService } from '../../../ui/services/modal/modal.service';
 
+import { PacientesService } from '../../../services/pacientes/pacientes.service';
+
+
 @Component({
   selector: 'page-patients',
   templateUrl: './patients.component.html',
   styleUrls: ['./patients.component.scss']
 })
 export class PagePatientsComponent extends BasePageComponent implements OnInit, OnDestroy {
-  patients: IPatient[];
+  patients: any [];
   patientForm: FormGroup;
   gender: IOption[];
   status: IOption[];
   currentAvatar: string | ArrayBuffer;
   defaultAvatar: string;
+  pacientes: any ;
+
+  nombre: string;
+  identidadPAC: string;
+  edad: string;
+  genero: string;
+  fechan: string;
+  profesion: string;
+  direccion: string;
+  email: string;
+  telefono: string;
+  celular: string;
+  doctor: string;
+  id: string;
+
 
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
     private fb: FormBuilder,
-    private modal: TCModalService
+    private modal: TCModalService,
+    private patientService :PacientesService,
   ) {
     super(store, httpSv);
 
     this.pageData = {
-      title: 'Patients',
+      title: 'Pacientes',
       breadcrumbs: [
         {
           title: 'Medicine',
           route: 'default-dashboard'
         },
         {
-          title: 'Patients'
+          title: 'Pacientes'
         }
       ]
     };
     this.patients = [];
     this.gender = [
       {
-        label: 'Male',
+        label: 'Masculino',
         value: 'male'
       },
       {
-        label: 'Female',
+        label: 'Femenino',
         value: 'female'
       }
     ];
@@ -66,20 +85,47 @@ export class PagePatientsComponent extends BasePageComponent implements OnInit, 
         value: 'pending'
       }
     ];
-    this.defaultAvatar = 'assets/content/anonymous-400.jpg';
+    this.defaultAvatar = '';
     this.currentAvatar = this.defaultAvatar;
+    this.patients=[];
   }
+  //---------------------------------------------------------------------------------------------
 
   ngOnInit() {
     super.ngOnInit();
 
-    this.store.select('patients').subscribe(patients => {
-      if (patients && patients.length) {
-        this.patients = patients;
+    // this.store.select('patients').subscribe(patients => {
+    //   if (patients && patients.length) {
+    //     this.patients = patients;
 
-        !this.pageData.loaded ? this.setLoaded() : null;
-      }
-    });
+    //     !this.pageData.loaded ? this.setLoaded() : null;
+    //   }
+    // });
+
+    this.patientService.getPacientes().subscribe(data=>{
+  
+      this.patients=data.map(e=>{
+        return {
+          id: e.payload.doc.id,
+          idEdit: true,
+          identidadPAC:e.payload.doc.id,
+          nombre: e.payload.doc.data()['nombre'],
+          edad: e.payload.doc.data()['edad'],
+          genero: e.payload.doc.data()['genero'],
+          fechan: e.payload.doc.data()['fechan'],
+          profesion: e.payload.doc.data()['profesion'],
+          direccion: e.payload.doc.data()['direccion'],
+          email: e.payload.doc.data()['email'],
+          telefono: e.payload.doc.data()['telefono'],
+          celular: e.payload.doc.data()['celular'],
+          doctor: e.payload.doc.data()['doctor'],
+         
+        };
+      })
+      console.log(this.patients);
+      !this.pageData.loaded ? this.setLoaded() : null;
+
+    })
   }
 
   ngOnDestroy() {
@@ -92,7 +138,22 @@ export class PagePatientsComponent extends BasePageComponent implements OnInit, 
   }
 
   // open modal window
-  openModal<T>(body: Content<T>, header: Content<T> = null, footer: Content<T> = null, row: IPatient) {
+  openModal<T>(body: Content<T>, header: Content<T> = null, footer: Content<T> = null, row: any) {
+    
+
+    this.nombre=row.nombre;
+    this.edad=row.edad;
+    this.genero=row.genero;
+    this.fechan=row.fechan;
+    this.profesion=row.profesion;
+    this.direccion=row.direccion;
+    this.email=row.email;
+    this.telefono=row.telefono;
+    this.celular=row.celular;
+    this.doctor=row.doctor;
+    this.id=row.id;
+    this.identidadPAC=row.id;
+
     this.initPatientForm(row);
 
     this.modal.open({
@@ -123,11 +184,26 @@ export class PagePatientsComponent extends BasePageComponent implements OnInit, 
   }
 
   // init form
-  initPatientForm(data: IPatient) {
+  initPatientForm(data: any) {
     this.currentAvatar = data.img ? data.img : this.defaultAvatar;
 
     this.patientForm = this.fb.group({
-      id: data.id,
+
+      identidadPAC: [data.identidadPAC ? data.identidadPAC : '', Validators.required],
+      nombre: [data.nombre ? data.nombre : '', Validators.required],
+      edad: [data.edad ? data.edad : '', Validators.required],
+      genero: [data.genero ? data.genero : '', Validators.required],
+      fechan: [data.fechan ? data.fechan : '', Validators.required],
+      profesion: [data.profesion ? data.profesion : '', Validators.required],
+      direccion: [data.direccion ? data.direccion : '', Validators.required],
+      email: [data.email ? data.email : '', Validators.required],
+      telefono: [data.telefono ? data.telefono : '', Validators.required],
+      celular: [data.celular ? data.celular : '', Validators.required],
+      doctor: [data.doctor ? data.doctor : '', Validators.required],
+
+ 
+
+     /* id: data.id,
       img: [this.currentAvatar],
       name: [data.name ? data.name : '', Validators.required],
       number: [data.number ? data.number : '', Validators.required],
@@ -135,18 +211,68 @@ export class PagePatientsComponent extends BasePageComponent implements OnInit, 
       lastVisit: [data.lastVisit ? data.lastVisit : '', Validators.required],
       gender: [data.gender ? data.gender.toLowerCase() : '', Validators.required],
       address: [data.address ? data.address : '', Validators.required],
-      status: [data.status ? data.status.toLowerCase() : '', Validators.required]
+      status: [data.status ? data.status.toLowerCase() : '', Validators.required]*/
+
+
+
     });
   }
 
   // update patient
   updatePatient(form: FormGroup) {
+
+    this.actualizarPaciente ()
     if (form.valid) {
       let newPatient: IPatient = form.value;
-
+      
       this.store.dispatch(new PatientsActions.Edit(newPatient));
       this.closeModal();
       this.patientForm.reset();
     }
   }
+
+  async actualizarPaciente (){
+    
+    let row= {};
+    row['nombre'] = this.nombre;
+    row['edad'] = this.edad;
+    row['genero'] = this.genero;
+    row['fechan'] = this.fechan;
+    row['profesion'] = this.profesion;
+    row['direccion'] = this.direccion; 
+    row['email'] = this.email;
+    row['telefono'] = this.telefono; 
+    row['celular'] = this.celular;
+    row['doctor'] = this.doctor;
+    
+    this.patientService.updatePacientes(this.id, row);
+    console.log(row);
+    console.log(this.id);
+    console.log(this.patientService.updatePacientes(this.id, row));
+    this.closeModal();
+  }
+
+  edit(row: any) {
+    this.nombre=row.nombre;
+    this.edad=row.edad;
+    this.genero=row.genero;
+    this.fechan=row.fechan;
+    this.profesion=row.profesion;
+    this.direccion=row.direccion;
+    this.email=row.email;
+    this.telefono=row.telefono;
+    this.celular=row.celular;
+    this.doctor=row.doctor;
+    this.identidadPAC=row.id;
+
+   console.log(row);
+
+  }
+
+  async deletePaciente(id: string){
+    this.patientService.deletePaciente(id);
+    console.log(id);
+
+  }
+  
 }

@@ -56,6 +56,10 @@ import { PageCalendarComponent } from '../pages/apps/service-pages/calendar';
 import { PageSignInComponent } from '../pages/apps/sessions/sign-in';
 import { PageSignUpComponent } from '../pages/apps/sessions/sign-up';
 import { PageSettingsComponent } from '../pages/settings';
+import { PageSearchPaginationTableComponent } from '../pages/ui/tables/search-pagination-table';
+import { CitasComponent } from '../pages/medicine/citas';
+
+
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'default-dashboard', component: PageDashboardComponent },
@@ -66,7 +70,15 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'payments', component: PagePaymentsComponent },
   { path: 'appointments', component: PageAppointmentsComponent },
   { path: 'departments', component: PageDepartmentsComponent },
+  
+  
+  { path: 'citas', component: CitasComponent },
+  { path: 'historia-clinica', component: Page404Component },
+  { path: 'galeria', component: Page404Component },
+  { path: 'salud-dental', component: Page404Component },
+  { path: 'tratamiento', component: Page404Component },
 
+  
   { path: 'alerts', component: PageAlertsComponent },
   { path: 'buttons', component: PageButtonsComponent },
   { path: 'cards', component: PageCardsComponent },
@@ -85,6 +97,7 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'simple-table', component: PageSimpleTablesComponent },
   { path: 'sorting-table', component: PageSortingTableComponent },
   { path: 'search-table', component: PageSearchTableComponent },
+  { path: 'search-pagination-table', component: PageSearchPaginationTableComponent },
   { path: 'filtering-table', component: PageFilterTableComponent },
   { path: 'pagination-table', component: PagePaginationTableComponent },
   { path: 'form-elements', component: PageFormElementsComponent },
@@ -120,7 +133,8 @@ const PUBLIC_ROUTES: Routes = [
 export const ROUTES: Routes = [
   {
     path: '',
-    redirectTo: '/vertical/default-dashboard',
+    //redirectTo: '/vertical/patients',  /public/sign-in
+    redirectTo: '/public/sign-in',
     pathMatch: 'full'
   },
   {

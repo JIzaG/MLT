@@ -16,11 +16,26 @@ import { appSettingsReducer } from './store/reducers/app-settings.reducer';
 import { patientsReducer } from './store/reducers/patients.reducer';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
+
+
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    //AngularFirestore,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -39,4 +54,5 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

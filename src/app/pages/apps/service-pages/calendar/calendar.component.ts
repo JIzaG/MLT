@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { CalendarComponent } from 'ng-fullcalendar';
-import { Options } from 'fullcalendar';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+
 import { BasePageComponent } from '../../../base-page';
 import { IAppState } from '../../../../interfaces/app-state';
 import { HttpService } from '../../../../services/http/http.service';
@@ -15,12 +16,13 @@ import { Content } from '../../../../ui/interfaces/modal';
   styleUrls: ['./calendar.component.scss']
 })
 export class PageCalendarComponent extends BasePageComponent implements OnInit, OnDestroy {
-  calendarOptions: Options;
+  @ViewChild('calendar', { static: true }) calendarComponent: FullCalendarComponent;
+  @ViewChild('modalBody', { static: true }) modalBodyTpl: TemplateRef<any>;
+  @ViewChild('modalFooter', { static: true }) modalFooterTpl: TemplateRef<any>;
+  headerOptions: any;
   calendarEvents: any[];
   eventBody: any;
-  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  @ViewChild('modalBody') modalBodyTpl: TemplateRef<any>;
-  @ViewChild('modalFooter') modalFooterTpl: TemplateRef<any>;
+  calendarPlugins: any[];
 
   constructor(
     store: Store<IAppState>,
@@ -120,20 +122,16 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
         desc: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
       }
     ];
+    this.calendarPlugins = [dayGridPlugin];
   }
 
   ngOnInit() {
     super.ngOnInit();
 
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      events: this.calendarEvents
+    this.headerOptions = {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,dayGridWeek,dayGridDay'
     };
     this.setLoaded();
   }
@@ -158,10 +156,10 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
   eventClick(data: any) {
     this.eventBody = {
       title: data.event.title,
-      color: data.event.color,
+      color: data.event.backgroundColor,
       from: this.dateFormat(data.event.start),
       to:  this.dateFormat(data.event.end),
-      desc: data.event.desc
+      desc: data.event.extendedProps.desc
     };
     this.openModal(this.modalBodyTpl, null, this.modalFooterTpl)
   }

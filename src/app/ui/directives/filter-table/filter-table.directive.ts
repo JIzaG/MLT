@@ -1,7 +1,7 @@
-import {Directive, EventEmitter, ElementRef, Renderer, HostListener, Input, Output} from '@angular/core';
+import { Directive, EventEmitter, ElementRef, HostListener, Input, Output, Renderer2 } from '@angular/core';
 
-function setProperty(renderer: Renderer, elementRef: ElementRef, propName: string, propValue: any): void {
-  renderer.setElementProperty(elementRef, propName, propValue);
+function setProperty(renderer: Renderer2, elementRef: ElementRef, propName: string, propValue: any): void {
+  renderer.setProperty(elementRef, propName, propValue);
 }
 
 @Directive({
@@ -18,7 +18,7 @@ export class TCFilterTableDirective {
     return this.tcFilterTable;
 	}
 	
-	public constructor(element: ElementRef, renderer: Renderer) {
+	public constructor(element: ElementRef, renderer: Renderer2) {
 		this.element = element;
 		this.renderer = renderer;
 	}
@@ -28,7 +28,7 @@ export class TCFilterTableDirective {
   }
 
   private element: ElementRef;
-  private renderer: Renderer;
+  private renderer: Renderer2;
 
   @HostListener('input', ['$event.target.value'])
   public onChangeFilter(event: any): void {

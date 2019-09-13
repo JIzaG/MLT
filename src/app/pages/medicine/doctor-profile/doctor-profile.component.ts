@@ -58,7 +58,7 @@ export class PageDoctorProfileComponent extends BasePageComponent implements OnI
         value: 'female'
       }
     ];
-    this.defaultAvatar = 'assets/content/anonymous-400.jpg';
+    this.defaultAvatar = '';
     this.currentAvatar = this.defaultAvatar;
     this.specialists = [];
     this.changes = false;
@@ -67,9 +67,9 @@ export class PageDoctorProfileComponent extends BasePageComponent implements OnI
   ngOnInit() {
     super.ngOnInit();
 
-    this.getData('assets/data/doctor-info.json', 'doctorInfo', 'loadedDetect');
-    this.getData('assets/data/doctors-specialists.json', 'specialists');
-    this.getData('assets/data/doctor-timeline.json', 'doctorTimeline');
+    // this.getData('assets/data/doctor-info.json', 'doctorInfo', 'loadedDetect');
+    // this.getData('assets/data/doctors-specialists.json', 'specialists');
+    // this.getData('assets/data/doctor-timeline.json', 'doctorTimeline');
     this.setPOptions();
   }
 

@@ -1,5 +1,5 @@
 .fc {
-  button {
+  .fc-button {
     border-radius: $shape;
     box-shadow: $shadow;
     cursor: pointer;
@@ -26,10 +26,29 @@
     will-change: background, border, box-shadow, color, opacity;
     -webkit-appearance: none;
 
+    .fc-icon {
+      margin-top: -4px;
+    }
+  }
+  .fc-button-primary {
+    background: accent-palette(500);
+    border-color: accent-palette(500);
+    color: accent-contrast(500);
+    text-shadow: none;
+
     &:hover {
       background: accent-palette(700);
       border-color: accent-palette(700);
+      box-shadow: $shadow-hover;
       color: accent-contrast(700);
+    }
+    &:focus {
+      box-shadow: $shadow !important;
+    }
+    &.fc-button-active {
+      background: accent-palette(800);
+      border-color: accent-palette(800);
+      color: accent-contrast(800);
     }
   }
   .fc-state-default {
@@ -39,7 +58,7 @@
     text-shadow: none;
   }
   .fc-button-group {
-    > button {
+    > .fc-button {
       border-radius: 0;
     }
     > :first-child {
@@ -66,6 +85,7 @@
   }
   .fc-event {
     box-shadow: $shadow;
+    cursor: pointer;
     transition: box-shadow .2s $animation;
 
     &:hover {

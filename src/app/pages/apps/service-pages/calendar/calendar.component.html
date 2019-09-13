@@ -1,9 +1,12 @@
-<div *ngIf="calendarOptions">
-  <ng-fullcalendar
-    #ucCalendar
-    [options]="calendarOptions"
-    (eventClick)="eventClick($event.detail)"
-  ></ng-fullcalendar>
+
+<div>
+  <full-calendar
+    #calendar
+    [plugins]="calendarPlugins"
+    [header]="headerOptions"
+    [events]="calendarEvents"
+    (eventClick)="eventClick($event)"
+  ></full-calendar>
 </div>
 
 <!-- Modal window -->
@@ -29,4 +32,5 @@
     </div>
   </ng-template>
 </ng-container>
+
 <!-- end Modal window -->

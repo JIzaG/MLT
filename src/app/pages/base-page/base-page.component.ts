@@ -46,6 +46,7 @@ export class BasePageComponent implements OnInit, OnDestroy {
     );
   }
 
+
   setLoaded(during: number = 0) {
     setTimeout(() => this.store.dispatch(new PageActions.Update({ loaded: true })), during);
   }

@@ -61,7 +61,7 @@ export class TCTableComponent implements OnInit, OnChanges {
   ngOnInit() {
 	  this.getColumns();
     this.data = this.rows;
-    this.pagesCount = Math.ceil(this.rows.length / this.itemsPerPage);
+    this.calcPagesCount(this.rows.length, this.itemsPerPage);
 
     if (this.data.length > 0) {
       setTimeout(() => {
@@ -72,6 +72,10 @@ export class TCTableComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
 	  this.ngOnInit();
+  }
+
+  calcPagesCount(length: number, perPage: number) {
+    this.pagesCount = Math.ceil(length / perPage);
   }
 
 	addColumn(column: TCTableColComponent) {
@@ -170,8 +174,12 @@ export class TCTableComponent implements OnInit, OnChanges {
 		return filteredData;
 	}
 
-	onChangeTable(config: any, column: TCTableColComponent): any {
-    if (config.filtering) {
+	onChangeTable(config: any, column: TCTableColComponent, search: boolean = false): any {
+	  if (search) {
+      this.page = 1
+    }
+
+	  if (config.filtering) {
 			Object.assign(this.config.filtering, config.filtering);
 		}
 
@@ -190,5 +198,6 @@ export class TCTableComponent implements OnInit, OnChanges {
     let sortedData = this.changeSort(filteredData, this.config);
 
 		this.rows = this.pagination ? this.changePage(this.page, this.itemsPerPage, sortedData) : sortedData;
+    this.calcPagesCount(sortedData.length, this.itemsPerPage);
 	}
 }

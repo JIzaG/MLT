@@ -27,9 +27,9 @@ export class ActionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData('assets/data/navbar-notifications.json', 'notifications');
-    this.getData('assets/data/navbar-messages.json', 'messages');
-    this.getData('assets/data/navbar-files.json', 'files');
+    // this.getData('assets/data/navbar-notifications.json', 'notifications');
+    // this.getData('assets/data/navbar-messages.json', 'messages');
+    // this.getData('assets/data/navbar-files.json', 'files');
   }
 
   getData(url: string, dataName: string) {

@@ -31,18 +31,18 @@ export class PagePatientProfileComponent extends BasePageComponent implements On
     super(store, httpSv);
 
     this.pageData = {
-      title: 'Patient profile page',
+      title: 'Perfil del Paciente',
       breadcrumbs: [
         {
-          title: 'Medicine',
+          title: 'Odontologia',
           route: 'default-dashboard'
         },
         {
-          title: 'Patients',
+          title: 'Pacientes',
           route: 'patients'
         },
         {
-          title: 'Dr. Sophie'
+          title: 'Dra. Laura'
         }
       ]
     };
@@ -66,7 +66,7 @@ export class PagePatientProfileComponent extends BasePageComponent implements On
         value: 'pending'
       }
     ];
-    this.defaultAvatar = 'assets/content/anonymous-400.jpg';
+    this.defaultAvatar = '';
     this.currentAvatar = this.defaultAvatar;
     this.changes = false;
     this.billings = [];

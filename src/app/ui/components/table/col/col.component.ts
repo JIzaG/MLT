@@ -1,5 +1,6 @@
 import { Component, ContentChild, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
 import { TCTableComponent } from '../table.component';
+import { TCDropdownButtonComponent } from '../../dropdown';
 
 @Component({
   selector: 'tc-table-col',
@@ -7,8 +8,8 @@ import { TCTableComponent } from '../table.component';
   styleUrls: ['./col.component.scss']
 })
 export class TCTableColComponent implements OnInit {
-  @ContentChild('tableTDTemplate') tdTemplate: TemplateRef<any>;
-  @ContentChild('headerBodyTemplate') headerTemplate: TemplateRef<any>;
+  @ContentChild('tableTDTemplate', { static: true }) tdTemplate: TemplateRef<any>;
+  @ContentChild('headerBodyTemplate', { static: true }) headerTemplate: TemplateRef<any>;
 
   @Input() columnTitle: string;
   @Input() columnName: string;

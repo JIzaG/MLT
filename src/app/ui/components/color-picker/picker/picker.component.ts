@@ -49,11 +49,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 	animations: [pickerApear, foreground ]
 })
 export class TCPickerComponent implements OnInit, AfterViewInit {
-	@ViewChild('hue') hueElement: ElementRef;
-	@ViewChild('color') colorElement: ElementRef;
-	@ViewChild('colors') colorsElement: ElementRef;
-	@ViewChild('picker') pickerElement: ElementRef;
-	@ViewChild('transparency') transparencyElement: ElementRef;
+	@ViewChild('hue', { static: true }) hueElement: ElementRef;
+	@ViewChild('color', { static: true }) colorElement: ElementRef;
+	@ViewChild('colors', { static: true }) colorsElement: ElementRef;
+	@ViewChild('picker', { static: true }) pickerElement: ElementRef;
+	@ViewChild('transparency', { static: true }) transparencyElement: ElementRef;
 
 	@HostBinding('class.tc-picker') true;
 	@HostBinding('class.hide') get getState() { return !this.openPicker; }

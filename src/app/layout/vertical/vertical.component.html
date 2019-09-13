@@ -1,19 +1,12 @@
 <div class="app-container" [ngClass]="{ 'boxed': appSettings.boxed, 'scrolled': scrolled }" *ngIf="appSettings">
   <!-- Horizontal navbar -->
-  <navbar
-    [boxed]="appSettings.boxed"
-    [tcBgColor]="appSettings.topbarBg"
-    [tcColor]="appSettings.topbarColor"
-    [minHeight]="'4.28571429rem'"
-  >
-    <button
-      class="no-style navbar-toggle d-lg-none"
-      (click)="toggleSidebar(true)"
-    >
+  <navbar [boxed]="appSettings.boxed" [tcBgColor]="appSettings.topbarBg" [tcColor]="appSettings.topbarColor"
+    [minHeight]="'4.28571429rem'">
+    <button class="no-style navbar-toggle d-lg-none" (click)="toggleSidebar(true)">
       <span></span><span></span><span></span>
     </button>
 
-    <search [data]="searchData" [layout]="'vertical'" class="d-none d-md-block"></search>
+    <!--<search [data]="searchData" [layout]="'vertical'" class="d-none d-md-block"></search>-->
 
     <actions [layout]="'vertical'"></actions>
 
@@ -22,31 +15,28 @@
   <!-- end Horizontal navbar -->
 
   <!-- Vertical navbar -->
-  <navbar
-    [orientation]="'vertical'"
-    [tcBgColor]="appSettings.sidebarBg"
-    [tcColor]="appSettings.sidebarColor"
-    [opened]="appSettings.sidebarOpened"
-  >
-    <button
-      class="no-style navbar-close icofont-close-line d-lg-none"
-      (click)="toggleSidebar(false)"
-    ></button>
+  <navbar [orientation]="'vertical'" [tcBgColor]="appSettings.sidebarBg" [tcColor]="appSettings.sidebarColor"
+    [opened]="appSettings.sidebarOpened">
+    <button class="no-style navbar-close icofont-close-line d-lg-none" (click)="toggleSidebar(false)"></button>
 
     <logo [src]="'assets/img/logo.svg'" [width]="147" [height]="33"></logo>
 
     <app-menu [src]="'assets/data/menu.json'"></app-menu>
 
     <div class="add-patient">
-      <button
-        tc-button
-        [view]="'accent'"
-        [beforeIcon]="'icofont-plus'"
-        (click)="openModal(modalBody, 'Add new patient', modalFooter)"
-      >Add Patient</button>
+      <button tc-button [view]="'accent'" [beforeIcon]="'icofont-plus'" style='text-align: left;width:145px; height:40px'
+        (click)="openModal(modalBody, 'Registrar Paciente', modalFooter)">Paciente</button>
+        <button tc-button [view]="'accent'" [beforeIcon]="'icofont-plus'" style='text-align: left;width:145px; height:40px'
+        (click)="openModal(modalBodyC, 'Registrar Cita Clínica', modalFooterC)">Cita Clínica</button>
+        <button tc-button [view]="'accent'" [beforeIcon]="'icofont-plus'" style='text-align: left;width:145px; height:40px'
+        (click)="openModal(modalBodyH, 'Registrar Historia Clínica', modalFooterH)">Historia Clínica</button>
+        <button tc-button [view]="'accent'" [beforeIcon]="'icofont-plus'" style='text-align: left;width:145px; height:40px'
+        (click)="openModal(modalBodyS, 'Registrar Salud Dental', modalFooterS)">Salud Dental</button>
+        <button tc-button [view]="'accent'" [beforeIcon]="'icofont-plus'" style='text-align: left;width:145px; height:40px'
+        (click)="openModal(modalBodyT, 'Registrar Tratamiento', modalFooterT)">Tratamiento</button>
     </div>
-
-    <menu class="assistant-menu">
+  
+    <!--<menu class="assistant-menu">
       <a href="#" [routerLink]="['/vertical', 'settings']" class="link">
         <tc-icon [iconClass]="'icofont-ui-settings'" [tcFontSize]="'1.3em'"></tc-icon>Settings
       </a>
@@ -54,10 +44,12 @@
       <a href="#" class="link">
         <tc-icon [iconClass]="'icofont-question-square'" [tcFontSize]="'1.3em'"></tc-icon>FAQ & Support
       </a>
-    </menu>
+    </menu>-->
 
     <navbar-skeleton [type]="'vertical'" [loaded]="loaded"></navbar-skeleton>
   </navbar>
+  
+
   <!-- end Vertical navbar -->
 
   <main class="main-content" (scroll)="onScroll($event)" [ngClass]="{ 'loaded': pageData?.loaded }">
@@ -85,42 +77,62 @@
         <input type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput hidden>
 
         <tc-avatar [src]="currentAvatar"></tc-avatar>
-        <button
-          tc-button
-          [type]="'button'"
-          [afterIcon]="'icofont-ui-user'"
-          [view]="'accent'"
-          [outline]="true"
-          (click)="fileInput.click()"
-        >
-          Select image
+        <button tc-button [type]="'button'" [afterIcon]="'icofont-ui-user'" [view]="'accent'" [outline]="true"
+          (click)="fileInput.click()">
+          Seleccionar Imagen
         </button>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Name'" formControlName="name"></tc-input>
+        <tc-input [placeholder]="'Nombre'" formControlName="nombre" [(ngModel)]="nombre"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Number'" [type]="'number'" formControlName="number"></tc-input>
+        <tc-input [placeholder]="'Identidad'" formControlName="identidad"[(ngModel)]="identidadPAC"></tc-input>
       </tc-form-group>
+
 
       <div class="row">
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-input [placeholder]="'Age'" [type]="'number'" formControlName="age"></tc-input>
+            <tc-input [placeholder]="'Edad'" [type]="'number'" formControlName="edad" [(ngModel)]="edad"></tc-input>
           </tc-form-group>
         </div>
 
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-select [placeholder]="'Gender'" formControlName="gender" [options]="gender"></tc-select>
+            <tc-select [placeholder]="'Genero'" formControlName="genero" [options]="gender" [(ngModel)]="genero"></tc-select>
           </tc-form-group>
         </div>
       </div>
 
-      <tc-form-group class="mb-0">
-        <tc-textarea [placeholder]="'Address'" formControlName="address"></tc-textarea>
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha Nacimiento'" formControlName="fecha" [(ngModel)]="fechan"></tc-input>
+      </tc-form-group>
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Profesiòn'" formControlName="profesion"[(ngModel)]="profesion"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group class="mb-3">
+        <tc-textarea [placeholder]="'Dirección'" formControlName="direccion"[(ngModel)]="direccion"></tc-textarea>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Telefono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Celular'" formControlName="celular"[(ngModel)]="celular"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="doctor"[(ngModel)]="doctor"></tc-input>
       </tc-form-group>
     </form>
   </ng-template>
@@ -128,10 +140,301 @@
   <ng-template #modalFooter>
     <div class="actions justify-content-between">
       <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
-      <button tc-button [view]="'info'" [disabled]="patientForm.invalid" (click)="addPatient(patientForm)">
-        Add patient
+      <button tc-button [view]="'info'"  (click)="addPacientes()">
+        Crear Paciente
       </button>
     </div>
   </ng-template>
 </ng-container>
-<!-- end Modal window -->
+<!-- end Modal window-->
+<!-------------------------------------------Registrar Cita Clinica-------------------------------------------------------------------------------------------------------------->
+
+<!-- Modal window -->
+<ng-container>
+  <ng-template #modalBodyC>
+    <form [formGroup]="patientForm" novalidate class="new-patient-form">
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteC" [(ngModel)]="pacienteC"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Identidad del Paciente'" formControlName="identidadPACC"[(ngModel)]="identidadPACC"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="identidadC"[(ngModel)]="identidadC"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-select [placeholder]="'Maxilar'" formControlName="maxilarC" [options]="maxilar" [(ngModel)]="maxilarC"></tc-select>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-select [placeholder]="'Cuadrantes'" formControlName="cuadrantesC" [options]="cuadrantes" [(ngModel)]="cuadrantesC"></tc-select>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-select [placeholder]="'Diente a Tratar'" formControlName="dientesC" [options]="dientes" [(ngModel)]="dientesC"></tc-select>
+      </tc-form-group>
+      
+
+
+     
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha Cita Clínica'" formControlName="fechaC" [(ngModel)]="fechaC"></tc-input>
+      </tc-form-group>
+
+
+      <tc-form-group class="mb-10">
+        <tc-textarea [placeholder]="'Procedimiento Clínico'" formControlName="procedimientoC"[(ngModel)]="procedimientoC"></tc-textarea>
+      </tc-form-group>
+
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooterC>
+    <div class="actions justify-content-between">
+      <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
+      <button tc-button [view]="'info'"  (click)="addCitaClinica()">
+        Crear Cita Clinica
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Modal window-->
+
+<!--------------------------------------------------Registrar Historia Clinica--------------------------------------------------------------------------------------------------->
+
+<!-- Modal window -->
+<ng-container>
+  <ng-template #modalBodyH>
+    <form [formGroup]="patientForm" novalidate class="new-patient-form">
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Nombre'" formControlName="nombre" [(ngModel)]="nombre"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Identidad'" formControlName="identidad"[(ngModel)]="identidadPAC"></tc-input>
+      </tc-form-group>
+
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-input [placeholder]="'Edad'" [type]="'number'" formControlName="edad" [(ngModel)]="edad"></tc-input>
+          </tc-form-group>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Genero'" formControlName="genero" [options]="gender" [(ngModel)]="genero"></tc-select>
+          </tc-form-group>
+        </div>
+      </div>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha Nacimiento'" formControlName="fecha" [(ngModel)]="fechan"></tc-input>
+      </tc-form-group>
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Profesiòn'" formControlName="profesion"[(ngModel)]="profesion"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group class="mb-3">
+        <tc-textarea [placeholder]="'Dirección'" formControlName="direccion"[(ngModel)]="direccion"></tc-textarea>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Telefono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Celular'" formControlName="celular"[(ngModel)]="celular"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="doctor"[(ngModel)]="doctor"></tc-input>
+      </tc-form-group>
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooterH>
+    <div class="actions justify-content-between">
+      <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
+      <button tc-button [view]="'info'"  (click)="addPacientes()">
+        Crear Historia Clinica
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Modal window-->
+
+<!---------------------------------------------------------------Salud Dental-------------------------------------------------------------------------------------------->
+
+<!-- Modal window -->
+<ng-container>
+  <ng-template #modalBodyS>
+    <form [formGroup]="patientForm" novalidate class="new-patient-form">
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Nombre'" formControlName="nombre" [(ngModel)]="nombre"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Identidad'" formControlName="identidad"[(ngModel)]="identidadPAC"></tc-input>
+      </tc-form-group>
+
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-input [placeholder]="'Edad'" [type]="'number'" formControlName="edad" [(ngModel)]="edad"></tc-input>
+          </tc-form-group>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Genero'" formControlName="genero" [options]="gender" [(ngModel)]="genero"></tc-select>
+          </tc-form-group>
+        </div>
+      </div>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha Nacimiento'" formControlName="fecha" [(ngModel)]="fechan"></tc-input>
+      </tc-form-group>
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Profesiòn'" formControlName="profesion"[(ngModel)]="profesion"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group class="mb-3">
+        <tc-textarea [placeholder]="'Dirección'" formControlName="direccion"[(ngModel)]="direccion"></tc-textarea>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Telefono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Celular'" formControlName="celular"[(ngModel)]="celular"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="doctor"[(ngModel)]="doctor"></tc-input>
+      </tc-form-group>
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooterS>
+    <div class="actions justify-content-between">
+      <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
+      <button tc-button [view]="'info'"  (click)="addPacientes()">
+        Crear Salud Dental
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Modal window-->
+
+
+<!----------------------------------------------------------Tratamiento-------------------------------------------------------------------------------------------------------->
+
+<!-- Modal window -->
+<ng-container>
+  <ng-template #modalBodyT>
+    <form [formGroup]="patientForm" novalidate class="new-patient-form">
+
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteT" [(ngModel)]="pacienteT"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Identidad del Paciente'" formControlName="identidadPACT"[(ngModel)]="identidadPACT"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="identidadT"[(ngModel)]="identidadT"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha del Tratamiento'" formControlName="fechaT" [(ngModel)]="fechaT"></tc-input>
+      </tc-form-group>
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Clase Esqueletica'" formControlName="claseEsqueleticaT" [options]="claseesqueletica"  [(ngModel)]="claseEsqueleticaT"></tc-select>
+          </tc-form-group>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Clase Molar'" formControlName="claseMolar" [options]="claseM" [(ngModel)]="claseMolar"></tc-select>
+          </tc-form-group>
+        </div>
+      </div>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Piezas Faltantes'" formControlName="piezasT" [(ngModel)]="piezasT"></tc-input>
+      </tc-form-group>
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Apiñamiento'" formControlName="apinamientoT" [options]="apinamiento"  [(ngModel)]="apinamientoT"></tc-select>
+          </tc-form-group>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <tc-form-group>
+            <tc-select [placeholder]="'Perfil'" formControlName="perfilT" [options]="perfil" [(ngModel)]="perfilT"></tc-select>
+          </tc-form-group>
+        </div>
+      </div>
+
+
+      <tc-form-group>
+        <tc-select [placeholder]="'Clasificación'" formControlName="clasificacion" [options]="claseficacionTratamiento" [(ngModel)]="clasificacion"></tc-select>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'Habitos Lingual'" formControlName="habitosT"[(ngModel)]="habitosT"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group class="mb-3">
+        <tc-textarea [placeholder]="'Descripción del Tratamiento'" formControlName="observacionesT" [(ngModel)]="observacionesT"></tc-textarea>
+      </tc-form-group>
+
+
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooterT>
+    <div class="actions justify-content-between">
+      <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
+      <button tc-button [view]="'info'"  (click)="addTratamiento()">
+        Crear Tratamiento
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Modal window-->
+
+

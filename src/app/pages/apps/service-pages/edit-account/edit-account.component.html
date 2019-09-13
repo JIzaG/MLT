@@ -7,7 +7,7 @@
       (ngSubmit)="saveData(userForm)"
     >
       <tc-form-group>
-        <tc-form-label>Photo</tc-form-label>
+        <tc-form-label>Fotografía</tc-form-label>
         <input type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput hidden>
 
         <div class="d-flex align-items-center">
@@ -20,107 +20,122 @@
             [outline]="true"
             (click)="fileInput.click()"
           >
-            Change photo
+            Actualizar Imagen
           </button>
         </div>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-form-label>First name</tc-form-label>
-        <tc-input [placeholder]="'First name'" formControlName="firstName"></tc-input>
-      </tc-form-group>
-
-      <tc-form-group>
-        <tc-form-label>Last name</tc-form-label>
-        <tc-input [placeholder]="'Last name'" formControlName="lastName"></tc-input>
+        <tc-form-label>Nombre</tc-form-label>
+        <tc-input [placeholder]="'Nombre'" formControlName="nombre"[(ngModel)]="nombre"></tc-input>
       </tc-form-group>
 
       <div class="row">
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-form-label>Age</tc-form-label>
-            <tc-input [placeholder]="'Age'" formControlName="age" [type]="'number'"></tc-input>
+            <tc-form-label>Edad</tc-form-label>
+            <tc-input [placeholder]="'Edad'" formControlName="edad" [type]="'edad'"[(ngModel)]="edad"></tc-input>
           </tc-form-group>
         </div>
 
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-form-label>Gender</tc-form-label>
-            <tc-select [placeholder]="'Gender'" formControlName="gender" [options]="gender"></tc-select>
+            <tc-form-label>Genero</tc-form-label>
+            <tc-select [placeholder]="'Genero'" formControlName="genero"[(ngModel)]="genero"></tc-select>
           </tc-form-group>
         </div>
       </div>
 
       <tc-form-group>
-        <tc-form-label>Phone number</tc-form-label>
-        <tc-input [placeholder]="'Number'" formControlName="number"></tc-input>
+        <tc-form-label>Fecha de Nacimiento</tc-form-label>
+        <tc-input [placeholder]="'Fecha de Nacimiento'" formControlName="fechan"[(ngModel)]="fechan" [readonly]="true"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-form-label>Address</tc-form-label>
-        <tc-textarea [placeholder]="'Address'" formControlName="address"></tc-textarea>
+        <tc-form-label>Especialidad</tc-form-label>
+        <tc-input [placeholder]="'Especialidad'" formControlName="especialidad"[(ngModel)]="especialidad"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-form-label>Last visit</tc-form-label>
-        <tc-input [placeholder]="'Last visit'" formControlName="lastVisit" [readonly]="true"></tc-input>
+        <tc-form-label>Clinica</tc-form-label>
+        <tc-input [placeholder]="'Nombre del Centro Clinico'" formControlName="clinica"[(ngModel)]="clinica"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
+        <tc-form-label>Dirección</tc-form-label>
+        <tc-textarea [placeholder]="'Dirección'" formControlName="direccion"[(ngModel)]="direccion"></tc-textarea>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-form-label>Email</tc-form-label>
+        <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-form-label>Numero de Celular</tc-form-label>
+        <tc-input [placeholder]="'Numero de Celular'" formControlName="celular"[(ngModel)]="celular"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-form-label>Numero de Teléfono</tc-form-label>
+        <tc-input [placeholder]="'Numero de Teléfono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
+      </tc-form-group>
+
+      <!--<tc-form-group>
         <tc-form-label>Status</tc-form-label>
         <tc-select [placeholder]="'Status'" formControlName="status" [options]="status"></tc-select>
-      </tc-form-group>
+      </tc-form-group>-->
 
       <div class="row">
         <div class="col">
           <button tc-button [view]="'success'" [disabled]="!changes || userForm.invalid">
-            Save changes
+            Salvar Cambios
           </button>
         </div>
         <div class="col text-right">
-          <button
+          <!--<button
             tc-button
             [type]="'button'"
             [view]="'error'"
             [outline]="true"
           >
-            Delete account
-          </button>
+            Eliminar Cuenta
+          </button>-->
         </div>
       </div>
     </form>
 
     <hr>
 
-    <h4>Change password</h4>
+    <h4>Cambiar Contraseña</h4>
 
     <form novalidate>
       <div class="row">
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-form-label>Current password</tc-form-label>
-            <tc-input [placeholder]="'Current password'"></tc-input>
+            <tc-form-label>Contraseña</tc-form-label>
+            <tc-input [placeholder]="'Contraseña'"></tc-input>
           </tc-form-group>
         </div>
       </div>
       <div class="row">
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-form-label>New password</tc-form-label>
-            <tc-input [placeholder]="'Current password'"></tc-input>
+            <tc-form-label>Nueva Contraseña</tc-form-label>
+            <tc-input [placeholder]="'Nueva Contraseña'"></tc-input>
           </tc-form-group>
         </div>
 
         <div class="col-12 col-sm-6">
           <tc-form-group>
-            <tc-form-label>Confirm new password</tc-form-label>
-            <tc-input [placeholder]="'Confirm new password'"></tc-input>
+            <tc-form-label>Confirmar Contraseña</tc-form-label>
+            <tc-input [placeholder]="'Confirmar Contraseña'"></tc-input>
           </tc-form-group>
         </div>
       </div>
 
       <button tc-button [view]="'default'" [outline]="true" [type]="'button'">
-        Change password
+        Guardad Contraseña
       </button>
     </form>
   </div>

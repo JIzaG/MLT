@@ -54,7 +54,7 @@ export class PageDoctorsComponent extends BasePageComponent implements OnInit, O
         value: 'female'
       }
     ];
-    this.defaultAvatar = 'assets/content/anonymous-400.jpg';
+    this.defaultAvatar = '';
     this.currentAvatar = this.defaultAvatar;
     this.specialists = [];
   }
@@ -62,8 +62,8 @@ export class PageDoctorsComponent extends BasePageComponent implements OnInit, O
   ngOnInit() {
     super.ngOnInit();
 
-    this.getData('assets/data/doctors.json', 'doctors', 'setLoaded');
-    this.getData('assets/data/doctors-specialists.json', 'specialists');
+    // this.getData('assets/data/doctors.json', 'doctors', 'setLoaded');
+    // this.getData('assets/data/doctors-specialists.json', 'specialists');
   }
 
   ngOnDestroy() {

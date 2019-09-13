@@ -1,3 +1,4 @@
+import { PacientesService } from './../../services/pacientes/pacientes.service';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -25,8 +26,82 @@ import * as SettingsActions from '../../store/actions/app-settings.actions';
 export class VerticalLayoutComponent extends BaseLayoutComponent implements OnInit {
   patientForm: FormGroup;
   gender: IOption[];
+  dientes: IOption[];
+  maxilar: IOption[];
+  cuadrantes: IOption[];
   currentAvatar: string | ArrayBuffer;
   defaultAvatar: string;
+
+  //---------------Tratmiento Opciones
+  claseesqueletica: IOption[];
+  claseM: IOption[];
+  apinamiento: IOption[];
+  perfil: IOption[];
+  claseficacionTratamiento: IOption[];
+
+
+  //-------------------------------------------Registrar Un Nuevo Paciente
+
+  nombre: string;
+  identidadPAC: string;
+  edad: number;
+  genero: string;
+  fechan: string;
+  profesion: string;
+  direccion: string;
+  email: string;
+  telefono: string;
+  celular: string;
+  doctor: string;
+
+  //-------------------------------------------Registrar Cita Clinica
+  fechaC: string;
+  identidadPACC:string;
+  identidadC:string;
+  pacienteC: string;
+  procedimientoC:string;
+  tituloC:string;
+  dientesC:string;
+  cuadrantesC:string;
+  maxilarC:string;
+  
+  
+  //-------------------------------------------Registrar Historia Clinic
+  doctorH:string;
+  fechaH:string;
+  identidadH:string;
+  identidadPACH:string;
+  pacienteH:string;
+  tituloH:string;
+  p1:boolean;
+  p2:boolean;
+  p3:boolean;
+  p4:boolean;
+  p5:boolean;
+  p6:boolean;
+  p7:boolean;
+  p8:boolean;
+  p9:boolean;
+  p10:string;
+  p11:string;
+  //-------------------------------------------Registrar Salud Dental 
+
+
+
+  //-------------------------------------------Registrar Tratamiento
+  apinamientoT: string;
+  claseEsqueleticaT:string;
+  claseMolar: string;
+  clasificacion: string;
+  fechaT:string;
+  habitosT: string;
+  identidadT:string;
+  identidadPACT:string;
+  observacionesT: string;
+  pacienteT:string;
+  perfilT:string;
+  piezasT: string;
+  tituloT:string;
 
   constructor(
     store: Store<IAppState>,
@@ -34,21 +109,159 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     httpSv: HttpService,
     router: Router,
     elRef: ElementRef,
-    private modal: TCModalService
+    private modal: TCModalService,
+    private patientService: PacientesService,
   ) {
     super(store, fb, httpSv, router, elRef);
 
     this.gender = [
       {
-        label: 'Male',
-        value: 'male'
+        label: 'Masculino',
+        value: 'Masculino'
       },
       {
-        label: 'Female',
-        value: 'female'
+        label: 'Femenino',
+        value: 'Femenino'
       }
     ];
-    this.defaultAvatar = 'assets/content/anonymous-400.jpg';
+
+    this.dientes = [
+      {
+        label: 'Incisivo Central',
+        value: 'Incisivo Central'
+      },
+      {
+        label: 'Incisivo Lateral',
+        value: 'Incisivo Lateral'
+      },
+      {
+        label: 'Canino',
+        value: 'Canino'
+      },
+      {
+        label: 'Primer Bicúspide',
+        value: 'Primer Bicúspide'
+      },
+      {
+        label: 'Segundo Bicúspide',
+        value: 'Segundo Bicúspide'
+      },
+      {
+        label: 'Primer Molar',
+        value: 'Primer Molar'
+      },
+      {
+        label: 'Segundo Molar',
+        value: 'Segundo Molar'
+      },
+      {
+        label: 'Tercer Molar',
+        value: 'Tercer Molar'
+      }
+    ];
+    this.cuadrantes = [
+      {
+        label: 'Cuadrante Superior Izquierdo',
+        value: 'Cuadrante Superior Izquierdo'
+      },
+      {
+        label: 'Cuadrante Superior Derecho',
+        value: 'Cuadrante Superior Derecho'
+      },
+      {
+        label: 'Cuadrante Inferior Izquierdo',
+        value: 'Cuadrante Inferior Izquierdo'
+      },
+      {
+        label: 'Cuadrante Inferior Derecho',
+        value: 'Cuadrante Inferior Derecho'
+      },
+    ];
+    this.maxilar = [
+      {
+        label: 'Maxilar Superior',
+        value: 'Maxilar Superior'
+      },
+      {
+        label: 'Maxilar Inferior',
+        value: 'Maxilar Inferior'
+      }
+    ];
+
+    this.claseesqueletica = [
+      {
+        label: 'Normal',
+        value: 'Normal'
+      },
+      {
+        label: 'Mordida Retrasada',
+        value: 'Mordida Retrasada'
+      },
+      {
+        label: 'Mandibula Adelantada',
+        value: 'Mandibula Adelantada'
+      }
+    ];
+    this.claseM = [
+      {
+        label: 'Clase 1',
+        value: 'Clase 1'
+      },
+      {
+        label: 'Clase 2',
+        value: 'Clase 2'
+      },
+      {
+        label: 'Clase 3',
+        value: 'Clase 3'
+      }
+    ];
+    this.apinamiento = [
+      {
+        label: 'Leve',
+        value: 'Leve'
+      },
+      {
+        label: 'Moderado',
+        value: 'Moderado'
+      },
+      {
+        label: 'Severo',
+        value: 'Severo'
+      }
+    ];
+    this.perfil = [
+      {
+        label: 'Convexo',
+        value: 'Convexo'
+      },
+      {
+        label: 'Recto',
+        value: 'Recto'
+      },
+      {
+        label: 'Cóncavo',
+        value: 'concavo'
+      }
+    ];
+    this.claseficacionTratamiento = [
+      {
+        label: 'Branquifacial',
+        value: 'Branquifacial'
+      },
+      {
+        label: 'Normofacial',
+        value: 'Normofacial'
+      },
+      {
+        label: 'Dolicofacial',
+        value: 'Dolicofacial'
+      }
+    ];
+    
+    this.defaultAvatar = '';
+    this.tituloC="Cita Clinica";
+    this.tituloT="Tratamiento";
     this.currentAvatar = this.defaultAvatar;
   }
 
@@ -56,6 +269,106 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     super.ngOnInit();
 
     this.store.dispatch(new SettingsActions.Update({ layout: 'vertical' }));
+  }
+
+  async addPacientes() {
+    let patient = {};
+    patient['nombre'] = this.nombre;
+    patient['identidadPAC'] = this.identidadPAC;
+    patient['edad'] = this.edad;
+    patient['genero'] = this.genero;
+    patient['fechan'] = this.fechan;
+    patient['profesion'] = this.profesion;
+    patient['direccion'] = this.direccion;
+    patient['email'] = this.email;
+    patient['telefono'] = this.telefono;
+    patient['celular'] = this.celular;
+    patient['doctor'] = this.doctor;
+    let identidadPAC=this.identidadPAC;
+
+    this.patientService.addPacientes(patient, identidadPAC).then(res => {
+      this.nombre = "";
+      this.identidadPAC = "";
+      this.edad = 0;
+      this.genero = "";
+      this.fechan = "";
+      this.profesion = "";
+      this.direccion = "";
+      this.email = "";
+      this.telefono = "";
+      this.celular = "";
+      this.doctor = "";
+
+    }).catch(error => {
+      console.log(error)
+    })
+
+    this.closeModal()
+
+  }
+
+  async addCitaClinica() {
+    let patientC = {};
+    patientC['pacienteC'] = this.pacienteC;
+    patientC['fechaC'] = this.fechaC;
+    patientC['identidadPACC'] = this.identidadPACC;
+    patientC['identidadC'] = this.identidadC;
+    patientC['procedimientoC'] = this.procedimientoC;
+    patientC['dientesC'] = this.dientesC;
+    patientC['cuadrantesC'] = this.cuadrantesC;
+    patientC['maxilarC'] = this.maxilarC;
+    patientC['tituloC'] = this.tituloC;
+
+    this.patientService.addCitaClinica(patientC).then(res => {
+      this.pacienteC = "";
+      this.fechaC= "";
+      this.identidadPACC= "";
+      this.identidadC= "";
+      this.procedimientoC= "";
+      this.dientesC= "";
+      this.cuadrantesC= "";
+      this.maxilarC= "";
+
+    }).catch(error => {
+      console.log(error)
+    })
+    this.closeModal()
+  }
+
+  async addTratamiento() {
+    let patientT = {};
+    patientT['apinamientoT'] = this.apinamientoT;
+    patientT['claseEsqueleticaT'] = this.claseEsqueleticaT;
+    patientT['claseMolar'] = this.claseMolar;
+    patientT['clasificacion'] = this.clasificacion;
+    patientT['fechaT'] = this.fechaT;
+    patientT['habitosT'] = this.habitosT;
+    patientT['identidadT'] = this.identidadT;
+    patientT['identidadPACT'] = this.identidadPACT;
+    patientT['titulot'] = this.tituloT;
+    patientT['observacionesT'] = this.observacionesT;
+    patientT['pacienteT'] = this.pacienteT;
+    patientT['perfilT'] = this.perfilT;
+    patientT['piezasT'] = this.piezasT;
+
+    this.patientService.addTratamiento(patientT).then(res => {
+      this.apinamientoT = "";
+      this.claseEsqueleticaT= "";
+      this.claseMolar= "";
+      this.clasificacion= "";
+      this.fechaT= "";
+      this.habitosT= "";
+      this.identidadT= "";
+      this.identidadPACT= "";
+      this.observacionesT= "";
+      this.pacienteT= "";
+      this.perfilT= "";
+      this.piezasT= "";
+
+    }).catch(error => {
+      console.log(error)
+    })
+    this.closeModal()
   }
 
   // open modal window
@@ -93,11 +406,58 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
   initPatientForm() {
     this.patientForm = this.fb.group({
       img: [],
-      name: ['', Validators.required],
-      number: ['', Validators.required],
-      age: ['', Validators.required],
-      gender: ['', Validators.required],
-      address: ['', Validators.required]
+      // name: ['', Validators.required],
+      // number: ['', Validators.required],
+      // age: ['', Validators.required],
+      // gender: ['', Validators.required],
+      // address: ['', Validators.required],
+
+      //---------------------------------------------------------------------------------Crear Paciente
+
+      identidad: ['', Validators.required],
+      nombre: ['', Validators.required],
+      edad: ['', Validators.required],
+      genero: ['', Validators.required],
+      fecha: ['', Validators.required],
+      profesion: ['', Validators.required],
+      direccion: ['', Validators.required],
+      email: ['', Validators.required],
+      telefono: ['', Validators.required],
+      celular: ['', Validators.required],
+      doctor: ['', Validators.required],
+      
+
+
+    //---------------------------------------------------------------------------------Citas Clinicas
+
+    
+    fechaC: ['', Validators.required],
+    identidadPACC: ['', Validators.required],
+    identidadC: ['', Validators.required],
+    pacienteC: ['', Validators.required],
+    procedimientoC: ['', Validators.required],
+    dientesC: ['', Validators.required],
+    cuadrantesC: ['', Validators.required],
+    maxilarC: ['', Validators.required],
+
+    //---------------------------------------------------------------------------------Tratamiento
+
+    pacienteT: ['', Validators.required],
+    identidadPACT: ['', Validators.required],
+    identidadT: ['', Validators.required],
+    fechaT: ['', Validators.required],
+    claseEsqueleticaT: ['', Validators.required],
+    claseMolar: ['', Validators.required],
+    piezasT: ['', Validators.required], 
+    apinamientoT: ['', Validators.required],
+    perfilT: ['', Validators.required],
+    clasificacion: ['', Validators.required],
+    
+    habitosT: ['', Validators.required],
+    observacionesT: ['', Validators.required],
+    
+    
+     
     });
   }
 
@@ -106,10 +466,16 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     if (form.valid) {
       let newPatient: IPatient = form.value;
 
-      newPatient.img = this.currentAvatar;
+
       newPatient.id = '23';
       newPatient.status = 'Pending';
       newPatient.lastVisit = '';
+
+      newPatient.img = this.currentAvatar;
+      newPatient.identidad = "";
+      newPatient.nombre = "";
+      newPatient.edad
+
 
       this.store.dispatch(new PatientsActions.Add(newPatient));
       this.closeModal();

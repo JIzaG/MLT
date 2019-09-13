@@ -123,8 +123,8 @@ export class BaseLayoutComponent implements OnInit {
     this.store.dispatch(new SettingsActions.SidebarState(value));
   }
 
-  onScroll(event: Event) {
-    this.scrolled = event.srcElement.scrollTop > 0;
+  onScroll(event: any) {
+    this.scrolled = event.target.scrollTop > 0;
   }
 
   // scroll to page top

@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 
-describe('workspace-project App', () => {
+describe('Salud Dental', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('MyLittleTooth', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to medic-app!');
+    expect(page.getTitleText()).toEqual('Bienvenido a MyLittleTooth!');
   });
 });

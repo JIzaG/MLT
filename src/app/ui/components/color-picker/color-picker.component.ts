@@ -29,8 +29,8 @@ import { TCPickerComponent } from './picker/picker.component';
 	]
 })
 export class TCColorPickerComponent implements OnInit, AfterContentInit, OnDestroy, ControlValueAccessor {
-	@ViewChild('picker') public picker: TCPickerComponent;
-	@ViewChild('secondPicker') public secondPicker: TCPickerComponent;
+	@ViewChild('picker', { static: true }) public picker: TCPickerComponent;
+	@ViewChild('secondPicker', { static: true }) public secondPicker: TCPickerComponent;
 	@HostBinding('class.tc-color-picker') true;
 	@HostBinding('class.disabled') @Input() disabled: boolean;
 	@HostBinding('class.gradient') @Input() gradient: boolean;

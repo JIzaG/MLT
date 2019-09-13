@@ -32,7 +32,8 @@
               "src/assets/css/icofont.min.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
-              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/@fullcalendar/core/main.css",
+              "node_modules/@fullcalendar/daygrid/main.css",
               "node_modules/animate.css/animate.min.css",
               "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"
@@ -100,7 +101,8 @@
               "src/assets/css/icofont.min.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",
-              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/@fullcalendar/core/main.css",
+              "node_modules/@fullcalendar/daygrid/main.css",
               "node_modules/animate.css/animate.min.css",
               "src/assets/sass/loader.scss",
               "src/assets/sass/styles.scss"

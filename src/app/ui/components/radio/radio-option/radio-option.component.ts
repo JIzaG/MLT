@@ -20,7 +20,7 @@ export class TCRadioOptionComponent implements AfterViewInit {
   @HostBinding('class.tc-radio-option') true;
   @HostBinding('class.disabled') @Input() disabled: boolean;
   @HostBinding('class.checked') checked: boolean;
-  @ViewChild('radioLabel') radioLabel;
+  @ViewChild('radioLabel', { static: true }) radioLabel;
   @Input() name: string;
   @Input() label: string;
   @Input('value') _value: string;

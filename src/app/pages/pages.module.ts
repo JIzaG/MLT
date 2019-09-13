@@ -8,7 +8,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AgmCoreModule } from '@agm/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { environment } from '../../environments/environment';
 import { UIModule } from '../ui/ui.module';
@@ -29,6 +28,7 @@ import { PageSortingTableComponent } from './ui/tables/sorting-table';
 import { PageSearchTableComponent } from './ui/tables/search-table';
 import { PageFilterTableComponent } from './ui/tables/filter-table';
 import { PagePaginationTableComponent } from './ui/tables/pagination-table';
+import { PageSearchPaginationTableComponent } from './ui/tables/search-pagination-table';
 import { PageAlertsComponent } from './ui/components/alerts';
 import { PageCheckboxesComponent } from './ui/components/checkboxes';
 import { PageRadioButtonsComponent } from './ui/components/radio-buttons';
@@ -66,6 +66,15 @@ import { PageCalendarComponent } from './apps/service-pages/calendar';
 import { PageSignInComponent } from './apps/sessions/sign-in';
 import { PageSignUpComponent } from './apps/sessions/sign-up';
 import { PageSettingsComponent } from './settings';
+import { FullCalendarModule } from '@fullcalendar/angular';
+
+
+
+import { CitasComponent } from './medicine/citas/citas.component';
+import { HistoriaClinicaComponent } from './medicine/historia-clinica/historia-clinica.component';
+import { TratamientoComponent } from './medicine/tratamiento/tratamiento.component';
+import { GaleriaComponent } from './medicine/galeria/galeria.component';
+import { SaludDentalComponent } from './medicine/salud-dental/salud-dental.component';
 
 @NgModule({
   imports: [
@@ -82,11 +91,11 @@ import { PageSettingsComponent } from './settings';
     }),
     LeafletModule,
     FullCalendarModule,
-
     UIModule,
     LayoutModule
   ],
   declarations: [
+
     BasePageComponent,
     PageDashboardComponent,
     PageAlertsComponent,
@@ -107,6 +116,7 @@ import { PageSettingsComponent } from './settings';
     PageSearchTableComponent,
     PageFilterTableComponent,
     PagePaginationTableComponent,
+    PageSearchPaginationTableComponent,
     PageFormElementsComponent,
     PageFormLayoutsComponent,
     PageFormValidationComponent,
@@ -138,7 +148,14 @@ import { PageSettingsComponent } from './settings';
     PageCalendarComponent,
     PageSignInComponent,
     PageSignUpComponent,
-    PageSettingsComponent
+    PageSettingsComponent,
+
+    
+    CitasComponent,
+    HistoriaClinicaComponent,
+    TratamientoComponent,
+    GaleriaComponent,
+    SaludDentalComponent
   ],
   exports: [ ],
   entryComponents: [ ]

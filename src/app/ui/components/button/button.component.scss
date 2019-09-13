@@ -147,15 +147,15 @@ $_types: (
     }
   }
   &.btn-square {
-    min-width: $module-rem * 4;
-    padding-left: $module-rem / 2;
-    padding-right: $module-rem / 2;
+    min-width: $_module-rem * 4;
+    padding-left: $_module-rem / 2;
+    padding-right: $_module-rem / 2;
 
     &.btn-sm {
-      min-width: $module-rem * 3;
+      min-width: $_module-rem * 3;
     }
     &.btn-lg {
-      min-width: $module-rem * 5;
+      min-width: $_module-rem * 5;
     }
   }
   &.btn-block {

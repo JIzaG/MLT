@@ -1,19 +1,20 @@
+<!--<form [formGroup]="loginForm" novalidate></form>-->
 <form [formGroup]="loginForm" novalidate>
   <tc-form-group>
-    <tc-input [placeholder]="'Login'" formControlName="login"></tc-input>
+    <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email" ></tc-input>
   </tc-form-group>
 
   <tc-form-group>
-    <tc-input [placeholder]="'Password'" [type]="'password'" formControlName="pass"></tc-input>
+    <tc-input [placeholder]="'Contraseña'" [type]="'password'" formControlName="password"[(ngModel)]="password"></tc-input>
   </tc-form-group>
 
   <tc-form-group>
-    <tc-switcher [value]="true">Remember me</tc-switcher>
+    <tc-switcher [value]="true">Recuperar Contraseña</tc-switcher>
   </tc-form-group>
 
   <div class="actions justify-content-between">
-    <button tc-button [view]="'accent'" [beforeIcon]="'icofont-login'">
-      Login
+    <button (click)="onSubmitLogin()" tc-button [view]="'accent'" [beforeIcon]="'icofont-login'">
+      Ingresa
     </button>
   </div>
 </form>
