@@ -59,6 +59,7 @@ import { PageSignUpComponent } from '../pages/apps/sessions/sign-up';
 import { PageSettingsComponent } from '../pages/settings';
 import { PageSearchPaginationTableComponent } from '../pages/ui/tables/search-pagination-table';
 import { CitasComponent } from '../pages/medicine/citas';
+import { TratamientoComponent } from '../pages/medicine/tratamiento/tratamiento.component';
 
 
 
@@ -77,7 +78,7 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'historia-clinica', component: HistoriaClinicaComponent },
   { path: 'galeria', component: Page404Component },
   { path: 'salud-dental', component: Page404Component },
-  { path: 'tratamiento', component: Page404Component },
+  { path: 'tratamiento', component: TratamientoComponent },
 
 
   { path: 'alerts', component: PageAlertsComponent },

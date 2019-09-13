@@ -63,7 +63,7 @@ updateAgendaPacientes(id: string, record: {}){
 //Servicios para el perfil del doctor
 
 getPerfilDoctor(){
-  return this.db.collection('/doctores').doc('0801199023459').snapshotChanges();
+  return this.db.collection('/doctores/0801199023459').snapshotChanges();
 }
 
 
@@ -74,9 +74,36 @@ addCitaClinica(citaClinica){
 
 }
 
+getCitasClinica(){
+  return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/citasclinicas').snapshotChanges();
+}
+
+updateCitaClinica(id: string, record: {}){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/citasclinicas').doc(id).update(record);
+
+}
+
+deleteCitaClinica(id: string){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/citasclinicas').doc(id).delete();
+}
+
+
+
 //Servicios para Tratamientos
 addTratamiento(tratamiento){
   return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/tratamientos').add(tratamiento);
+}
+
+getTratamiento(){
+  return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/tratamientos').snapshotChanges();
+}
+
+deleteTratmiento(id: string){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/tratamientos').doc(id).delete();
+}
+
+updateTratmiento(id: string, record: {}){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/tratamientos').doc(id).update(record);
 
 }
 

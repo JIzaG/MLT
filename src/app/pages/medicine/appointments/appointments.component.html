@@ -1,5 +1,5 @@
 <tc-card class="mb-0">
-    <tc-table [rows]="appointments" [hovered]="true" [pagination]="true">
+    <tc-table [rows]="appointments" [hovered]="true" [pagination]="true"[headerBgColor]="'#336cfb'" [headerColor]="'#fff'">
       <tc-table-col [columnTitle]="'Fotografia'" [columnName]="'img'">
         <ng-template #tableTDTemplate let-value>
           <tc-avatar [src]="value"></tc-avatar>
@@ -143,3 +143,4 @@
     </ng-template>
   </ng-container>
   <!-- end Modal window -->
+  

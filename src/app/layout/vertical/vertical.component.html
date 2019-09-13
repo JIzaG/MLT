@@ -154,7 +154,6 @@
   <ng-template #modalBodyC>
     <form [formGroup]="patientForm" novalidate class="new-patient-form">
 
-
       <tc-form-group>
         <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteC" [(ngModel)]="pacienteC"></tc-input>
       </tc-form-group>
@@ -179,10 +178,6 @@
         <tc-select [placeholder]="'Diente a Tratar'" formControlName="dientesC" [options]="dientes" [(ngModel)]="dientesC"></tc-select>
       </tc-form-group>
       
-
-
-     
-
       <tc-form-group>
         <tc-input [placeholder]="'Fecha Cita Clínica'" formControlName="fechaC" [(ngModel)]="fechaC"></tc-input>
       </tc-form-group>

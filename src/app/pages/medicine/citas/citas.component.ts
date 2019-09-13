@@ -8,6 +8,7 @@ import { TCModalService } from '../../../ui/services/modal/modal.service';
 import { IUser } from '../../../ui/interfaces/user';
 import {PacientesService} from '../../../services/pacientes/pacientes.service';
 import { id } from '@swimlane/ngx-charts/release/utils';
+import { IOption } from '../../../ui/interfaces/option';
 
 
 @Component({
@@ -26,6 +27,9 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
   doctors: IUser[];
   agenda: any[];
 
+  dientes: IOption[];
+  maxilar: IOption[];
+  cuadrantes: IOption[];
 
   //-------------------------------------------
 
@@ -40,6 +44,17 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
   id: string;
 
 
+  fechaC: string;
+  identidadPACC:string;
+  identidadC:string;
+  pacienteC: string;
+  procedimientoC:string;
+  tituloC:string;
+  dientesC:string;
+  cuadrantesC:string;
+  maxilarC:string;
+  
+
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -50,15 +65,78 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
   ) {
     super(store, httpSv);
 
+    this.dientes = [
+      {
+        label: 'Incisivo Central',
+        value: 'Incisivo Central'
+      },
+      {
+        label: 'Incisivo Lateral',
+        value: 'Incisivo Lateral'
+      },
+      {
+        label: 'Canino',
+        value: 'Canino'
+      },
+      {
+        label: 'Primer Bicúspide',
+        value: 'Primer Bicúspide'
+      },
+      {
+        label: 'Segundo Bicúspide',
+        value: 'Segundo Bicúspide'
+      },
+      {
+        label: 'Primer Molar',
+        value: 'Primer Molar'
+      },
+      {
+        label: 'Segundo Molar',
+        value: 'Segundo Molar'
+      },
+      {
+        label: 'Tercer Molar',
+        value: 'Tercer Molar'
+      }
+    ];
+    this.cuadrantes = [
+      {
+        label: 'Cuadrante Superior Izquierdo',
+        value: 'Cuadrante Superior Izquierdo'
+      },
+      {
+        label: 'Cuadrante Superior Derecho',
+        value: 'Cuadrante Superior Derecho'
+      },
+      {
+        label: 'Cuadrante Inferior Izquierdo',
+        value: 'Cuadrante Inferior Izquierdo'
+      },
+      {
+        label: 'Cuadrante Inferior Derecho',
+        value: 'Cuadrante Inferior Derecho'
+      },
+    ];
+    this.maxilar = [
+      {
+        label: 'Maxilar Superior',
+        value: 'Maxilar Superior'
+      },
+      {
+        label: 'Maxilar Inferior',
+        value: 'Maxilar Inferior'
+      }
+    ];
+
     this.pageData = {
-      title: 'Citas',
+      title: 'Citas Clínicas',
       breadcrumbs: [
         {
           title: 'Medicine',
           route: 'default-appointments'
         },
         {
-          title: 'Citas'
+          title: 'Citas Clinicas'
         }
       ]
     };
@@ -67,40 +145,36 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
     this.defaultAvatar = '';
     this.currentAvatar = this.defaultAvatar;
     this.agenda=[];
-    //assets/content/anonymous-400.jpg
+    this.tituloC='Cita Clinica';
+ 
   }
 
   ngOnInit() {
-    // var myjason:string;
+
      super.ngOnInit();
 
-     this.patientService.getAgendaPaciente().subscribe(data=>{
+     this.patientService.getCitasClinica().subscribe(data=>{
 
 
       this.appointments=data.map(e=>{
         return {
           id: e.payload.doc.id,
           idEdit: true,
-          nombre: e.payload.doc.data()['nombre'],
-          doctor: e.payload.doc.data()['doctor'],
-          fecha: e.payload.doc.data()['fecha'],
-          hi: e.payload.doc.data()['hi'],
-          hf: e.payload.doc.data()['hf'],
-          email: e.payload.doc.data()['email'],
-          telefono: e.payload.doc.data()['telefono'],
-          procedimiento: e.payload.doc.data()['procedimiento'],
-
+          fechaC: e.payload.doc.data()['fechaC'],
+          identidadPACC: e.payload.doc.data()['identidadPACC'],
+          identidadC: e.payload.doc.data()['identidadC'],
+          procedimientoC: e.payload.doc.data()['procedimientoC'],
+          dientesC: e.payload.doc.data()['dientesC'],
+          cuadrantesC: e.payload.doc.data()['cuadrantesC'],
+          maxilarC: e.payload.doc.data()['maxilarC'],
+          pacienteC: e.payload.doc.data()['pacienteC'],
 
      };
 
       })
     console.log(this.appointments);
-    //   myjason = JSON.stringify(this.appointments);
-    //   console.log(myjason);
 
     })
-
-
 
     this.getData('assets/data/appointments.json', 'appointments', 'setLoaded');
     this.getData('assets/data/doctors.json', 'doctors');
@@ -109,36 +183,17 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
   }
 
 
+            // fechaC: string;
+          // identidadPACC:string;
+          // identidadC:string;
+          // pacienteC: string;
+          // procedimientoC:string;
 
+          // dientesC:string;
+          // cuadrantesC:string;
+          // maxilarC:string;
 
-  async addAgendaPaciente() {
-    let agenda = {};
-    agenda['nombre'] = this.nombre;
-    agenda['doctor'] = this.doctor;
-    agenda['email'] = this.email;
-    agenda['fecha'] = this.fecha;
-    agenda['hi'] = this.hi;
-    agenda['hf'] = this.hf;
-    agenda['telefono'] = this.telefono;
-    agenda['procedimiento'] = this.procedimiento;
-
-    this.patientService.addAgendaPaciente(agenda).then(res => {
-
-      this.nombre = "";
-      this.doctor="";
-      this.email="";
-      this.fecha = "";
-      this.hi="";
-      this.hf="";
-      this.telefono="";
-      this.procedimiento="";
-
-    }).catch(error => {
-      console.log(error)
-    })
-    this.closeModal();
-  }
-
+ 
 
 
   ngOnDestroy() {
@@ -165,109 +220,61 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
   // init form
   initForm(data: any) {
     this.appointmentForm = this.formBuilder.group({
-      // img: [(data ? data.img : this.currentAvatar)],
-      //name: [(data ? data.name : ''), Validators.required],
-      //email: [(data ? data.email : ''), Validators.required],
-      //date: [(data ? data.date : ''), Validators.required],
-      //from: [(data ? data.fromTo.substring(0, (data.fromTo.indexOf('-') - 1)) : ''), Validators.required],
-      //to: [(data ? data.fromTo.substring((data.fromTo.indexOf('-') + 2), data.fromTo.length) : ''), Validators.required],
-      //number: [(data ? data.number : ''), Validators.required],
-      //doctor: [(data ? data.doctor : ''), Validators.required],
-      //injury: [(data ? data.injury : ''), Validators.required],
 
-      nombre: [(data ? data.nombre : ''), Validators.required],
-      doctor: [(data ? data.doctor : ''), Validators.required],
-      email: [(data ? data.email : ''), Validators.required],
-      fecha: [(data ? data.fecha : ''), Validators.required],
-      hi: [(data ? data.hi : ''), Validators.required],
-      hf: [(data ? data.hf : ''), Validators.required],
-      telefono: [(data ? data.telefono : ''), Validators.required],
-      procedimiento: [(data ? data.procedimiento : ''), Validators.required],
-      id: [(data ? data.procedimiento : ''), Validators.required],
+
+      fechaC: [(data ? data.fechaC : ''), Validators.required],
+      identidadPACC: [(data ? data.identidadPACC : ''), Validators.required],
+      identidadC: [(data ? data.identidadC : ''), Validators.required],
+      pacienteC: [(data ? data.pacienteC : ''), Validators.required],
+      procedimientoC: [(data ? data.procedimientoC : ''), Validators.required],
+      dientesC: [(data ? data.dientesC : ''), Validators.required],
+      cuadrantesC: [(data ? data.cuadrantesC : ''), Validators.required],
+      maxilarC: [(data ? data.maxilarC : ''), Validators.required]
 
     });
-  }
-
-  // upload new file
-  onFileChanged(inputValue: any) {
-    let file: File = inputValue.target.files[0];
-    let reader: FileReader = new FileReader();
-
-    reader.onloadend = () => {
-      this.currentAvatar = reader.result;
-    };
-
-    reader.readAsDataURL(file);
   }
 
   // edit appointment
   edit(row: any) {
 
-    this.nombre=row.nombre;
-    this.doctor=row.doctor;
-    this.email=row.email;
-    this.fecha=row.fecha;
-    this.hi=row.hi;
-    this.hf=row.hf;
-    this.telefono=row.telefono;
-    this.procedimiento=row.procedimiento;
+    this.fechaC=row.fechaC;
+    this.identidadPACC=row.identidadPACC;
+    this.identidadC=row.identidadC;
+    this.pacienteC=row.pacienteC;
+    this.procedimientoC=row.procedimientoC;
+    this.dientesC=row.dientesC;
+    this.cuadrantesC=row.cuadrantesC;
+    this.maxilarC=row.maxilarC;
     this.id=row.id;
 
    console.log(row);
-   this.openModal(this.modalBody, 'Editar Cita', this.modalFooter, row);
+   this.openModal(this.modalBody, 'Editar Cita Clínica', this.modalFooter, row);
 
   }
 
-  async editarAgenda(record: string){}
 
-  async actualizarAgenda (){
+  async actualizarCita (){
 
     let row= {};
-    row['nombre'] = this.nombre;
-    row['doctor'] = this.doctor;
-    row['email'] = this.email;
-    row['fecha'] = this.fecha;
-    row['hi'] = this.hi;
-    row['hf'] = this.hf;
-    row['telefono'] = this.telefono;
-    row['procedimiento'] = this.procedimiento;
+    row['fechaC'] = this.fechaC;
+    row['identidadPACC'] = this.identidadPACC;
+    row['identidadC'] = this.identidadC;
+    row['pacienteC'] = this.pacienteC;
+    row['procedimientoC'] = this.procedimientoC;
+    row['dientesC'] = this.dientesC;
+    row['cuadrantesC'] = this.cuadrantesC;
+    row['maxilarC'] = this.maxilarC;
 
-    this.patientService.updateAgendaPacientes(this.id, row);
+    this.patientService.updateCitaClinica(this.id, row);
     this.closeModal();
   }
 
-    // nombre:
-    // doctor:
-    // email:
-    // fecha:
-    // hi:
-    // hf:
-    // telefono:
-    // procedimiento:
 
-  // remove appointment
-  // remove(tableRow: any) {
-
-  //   this.appointments = this.appointments.filter(row => row !== tableRow);
-
-  // }
-
-  async eliminarAgenda(id: string){
-    this.patientService.deleteAgendaPaciente(id);
+  async eliminarCitaClinica(id: string){
+    this.patientService.deleteCitaClinica(id);
     console.log(id);
 
   }
-
-
-
-
-
-
-
-  // remove(id: string) {
-  //   this.store.dispatch(new PatientsActions.Delete(id));
-  // }
-
 
 
   // add new appointment

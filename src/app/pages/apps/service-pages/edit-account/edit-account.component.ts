@@ -96,32 +96,32 @@ export class PageEditAccountComponent extends BasePageComponent implements OnIni
     super.ngOnInit();
 
 
-    // this.patientService.getPerfilDoctor().subscribe(data=>{
-    //   this.userInfo=data.map(e=>{
-    //     return {
-    //       id: e.payload.doc.id,
-    //       idEdit: true,
-    //       nombre: e.payload.doc.data()['nombre'],
-    //       edad: e.payload.doc.data()['edad'],
-    //       genero: e.payload.doc.data()['genero'],
-    //       fechan: e.payload.doc.data()['fechan'],
-    //       especialidad: e.payload.doc.data()['especialidad'],
-    //       clinica: e.payload.doc.data()['clinica'],
-    //       direccion: e.payload.doc.data()['direccion'],
-    //       email: e.payload.doc.data()['email'],
-    //       celular: e.payload.doc.data()['celular'],
-    //       telefono: e.payload.doc.data()['telefono']  
-    //  };
-    //   })
-    //   console.log(this.userInfo);
+    this.patientService.getPerfilDoctor().subscribe(data=>{
+      this.userInfo=data.map(e=>{
+        return {
+          id: e.payload.doc.id,
+          idEdit: true,
+          nombre: e.payload.doc.data()['nombre'],
+          edad: e.payload.doc.data()['edad'],
+          genero: e.payload.doc.data()['genero'],
+          fechan: e.payload.doc.data()['fechan'],
+          especialidad: e.payload.doc.data()['especialidad'],
+          clinica: e.payload.doc.data()['clinica'],
+          direccion: e.payload.doc.data()['direccion'],
+          email: e.payload.doc.data()['email'],
+          celular: e.payload.doc.data()['celular'],
+          telefono: e.payload.doc.data()['telefono']  
+     };
+      })
+      console.log(this.userInfo);
 
-    // })
+    })
 
  
 
-    // this.userForm.valueChanges.subscribe(() => {
-    //   this.changes = true;
-    // });
+    this.userForm.valueChanges.subscribe(() => {
+      this.changes = true;
+    });
 
 
 

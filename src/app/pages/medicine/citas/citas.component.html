@@ -1,47 +1,24 @@
 <tc-card class="mb-0">
-    <tc-table [rows]="appointments" [hovered]="true" [pagination]="true">
-      <tc-table-col [columnTitle]="'Fotografia'" [columnName]="'img'">
-        <ng-template #tableTDTemplate let-value>
-          <tc-avatar [src]="value"></tc-avatar>
-        </ng-template>
-      </tc-table-col>
-      <tc-table-col [columnTitle]="'Nombre'" [columnName]="'nombre'" [enableSorting]="true">
+    <tc-table [rows]="appointments" [hovered]="true" [pagination]="true"[headerBgColor]="'#336cfb'" [headerColor]="'#fff'">
+
+      <tc-table-col [columnTitle]="'Paciente'" [columnName]="'pacienteC'" [enableSorting]="true">
         <ng-template #tableTDTemplate let-value>
           <strong>{{ value }}</strong>
         </ng-template>
       </tc-table-col>
-      <tc-table-col [columnTitle]="'Email'" [columnName]="'email'">
+      <tc-table-col [columnTitle]="'ID'" [columnName]="'identidadPACC'">
         <ng-template #tableTDTemplate let-value>
           <span class="d-flex align-items-center nowrap" [tcColor]="'#336cfb'">
           {{ value }}
           </span>
         </ng-template>
       </tc-table-col>
-      <tc-table-col [columnTitle]="'Fecha'" [columnName]="'fecha'" [enableSorting]="true">
+      <tc-table-col [columnTitle]="'Fecha'" [columnName]="'fechaC'" [enableSorting]="true">
         <ng-template #tableTDTemplate let-value>
           <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
         </ng-template>
       </tc-table-col>
-      <tc-table-col [columnTitle]="'Hora'" [columnName]="'hi'" [enableSorting]="true">
-        <ng-template #tableTDTemplate let-value>
-          <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
-        </ng-template>
-      </tc-table-col>
-      <tc-table-col [columnTitle]="'Hora'" [columnName]="'hf'" [enableSorting]="true">
-        <ng-template #tableTDTemplate let-value>
-          <span class="nowrap" [tcColor]="'#a5a5a5'">{{ value }}</span>
-        </ng-template>
-      </tc-table-col>
-      <tc-table-col [columnTitle]="'Teléfono'" [columnName]="'telefono'">
-        <ng-template #tableTDTemplate let-value>
-          <span class="d-flex align-items-center nowrap" [tcColor]="'#336cfb'">
-            <tc-icon [iconClass]="'icofont-ui-cell-phone'" [tcFontSize]="16" [padding]="0" class="mr-1"></tc-icon>
-            {{ value }}
-          </span>
-        </ng-template>
-      </tc-table-col>
-      <tc-table-col [columnTitle]="'Doctor'" [columnName]="'doctor'" [enableSorting]="true"></tc-table-col>
-      <tc-table-col [columnTitle]="'Procedimiento'" [columnName]="'procedimiento'"></tc-table-col>
+
       <tc-table-col [columnTitle]="'Acciones'" [columnName]="'actions'">
         <ng-template #tableTDTemplate let-row="row">
           <div class="actions">
@@ -62,7 +39,7 @@
               [square]="true"
               [tcShape]="500"
               [size]="'sm'"
-              (click)="eliminarAgenda(row.id)"
+              (click)="eliminarCitaClinica(row.id)"
             ></button>
           </div>
         </ng-template>
@@ -70,7 +47,7 @@
     </tc-table>
   </tc-card>
 
-  <div class="add-action-box">
+ <!-- <div class="add-action-box">
     <button
       tc-button
       [afterIcon]="'icofont-stethoscope-alt'"
@@ -79,67 +56,60 @@
       [tcShape]="500"
       (click)="openModal(modalBody, 'Agendar Cita', modalFooter)"
     ></button>
-  </div>
+  </div>-->
 
-  <!-- Modal window -->
-  <ng-container>
-    <ng-template #modalBody>
-      <form [formGroup]="appointmentForm" novalidate>
-        <tc-form-group class="avatar-box d-flex">
-          <input type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput hidden>
+  
+  <!-------------------------------------------Registrar Cita Clinica-------------------------------------------------------------------------------------------------------------->
 
-          <tc-avatar [src]="appointmentForm.value.img"></tc-avatar>
-          <button tc-button [type]="'button'" [afterIcon]="'icofont-ui-user'" [view]="'accent'" [outline]="true" (click)="fileInput.click()">
-            Seleccionar Imagen
-          </button>
-        </tc-form-group>
+<!-- Modal window -->
+<ng-container>
+  <ng-template #modalBody>
+    <form [formGroup]="appointmentForm" novalidate>
 
-        <tc-form-group>
-          <tc-input [placeholder]="'Nombre'" formControlName="nombre" [(ngModel)]="nombre"></tc-input>
-        </tc-form-group>
 
-        <tc-form-group>
-          <tc-autocomplete [placeholder]="'Doctor'"  formControlName="doctor"[(ngModel)]="doctor"></tc-autocomplete>
-        </tc-form-group>
+      <tc-form-group>
+        <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteC" [(ngModel)]="pacienteC"></tc-input>
+      </tc-form-group>
 
-        <tc-form-group>
-          <tc-input [placeholder]="'Email'" formControlName="email" [(ngModel)]="email"></tc-input>
-        </tc-form-group>
+      <tc-form-group>
+        <tc-input [placeholder]="'Identidad del Paciente'" formControlName="identidadPACC"[(ngModel)]="identidadPACC"></tc-input>
+      </tc-form-group>
 
-        <tc-form-group>
-          <tc-input [placeholder]="'Fecha'" formControlName="fecha" [(ngModel)]="fecha"></tc-input>
-        </tc-form-group>
+      <tc-form-group>
+        <tc-input [placeholder]="'Doctor'" formControlName="identidadC"[(ngModel)]="identidadC"></tc-input>
+      </tc-form-group>
 
-        <div class="row">
-          <div class="col col-md-6">
-            <tc-form-group>
-              <tc-input [placeholder]="'Inicio 00:00'" formControlName="hi" [(ngModel)]="hi"></tc-input>
-            </tc-form-group>
-          </div>
+      <tc-form-group>
+        <tc-select [placeholder]="'Maxilar'" formControlName="maxilarC" [options]="maxilar" [(ngModel)]="maxilarC"></tc-select>
+      </tc-form-group>
 
-          <div class="col col-md-6">
-            <tc-form-group>
-              <tc-input [placeholder]="'Final 00:00'" formControlName="hf"[(ngModel)]="hf"></tc-input>
-            </tc-form-group>
-          </div>
-        </div>
+      <tc-form-group>
+        <tc-select [placeholder]="'Cuadrantes'" formControlName="cuadrantesC" [options]="cuadrantes" [(ngModel)]="cuadrantesC"></tc-select>
+      </tc-form-group>
 
-        <tc-form-group>
-          <tc-input [placeholder]="'Teléfono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
-        </tc-form-group>
+      <tc-form-group>
+        <tc-select [placeholder]="'Diente a Tratar'" formControlName="dientesC" [options]="dientes" [(ngModel)]="dientesC"></tc-select>
+      </tc-form-group>
+      
+      <tc-form-group>
+        <tc-input [placeholder]="'Fecha Cita Clínica'" formControlName="fechaC" [(ngModel)]="fechaC"></tc-input>
+      </tc-form-group>
 
-        <tc-form-group class="mb-0">
-          <tc-input [placeholder]="'Procedimiento'" formControlName="procedimiento"[(ngModel)]="procedimiento"></tc-input>
-        </tc-form-group>
-      </form>
-    </ng-template>
 
-    <ng-template #modalFooter>
-      <div class="actions justify-content-between">
-        <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
-        <button tc-button [view]="'info'"  (click)="actualizarAgenda()">Actualizar</button>
-        <button tc-button [view]="'info'"  (click)="addAgendaPaciente()">Agregar Cita</button>
-      </div>
-    </ng-template>
-  </ng-container>
-  <!-- end Modal window -->
+      <tc-form-group class="mb-10">
+        <tc-textarea [placeholder]="'Procedimiento Clínico'" formControlName="procedimientoC"[(ngModel)]="procedimientoC"></tc-textarea>
+      </tc-form-group>
+
+    </form>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <div class="actions justify-content-between">
+      <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
+      <button tc-button [view]="'info'"  (click)="actualizarCita()">
+        Actualizar Cita Clinica
+      </button>
+    </div>
+  </ng-template>
+</ng-container>
+<!-- end Modal window-->
