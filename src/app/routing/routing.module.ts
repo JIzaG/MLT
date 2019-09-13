@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HistoriaClinicaComponent } from '../pages/medicine/historia-clinica/historia-clinica.component';
 
 import { VerticalLayoutComponent } from '../layout/vertical';
 import { HorizontalLayoutComponent } from '../layout/horizontal';
@@ -70,15 +71,15 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'payments', component: PagePaymentsComponent },
   { path: 'appointments', component: PageAppointmentsComponent },
   { path: 'departments', component: PageDepartmentsComponent },
-  
-  
+
+
   { path: 'citas', component: CitasComponent },
-  { path: 'historia-clinica', component: Page404Component },
+  { path: 'historia-clinica', component: HistoriaClinicaComponent },
   { path: 'galeria', component: Page404Component },
   { path: 'salud-dental', component: Page404Component },
   { path: 'tratamiento', component: Page404Component },
 
-  
+
   { path: 'alerts', component: PageAlertsComponent },
   { path: 'buttons', component: PageButtonsComponent },
   { path: 'cards', component: PageCardsComponent },
