@@ -39,6 +39,8 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
   perfil: IOption[];
   claseficacionTratamiento: IOption[];
 
+  SiNo: IOption[];
+
 
   //-------------------------------------------Registrar Un Nuevo Paciente
 
@@ -67,23 +69,22 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
   
   
   //-------------------------------------------Registrar Historia Clinic
-  doctorH:string;
+ 
   fechaH:string;
-  identidadH:string;
   identidadPACH:string;
   pacienteH:string;
   tituloH:string;
-  p1:boolean;
-  p2:boolean;
-  p3:boolean;
-  p4:boolean;
-  p5:boolean;
-  p6:boolean;
-  p7:boolean;
-  p8:boolean;
-  p9:boolean;
-  p10:string;
-  p11:string;
+  p1:string;
+  p2:string;
+  p3:string;
+  p4:string;
+  p5:string;
+  p6:string;
+  p7:string;
+  p8:string;
+  p9:string;
+
+
   //-------------------------------------------Registrar Salud Dental 
 
 
@@ -258,10 +259,22 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
         value: 'Dolicofacial'
       }
     ];
+
+    this.SiNo=[
+      {
+        label:'Si',
+        value:'Si'
+
+      },
+      {
+        label:'No',
+        value:'No'
+      }];
     
     this.defaultAvatar = '';
     this.tituloC="Cita Clinica";
     this.tituloT="Tratamiento";
+    this.tituloH='Historia Clinica';
     this.currentAvatar = this.defaultAvatar;
   }
 
@@ -371,6 +384,44 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     this.closeModal()
   }
 
+
+  async addHistoriaClinica() {
+    let patientT = {};
+    patientT['pacienteH'] = this.pacienteH;
+    patientT['identidadPACH'] = this.identidadPACH;
+    patientT['fechaH'] = this.fechaH;
+    patientT['p1'] = this.p1;
+    patientT['p2'] = this.p2;
+    patientT['p3'] = this.p3;
+    patientT['p4'] = this.p4;
+    patientT['p5'] = this.p5;
+    patientT['p6'] = this.p6;
+    patientT['p7'] = this.p7;
+    patientT['p8'] = this.p8;
+    patientT['p9'] = this.p9;
+
+
+    this.patientService.addHistoriaClinica(patientT).then(res => {
+      this.pacienteH = "";
+      this.identidadPACH= "";
+      this.fechaH= "";
+      this.p1= "";
+      this.p2= "";
+      this.p3= "";
+      this.p4= "";
+      this.p5= "";
+      this.p6= "";
+      this.p7= "";
+      this.p8= "";
+      this.p9= "";
+
+    }).catch(error => {
+      console.log(error)
+    })
+    this.closeModal()
+  }
+
+
   // open modal window
   openModal<T>(body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null) {
     this.initPatientForm();
@@ -451,14 +502,27 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     piezasT: ['', Validators.required], 
     apinamientoT: ['', Validators.required],
     perfilT: ['', Validators.required],
-    clasificacion: ['', Validators.required],
-    
+    clasificacion: ['', Validators.required],    
     habitosT: ['', Validators.required],
     observacionesT: ['', Validators.required],
     
     
-     
-    });
+  //---------------------------------------------------------------------------------Historial
+
+  fechaH: ['', Validators.required],
+  identidadPACH: ['', Validators.required],
+  pacienteH: ['', Validators.required],
+  p1: ['', Validators.required],
+  p2: ['', Validators.required],
+  p3: ['', Validators.required],
+  p4: ['', Validators.required],
+  p5: ['', Validators.required],
+  p6: ['', Validators.required],
+  p7: ['', Validators.required],
+  p8: ['', Validators.required],
+  p9: ['', Validators.required],
+
+  });
   }
 
   // add new patient

@@ -210,63 +210,60 @@
 
 
       <tc-form-group>
-        <tc-input [placeholder]="'Nombre'" formControlName="nombre" [(ngModel)]="nombre"></tc-input>
+        <tc-input [placeholder]="'Nombre'" formControlName="pacienteH" [(ngModel)]="pacienteH"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Identidad'" formControlName="identidad"[(ngModel)]="identidadPAC"></tc-input>
-      </tc-form-group>
-
-
-      <div class="row">
-        <div class="col-12 col-sm-6">
-          <tc-form-group>
-            <tc-input [placeholder]="'Edad'" [type]="'number'" formControlName="edad" [(ngModel)]="edad"></tc-input>
-          </tc-form-group>
-        </div>
-
-        <div class="col-12 col-sm-6">
-          <tc-form-group>
-            <tc-select [placeholder]="'Genero'" formControlName="genero" [options]="gender" [(ngModel)]="genero"></tc-select>
-          </tc-form-group>
-        </div>
-      </div>
-
-      <tc-form-group>
-        <tc-input [placeholder]="'Fecha Nacimiento'" formControlName="fecha" [(ngModel)]="fechan"></tc-input>
-      </tc-form-group>
-
-
-      <tc-form-group>
-        <tc-input [placeholder]="'Profesiòn'" formControlName="profesion"[(ngModel)]="profesion"></tc-input>
-      </tc-form-group>
-
-      <tc-form-group class="mb-3">
-        <tc-textarea [placeholder]="'Dirección'" formControlName="direccion"[(ngModel)]="direccion"></tc-textarea>
+        <tc-input [placeholder]="'Identidad'" formControlName="identidadPACH"[(ngModel)]="identidadPACH"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Email'" formControlName="email"[(ngModel)]="email"></tc-input>
+        <tc-input [placeholder]="'Fecha'" formControlName="fechaH" [(ngModel)]="fechaH"></tc-input>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Telefono'" formControlName="telefono"[(ngModel)]="telefono"></tc-input>
+        <tc-select [placeholder]="'¿Le Sangran las Encías?'" formControlName="p1" [options]="SiNo" [(ngModel)]="p1"></tc-select>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Celular'" formControlName="celular"[(ngModel)]="celular"></tc-input>
+        <tc-select [placeholder]="'¿Hay mal olor o sabor en la boca?'" formControlName="p2" [options]="SiNo" [(ngModel)]="p2"></tc-select>
       </tc-form-group>
 
       <tc-form-group>
-        <tc-input [placeholder]="'Doctor'" formControlName="doctor"[(ngModel)]="doctor"></tc-input>
+        <tc-select [placeholder]="'¿Apreta, rechina y sencibilidad en los dientes?'" formControlName="p3" [options]="SiNo" [(ngModel)]="p3"></tc-select>
       </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'¿Toma algún medicamento? Explique su respuesta'" formControlName="p4" [(ngModel)]="p4"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'¿Es alergico? Explique su respuesta'" formControlName="p5" [(ngModel)]="p5"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'¿Tiene alguna enfermedad? Explique su respuesta'" formControlName="p6" [(ngModel)]="p6"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-input [placeholder]="'¿Ha sido intervenido quirúrgicamente? Explique su respuesta'" formControlName="p7" [(ngModel)]="p7"></tc-input>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-select [placeholder]="'¿Sangra mucho, cuando se corta?'" formControlName="p8" [options]="SiNo" [(ngModel)]="p8"></tc-select>
+      </tc-form-group>
+
+      <tc-form-group>
+        <tc-select [placeholder]="'¿Fuma?'" formControlName="p9" [options]="SiNo" [(ngModel)]="p9"></tc-select>
+      </tc-form-group>
+
     </form>
   </ng-template>
 
   <ng-template #modalFooterH>
     <div class="actions justify-content-between">
       <button tc-button [type]="'button'" [view]="'error'" (click)="closeModal()">Cancel</button>
-      <button tc-button [view]="'info'"  (click)="addPacientes()">
+      <button tc-button [view]="'info'"  (click)="addHistoriaClinica()">
         Crear Historia Clinica
       </button>
     </div>

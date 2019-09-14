@@ -110,4 +110,21 @@ updateTratmiento(id: string, record: {}){
 // Servicios para Historia Clinica
 
 
+
+getHistoriaClinica(){
+  return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/historia').snapshotChanges();
+}
+
+addHistoriaClinica(historia){
+  return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/historia').add(historia);
+}
+
+updateHistoriaClinica(id: string, record: {}){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/historia').doc(id).update(record);
+
+}
+
+deleteHistoriaClinica(id: string){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/historia').doc(id).delete();
+}
 }

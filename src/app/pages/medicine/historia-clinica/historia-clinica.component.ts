@@ -8,6 +8,7 @@ import { TCModalService } from '../../../ui/services/modal/modal.service';
 import { IUser } from '../../../ui/interfaces/user';
 import {PacientesService} from '../../../services/pacientes/pacientes.service';
 import { id } from '@swimlane/ngx-charts/release/utils';
+import { IOption } from '../../../ui/interfaces/option';
 
 @Component({
   selector: 'app-historia-clinica',
@@ -25,6 +26,8 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
   doctors: IUser[];
   agenda: any[];
 
+  SiNo: IOption[];
+
 
   //-------------------------------------------
 
@@ -37,6 +40,23 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
   telefono: string;
   procedimiento: string;
   id: string;
+
+    //-------------------------------------------Registrar Historia Clinic
+ 
+    fechaH:string;
+    identidadPACH:string;
+    pacienteH:string;
+    tituloH:string;
+    p1:string;
+    p2:string;
+    p3:string;
+    p4:string;
+    p5:string;
+    p6:string;
+    p7:string;
+    p8:string;
+    p9:string;
+  
 
 
   constructor(
@@ -61,6 +81,18 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
         }
       ]
     };
+
+    this.SiNo=[
+      {
+        label:'Si',
+        value:'Si'
+
+      },
+      {
+        label:'No',
+        value:'No'
+      }];
+
     this.appointments = [];
     this.doctors = [];
     this.defaultAvatar = '';
@@ -73,22 +105,25 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
     // var myjason:string;
      super.ngOnInit();
 
-     this.patientService.getAgendaPaciente().subscribe(data=>{
+     this.patientService.getHistoriaClinica().subscribe(data=>{
 
 
       this.appointments=data.map(e=>{
         return {
           id: e.payload.doc.id,
           idEdit: true,
-          nombre: e.payload.doc.data()['nombre'],
-          doctor: e.payload.doc.data()['doctor'],
-          fecha: e.payload.doc.data()['fecha'],
-          hi: e.payload.doc.data()['hi'],
-          hf: e.payload.doc.data()['hf'],
-          email: e.payload.doc.data()['email'],
-          telefono: e.payload.doc.data()['telefono'],
-          procedimiento: e.payload.doc.data()['procedimiento'],
-
+          fechaH: e.payload.doc.data()['fechaH'],
+          identidadPACH: e.payload.doc.data()['identidadPACH'],
+          pacienteH: e.payload.doc.data()['pacienteH'],
+          p1: e.payload.doc.data()['p1'],
+          p2: e.payload.doc.data()['p2'],
+          p3: e.payload.doc.data()['p3'],
+          p4: e.payload.doc.data()['p4'],
+          p5: e.payload.doc.data()['p5'],
+          p6: e.payload.doc.data()['p6'],
+          p7: e.payload.doc.data()['p7'],
+          p8: e.payload.doc.data()['p8'],
+          p9: e.payload.doc.data()['p9'],
 
      };
 
@@ -106,38 +141,6 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
 
 
   }
-
-
-
-
-  async addAgendaPaciente() {
-    let agenda = {};
-    agenda['nombre'] = this.nombre;
-    agenda['doctor'] = this.doctor;
-    agenda['email'] = this.email;
-    agenda['fecha'] = this.fecha;
-    agenda['hi'] = this.hi;
-    agenda['hf'] = this.hf;
-    agenda['telefono'] = this.telefono;
-    agenda['procedimiento'] = this.procedimiento;
-
-    this.patientService.addAgendaPaciente(agenda).then(res => {
-
-      this.nombre = "";
-      this.doctor="";
-      this.email="";
-      this.fecha = "";
-      this.hi="";
-      this.hf="";
-      this.telefono="";
-      this.procedimiento="";
-
-    }).catch(error => {
-      console.log(error)
-    })
-    this.closeModal();
-  }
-
 
 
   ngOnDestroy() {
@@ -164,95 +167,75 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
   // init form
   initForm(data: any) {
     this.appointmentForm = this.formBuilder.group({
-      // img: [(data ? data.img : this.currentAvatar)],
-      //name: [(data ? data.name : ''), Validators.required],
-      //email: [(data ? data.email : ''), Validators.required],
-      //date: [(data ? data.date : ''), Validators.required],
-      //from: [(data ? data.fromTo.substring(0, (data.fromTo.indexOf('-') - 1)) : ''), Validators.required],
-      //to: [(data ? data.fromTo.substring((data.fromTo.indexOf('-') + 2), data.fromTo.length) : ''), Validators.required],
-      //number: [(data ? data.number : ''), Validators.required],
-      //doctor: [(data ? data.doctor : ''), Validators.required],
-      //injury: [(data ? data.injury : ''), Validators.required],
 
-      nombre: [(data ? data.nombre : ''), Validators.required],
-      doctor: [(data ? data.doctor : ''), Validators.required],
-      email: [(data ? data.email : ''), Validators.required],
-      fecha: [(data ? data.fecha : ''), Validators.required],
-      hi: [(data ? data.hi : ''), Validators.required],
-      hf: [(data ? data.hf : ''), Validators.required],
-      telefono: [(data ? data.telefono : ''), Validators.required],
-      procedimiento: [(data ? data.procedimiento : ''), Validators.required],
-      id: [(data ? data.procedimiento : ''), Validators.required],
-
+      
+  fechaH: [(data ? data.fechaH : ''), Validators.required],
+  identidadPACH: [(data ? data.identidadPACH : ''), Validators.required],
+  pacienteH: [(data ? data.pacienteH : ''), Validators.required],
+  p1: [(data ? data.p1 : ''), Validators.required],
+  p2: [(data ? data.p2 : ''), Validators.required],
+  p3: [(data ? data.p3 : ''),Validators.required],
+  p4: [(data ? data.p4 : ''), Validators.required],
+  p5: [(data ? data.p5 : ''), Validators.required],
+  p6: [(data ? data.p6 : ''), Validators.required],
+  p7: [(data ? data.p7 : ''),Validators.required],
+  p8: [(data ? data.p8 : ''), Validators.required],
+  p9: [(data ? data.p9 : ''), Validators.required],
+  
     });
   }
 
   // upload new file
-  onFileChanged(inputValue: any) {
-    let file: File = inputValue.target.files[0];
-    let reader: FileReader = new FileReader();
 
-    reader.onloadend = () => {
-      this.currentAvatar = reader.result;
-    };
-
-    reader.readAsDataURL(file);
-  }
 
   // edit appointment
   edit(row: any) {
 
-    this.nombre=row.nombre;
-    this.doctor=row.doctor;
-    this.email=row.email;
-    this.fecha=row.fecha;
-    this.hi=row.hi;
-    this.hf=row.hf;
-    this.telefono=row.telefono;
-    this.procedimiento=row.procedimiento;
+    this.fechaH=row.fechaH;
+    this.identidadPACH=row.identidadPACH;
+    this.pacienteH=row.pacienteH;
+    this.p1=row.p1;
+    this.p2=row.p2;
+    this.p3=row.p3;
+    this.p4=row.p4;
+    this.p5=row.p5;
+    this.p6=row.p6;
+    this.p7=row.p7;
+    this.p8=row.p8;
+    this.p9=row.p9;
     this.id=row.id;
 
    console.log(row);
-   this.openModal(this.modalBody, 'Editar Cita', this.modalFooter, row);
+   this.openModal(this.modalBody, 'Historial Clinico', this.modalFooter, row);
 
   }
 
-  async editarAgenda(record: string){}
 
-  async actualizarAgenda (){
+
+  async actualizarHistorial(){
 
     let row= {};
-    row['nombre'] = this.nombre;
-    row['doctor'] = this.doctor;
-    row['email'] = this.email;
-    row['fecha'] = this.fecha;
-    row['hi'] = this.hi;
-    row['hf'] = this.hf;
-    row['telefono'] = this.telefono;
-    row['procedimiento'] = this.procedimiento;
+    row['fechaH'] = this.fechaH;
+    row['identidadPACH'] = this.identidadPACH;
+    row['pacienteH'] = this.pacienteH;
+    row['p1'] = this.p1;
+    row['p2'] = this.p2;
+    row['p3'] = this.p3;
+    row['p4'] = this.p4;
+    row['p5'] = this.p5;
+    row['p6'] = this.p6;
+    row['p7'] = this.p7;
+    row['p8'] = this.p8;
+    row['p9'] = this.p9;
 
-    this.patientService.updateAgendaPacientes(this.id, row);
+    this.patientService.updateHistoriaClinica(this.id, row);
     this.closeModal();
   }
 
-    // nombre:
-    // doctor:
-    // email:
-    // fecha:
-    // hi:
-    // hf:
-    // telefono:
-    // procedimiento:
 
-  // remove appointment
-  // remove(tableRow: any) {
 
-  //   this.appointments = this.appointments.filter(row => row !== tableRow);
-
-  // }
-
-  async eliminarAgenda(id: string){
-    this.patientService.deleteAgendaPaciente(id);
+  async eliminarhsitorial(id: string){
+    this.patientService.deleteHistoriaClinica(id);
     console.log(id);
 
   }
@@ -262,10 +245,6 @@ export class HistoriaClinicaComponent extends BasePageComponent implements OnIni
 
 
 
-
-  // remove(id: string) {
-  //   this.store.dispatch(new PatientsActions.Delete(id));
-  // }
 
 
 
