@@ -48,6 +48,8 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
   yearC: number;
   hi: number;
   hf: number;
+  public minutos:number;
+  public segundos:number;
 
   
 
@@ -147,7 +149,8 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
     //   }
     // ];
     this.calendarPlugins = [dayGridPlugin];
-    this.segundo=0;
+    this.minutos=0;
+    this.segundos=0;
   }
 
   ngOnInit() {
@@ -166,8 +169,8 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
 
           title: e.payload.doc.data()['nombre'], 
           // dia: e.payload.doc.data()['dia'],
-          start: this.setDate (e.payload.doc.data()['diaC'] ,e.payload.doc.data()['hi']),
-          end: this.setDate (e.payload.doc.data()['diaC'] ,e.payload.doc.data()['hf']),
+          start: this.setDate (e.payload.doc.data()['diaC'] ,e.payload.doc.data()['hi'], this.minutos, this.segundos),
+          end: this.setDate (e.payload.doc.data()['diaC'] ,e.payload.doc.data()['hf'], this.minutos, this.segundos),
           color: '#b7ce63',
           textColor: '#fff',
 
@@ -207,13 +210,15 @@ export class PageCalendarComponent extends BasePageComponent implements OnInit, 
     super.ngOnDestroy();
   }
 
-  setDate(day: number, hour: number = 0) {
+  setDate(day: number, hour: number = 0, minutes: number=0, seconds: number=0) {
     let date = new Date();
 
     // date.setDate(date.getDate()+day);
     date.setDate(day);
     // date.setHours(date.getHours()+hour);
     date.setHours(hour);
+    date.setMinutes(minutes);
+    date.setSeconds(seconds);
 
     console.log(date);
 
