@@ -8,6 +8,7 @@ import { TCModalService } from '../../../ui/services/modal/modal.service';
 import { IUser } from '../../../ui/interfaces/user';
 import {PacientesService} from '../../../services/pacientes/pacientes.service';
 import { id } from '@swimlane/ngx-charts/release/utils';
+import { IOption } from '../../../ui/interfaces/option';
 
 @Component({
   selector: 'page-appointments',
@@ -24,6 +25,10 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
   defaultAvatar: string;
   doctors: IUser[];
   agenda: any[];
+  dia: IOption[];
+  hora: IOption[];
+  mes: IOption[];
+  year: IOption[];
 
 
   //-------------------------------------------
@@ -32,11 +37,14 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
   doctor: string;
   email: string;
   fecha: string;
-  hi: string;
-  hf: string;
   telefono: string;
   procedimiento: string;
   id: string;
+  diaC: number;
+  mesC:number;
+  yearC: number;
+  hi: number;
+  hf: number;
   
 
   constructor(
@@ -48,6 +56,75 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
     private patientService: PacientesService,
   ) {
     super(store, httpSv);
+
+    this.dia = [
+      {label: '1',value: '1'},
+      {label: '2',value: '2'},
+      {label: '3',value: '3'},
+      {label: '4',value: '4'},
+      {label: '5',value: '5'},
+      {label: '6',value: '6'},
+      {label: '7',value: '7'},
+      {label: '8',value: '8'},
+      {label: '9',value: '9'},
+      {label: '10',value: '10'},
+      {label: '11',value: '11'},
+      {label: '12',value: '12'},
+      {label: '13',value: '13'},
+      {label: '14',value: '14'},
+      {label: '15',value: '15'},
+      {label: '16',value: '16'},
+      {label: '17',value: '17'},
+      {label: '18',value: '18'},
+      {label: '19',value: '19'},
+      {label: '20',value: '20'},
+      {label: '21',value: '21'},
+      {label: '22',value: '22'},
+      {label: '23',value: '23'},
+      {label: '24',value: '24'},
+      {label: '25',value: '25'},
+      {label: '26',value: '26'},
+      {label: '27',value: '27'},
+      {label: '28',value: '28'},
+      {label: '29',value: '29'},
+      {label: '30',value: '30'},
+      {label: '31',value: '31'}
+    ];
+    this.hora = [
+      {label: '07:00 AM',value: '7'},
+      {label: '08:00 AM',value: '8'},
+      {label: '09:00 AM',value: '9'},
+      {label: '10:00 AM',value: '10'},
+      {label: '11:00 AM',value: '11'},
+      {label: '12:00 AM',value: '12'},
+      {label: '01:00 PM',value: '1'},
+      {label: '02:00 PM',value: '2'},
+      {label: '03:00 PM',value: '3'},
+      {label: '04:00 PM',value: '4'},
+      {label: '05:00 PM',value: '5'},
+      {label: '06:00 PM',value: '6'}
+    ];
+    this.mes = [
+      {label: 'Enero',value: '1'},
+      {label: 'Febrero',value: '2'},
+      {label: 'Marzo',value: '3'},
+      {label: 'Abril',value: '4'},
+      {label: 'Mayo',value: '5'},
+      {label: 'Junio',value: '6'},
+      {label: 'Julio',value: '7'},
+      {label: 'Agosto',value: '8'},
+      {label: 'Septiembre',value: '9'},
+      {label: 'Octubre',value: '10'},
+      {label: 'Noviembre',value: '11'},
+      {label: 'Diciembre',value: '12'}
+    ];
+    this.year = [
+      {label: '2019',value: '2019'},
+      {label: '2020',value: '2020'},
+      {label: '2021',value: '2021'},
+      {label: '2022',value: '2022'},
+      {label: '2023',value: '2023'}
+    ];
 
     this.pageData = {
       title: 'Agenda',
@@ -82,12 +159,14 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
           idEdit: true,
           nombre: e.payload.doc.data()['nombre'],
           doctor: e.payload.doc.data()['doctor'],
-          fecha: e.payload.doc.data()['fecha'],
           hi: e.payload.doc.data()['hi'],
           hf: e.payload.doc.data()['hf'],
           email: e.payload.doc.data()['email'],
           telefono: e.payload.doc.data()['telefono'],
           procedimiento: e.payload.doc.data()['procedimiento'],
+          diaC: e.payload.doc.data()['diaC'],
+          mesC: e.payload.doc.data()['mesC'],
+          yearC: e.payload.doc.data()['yearC'],
          
           
      };
@@ -115,7 +194,9 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
     agenda['nombre'] = this.nombre;
     agenda['doctor'] = this.doctor;
     agenda['email'] = this.email;
-    agenda['fecha'] = this.fecha;
+    agenda['diaC'] = this.diaC;
+    agenda['mesC'] = this.mesC;
+    agenda['yearC'] = this.yearC;
     agenda['hi'] = this.hi;
     agenda['hf'] = this.hf;
     agenda['telefono'] = this.telefono;
@@ -127,8 +208,11 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
       this.doctor="";
       this.email="";
       this.fecha = "";
-      this.hi="";
-      this.hf="";
+      this.hi=0;
+      this.hf=0;
+      this.diaC=0;
+      this.mesC=0;
+      this.yearC=0;
       this.telefono="";
       this.procedimiento="";
 
@@ -183,6 +267,9 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
       telefono: [(data ? data.telefono : ''), Validators.required],
       procedimiento: [(data ? data.procedimiento : ''), Validators.required],
       id: [(data ? data.procedimiento : ''), Validators.required],
+      diaC: [(data ? data.hf : ''), Validators.required],
+      yearC: [(data ? data.hf : ''), Validators.required],
+      mesC: [(data ? data.hf : ''), Validators.required],
 
     });
   }
@@ -205,9 +292,11 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
     this.nombre=row.nombre;
     this.doctor=row.doctor;
     this.email=row.email;
-    this.fecha=row.fecha;
     this.hi=row.hi;
     this.hf=row.hf;
+    this.diaC=row.diaC;
+    this.mesC=row.mesC;
+    this.yearC=row.yearC;
     this.telefono=row.telefono;
     this.procedimiento=row.procedimiento;
     this.id=row.id;
@@ -225,7 +314,9 @@ export class PageAppointmentsComponent extends BasePageComponent implements OnIn
     row['nombre'] = this.nombre;
     row['doctor'] = this.doctor;
     row['email'] = this.email;
-    row['fecha'] = this.fecha;
+    row['diaC'] = this.diaC;
+    row['mesC'] = this.mesC;
+    row['yearC'] = this.yearC;
     row['hi'] = this.hi;
     row['hf'] = this.hf;
     row['telefono'] = this.telefono;

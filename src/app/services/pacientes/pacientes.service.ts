@@ -127,4 +127,17 @@ updateHistoriaClinica(id: string, record: {}){
 deleteHistoriaClinica(id: string){
   this.db.collection('/doctores/0801199023459/pacientes/0501199601023/historia').doc(id).delete();
 }
+
+
+//Calendario
+getCalendario(){
+  return this.db.collection('/agenda').snapshotChanges();
 }
+
+
+}
+
+
+
+
+

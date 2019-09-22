@@ -14,7 +14,7 @@ import { TCModalService } from '../../ui/services/modal/modal.service';
 import { IPatient } from '../../interfaces/patient';
 import * as PatientsActions from '../../store/actions/patients.actions';
 import * as SettingsActions from '../../store/actions/app-settings.actions';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'vertical-layout',
   templateUrl: './vertical.component.html',
@@ -103,6 +103,15 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
   perfilT:string;
   piezasT: string;
   tituloT:string;
+
+//.............................................Campos necesarios para cargar imagen
+
+public selectedFile: any;
+
+downloadUrl: any;
+success; boolean=false;
+thumb: string;
+disableSubmit: boolean = false;
 
   constructor(
     store: Store<IAppState>,
@@ -284,6 +293,10 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     this.store.dispatch(new SettingsActions.Update({ layout: 'vertical' }));
   }
 
+
+
+
+
   async addPacientes() {
     let patient = {};
     patient['nombre'] = this.nombre;
@@ -331,6 +344,7 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     patientC['cuadrantesC'] = this.cuadrantesC;
     patientC['maxilarC'] = this.maxilarC;
     patientC['tituloC'] = this.tituloC;
+    patientC['thumb']=this.downloadUrl;
 
     this.patientService.addCitaClinica(patientC).then(res => {
       this.pacienteC = "";
@@ -347,6 +361,92 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     })
     this.closeModal()
   }
+
+  onChange(event)
+  {
+    this.selectedFile= event.target.files[0];
+    this.disableSubmit=true;
+    this.upload();
+
+  }
+
+  upload()
+  {
+
+    var fileName = this.selectedFile.name;
+
+    var storageRef = firebase.storage().ref('citas imagenes/'
+     + fileName)
+
+     var metadata = { contentType: 'image/jpeg'};
+
+     var uploadTask = storageRef.put(this.selectedFile, metadata);
+
+
+     uploadTask.on('state_changed', (snapshot)=> {
+
+      var progress= (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes)*100;
+
+
+      switch(uploadTask.snapshot.state)
+      {
+         case firebase.storage.TaskState.PAUSED:
+           break;
+
+           case firebase.storage.TaskState.RUNNING:
+            break;
+
+
+      }
+
+     }, (error) =>  {
+
+      console.log(error);
+
+
+
+    },() =>{
+
+
+
+   
+
+       this.disableSubmit = false;
+
+   
+
+   storageRef.getDownloadURL().then(ref => {
+
+     
+
+     console.log(ref);
+
+    this.downloadUrl = ref;
+
+  });
+
+  
+
+
+   
+
+   
+
+      console.log(this.downloadUrl);
+
+      console.log('success');
+
+  
+
+  
+
+  this.success = true;
+
+    }
+     )
+
+  }
+
 
   async addTratamiento() {
     let patientT = {};
