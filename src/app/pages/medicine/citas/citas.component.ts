@@ -217,6 +217,19 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
     this.appointmentForm.reset();
   }
 
+
+    // upload new file
+    onFileChanged(inputValue: any) {
+      let file: File = inputValue.target.files[0];
+      let reader: FileReader = new FileReader();
+  
+      reader.onloadend = () => {
+        this.currentAvatar = reader.result;
+      };
+  
+      reader.readAsDataURL(file);
+    }
+    
   // init form
   initForm(data: any) {
     this.appointmentForm = this.formBuilder.group({

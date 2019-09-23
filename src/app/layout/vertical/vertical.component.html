@@ -154,7 +154,17 @@
   <ng-template #modalBodyC>
     <form [formGroup]="patientForm" novalidate class="new-patient-form">
 
-
+        <tc-form-group class="avatar-box d-flex">
+            <input type="file" accept="image/*" (change)="onChange($event)" #fileInput hidden>
+            <button
+              tc-button
+              [type]="'button'"
+              [view]="'accent'"
+              [outline]="true"
+              (click)="fileInput.click()">
+              Seleccionar Imagen adjunto
+            </button> 
+          </tc-form-group>
 
       <tc-form-group>
         <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteC" [(ngModel)]="pacienteC"></tc-input>

@@ -14,7 +14,10 @@ import { TCModalService } from '../../ui/services/modal/modal.service';
 import { IPatient } from '../../interfaces/patient';
 import * as PatientsActions from '../../store/actions/patients.actions';
 import * as SettingsActions from '../../store/actions/app-settings.actions';
+
+
 import * as firebase from 'firebase';
+
 @Component({
   selector: 'vertical-layout',
   templateUrl: './vertical.component.html',
@@ -57,32 +60,32 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
   doctor: string;
 
   //-------------------------------------------Registrar Cita Clinica
-  fechaC: string;
-  identidadPACC:string;
-  identidadC:string;
+  public fechaC: string;
+  public identidadPACC: string;
+  identidadC: string;
   pacienteC: string;
-  procedimientoC:string;
-  tituloC:string;
-  dientesC:string;
-  cuadrantesC:string;
-  maxilarC:string;
-  
-  
+  procedimientoC: string;
+  tituloC: string;
+  dientesC: string;
+  cuadrantesC: string;
+  maxilarC: string;
+
+
   //-------------------------------------------Registrar Historia Clinic
- 
-  fechaH:string;
-  identidadPACH:string;
-  pacienteH:string;
-  tituloH:string;
-  p1:string;
-  p2:string;
-  p3:string;
-  p4:string;
-  p5:string;
-  p6:string;
-  p7:string;
-  p8:string;
-  p9:string;
+
+  fechaH: string;
+  identidadPACH: string;
+  pacienteH: string;
+  tituloH: string;
+  p1: string;
+  p2: string;
+  p3: string;
+  p4: string;
+  p5: string;
+  p6: string;
+  p7: string;
+  p8: string;
+  p9: string;
 
 
   //-------------------------------------------Registrar Salud Dental 
@@ -91,27 +94,27 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
 
   //-------------------------------------------Registrar Tratamiento
   apinamientoT: string;
-  claseEsqueleticaT:string;
+  claseEsqueleticaT: string;
   claseMolar: string;
   clasificacion: string;
-  fechaT:string;
+  fechaT: string;
   habitosT: string;
-  identidadT:string;
-  identidadPACT:string;
+  identidadT: string;
+  identidadPACT: string;
   observacionesT: string;
-  pacienteT:string;
-  perfilT:string;
+  pacienteT: string;
+  perfilT: string;
   piezasT: string;
-  tituloT:string;
+  tituloT: string;
 
-//.............................................Campos necesarios para cargar imagen
+  //.............................................Campos necesarios para cargar imagen
 
-public selectedFile: any;
+  public selectedFile: any;
 
-downloadUrl: any;
-success; boolean=false;
-thumb: string;
-disableSubmit: boolean = false;
+  public downloadUrl: any;
+  success; boolean = false;
+  thumb: string;
+  disableSubmit: boolean = false;
 
   constructor(
     store: Store<IAppState>,
@@ -269,21 +272,21 @@ disableSubmit: boolean = false;
       }
     ];
 
-    this.SiNo=[
+    this.SiNo = [
       {
-        label:'Si',
-        value:'Si'
+        label: 'Si',
+        value: 'Si'
 
       },
       {
-        label:'No',
-        value:'No'
+        label: 'No',
+        value: 'No'
       }];
-    
+
     this.defaultAvatar = '';
-    this.tituloC="Cita Clinica";
-    this.tituloT="Tratamiento";
-    this.tituloH='Historia Clinica';
+    this.tituloC = "Cita Clinica";
+    this.tituloT = "Tratamiento";
+    this.tituloH = 'Historia Clinica';
     this.currentAvatar = this.defaultAvatar;
   }
 
@@ -310,7 +313,7 @@ disableSubmit: boolean = false;
     patient['telefono'] = this.telefono;
     patient['celular'] = this.celular;
     patient['doctor'] = this.doctor;
-    let identidadPAC=this.identidadPAC;
+    let identidadPAC = this.identidadPAC;
 
     this.patientService.addPacientes(patient, identidadPAC).then(res => {
       this.nombre = "";
@@ -344,17 +347,17 @@ disableSubmit: boolean = false;
     patientC['cuadrantesC'] = this.cuadrantesC;
     patientC['maxilarC'] = this.maxilarC;
     patientC['tituloC'] = this.tituloC;
-    patientC['thumb']=this.downloadUrl;
+    patientC['thumb'] = this.downloadUrl;
 
     this.patientService.addCitaClinica(patientC).then(res => {
       this.pacienteC = "";
-      this.fechaC= "";
-      this.identidadPACC= "";
-      this.identidadC= "";
-      this.procedimientoC= "";
-      this.dientesC= "";
-      this.cuadrantesC= "";
-      this.maxilarC= "";
+      this.fechaC = "";
+      this.identidadPACC = "";
+      this.identidadC = "";
+      this.procedimientoC = "";
+      this.dientesC = "";
+      this.cuadrantesC = "";
+      this.maxilarC = "";
 
     }).catch(error => {
       console.log(error)
@@ -362,90 +365,57 @@ disableSubmit: boolean = false;
     this.closeModal()
   }
 
-  onChange(event)
-  {
-    this.selectedFile= event.target.files[0];
-    this.disableSubmit=true;
-    this.upload();
 
+
+  // console.log(`citasimagenes/${this.identidadPACC}/this.fechaC`)
+
+  //--------------------------------------------------------------------------------------------------------
+  onChange(event) {
+    this.selectedFile = event.target.files[0];
+    this.disableSubmit = true;
+    this.upload();
   }
 
-  upload()
-  {
-
+  upload() {
     var fileName = this.selectedFile.name;
+    var storageRef = firebase.storage().ref(`CitasImagenes/${this.identidadPACC}/${this.fechaC}/`+ fileName)
+    var metadata = { contentType: 'image/jpeg' };
+    var uploadTask = storageRef.put(this.selectedFile, metadata);
 
-    var storageRef = firebase.storage().ref('citas imagenes/'
-     + fileName)
+    
 
-     var metadata = { contentType: 'image/jpeg'};
-
-     var uploadTask = storageRef.put(this.selectedFile, metadata);
-
-
-     uploadTask.on('state_changed', (snapshot)=> {
-
-      var progress= (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes)*100;
-
-
-      switch(uploadTask.snapshot.state)
-      {
-         case firebase.storage.TaskState.PAUSED:
-           break;
-
-           case firebase.storage.TaskState.RUNNING:
-            break;
-
-
+    uploadTask.on('state_changed', (snapshot) => {
+      var progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
+      switch (uploadTask.snapshot.state) {
+        case firebase.storage.TaskState.PAUSED:
+          break;
+        case firebase.storage.TaskState.RUNNING:
+          break;
       }
 
-     }, (error) =>  {
+    }, (error) => {
 
       console.log(error);
+    }, () => {
 
+      this.disableSubmit = false;
+      storageRef.getDownloadURL().then(ref => {
+        console.log(ref);
 
+        this.downloadUrl = ref;
 
-    },() =>{
-
-
-
-   
-
-       this.disableSubmit = false;
-
-   
-
-   storageRef.getDownloadURL().then(ref => {
-
-     
-
-     console.log(ref);
-
-    this.downloadUrl = ref;
-
-  });
-
-  
-
-
-   
-
-   
-
+      });
       console.log(this.downloadUrl);
 
       console.log('success');
 
-  
+      this.success = true;
 
-  
-
-  this.success = true;
-
-    }
-     )
-
+    })
   }
+
+
+  //--------------------------------------------------------------------------------------------------------
 
 
   async addTratamiento() {
@@ -466,17 +436,17 @@ disableSubmit: boolean = false;
 
     this.patientService.addTratamiento(patientT).then(res => {
       this.apinamientoT = "";
-      this.claseEsqueleticaT= "";
-      this.claseMolar= "";
-      this.clasificacion= "";
-      this.fechaT= "";
-      this.habitosT= "";
-      this.identidadT= "";
-      this.identidadPACT= "";
-      this.observacionesT= "";
-      this.pacienteT= "";
-      this.perfilT= "";
-      this.piezasT= "";
+      this.claseEsqueleticaT = "";
+      this.claseMolar = "";
+      this.clasificacion = "";
+      this.fechaT = "";
+      this.habitosT = "";
+      this.identidadT = "";
+      this.identidadPACT = "";
+      this.observacionesT = "";
+      this.pacienteT = "";
+      this.perfilT = "";
+      this.piezasT = "";
 
     }).catch(error => {
       console.log(error)
@@ -503,17 +473,17 @@ disableSubmit: boolean = false;
 
     this.patientService.addHistoriaClinica(patientT).then(res => {
       this.pacienteH = "";
-      this.identidadPACH= "";
-      this.fechaH= "";
-      this.p1= "";
-      this.p2= "";
-      this.p3= "";
-      this.p4= "";
-      this.p5= "";
-      this.p6= "";
-      this.p7= "";
-      this.p8= "";
-      this.p9= "";
+      this.identidadPACH = "";
+      this.fechaH = "";
+      this.p1 = "";
+      this.p2 = "";
+      this.p3 = "";
+      this.p4 = "";
+      this.p5 = "";
+      this.p6 = "";
+      this.p7 = "";
+      this.p8 = "";
+      this.p9 = "";
 
     }).catch(error => {
       console.log(error)
@@ -576,53 +546,53 @@ disableSubmit: boolean = false;
       telefono: ['', Validators.required],
       celular: ['', Validators.required],
       doctor: ['', Validators.required],
-      
 
 
-    //---------------------------------------------------------------------------------Citas Clinicas
 
-    
-    fechaC: ['', Validators.required],
-    identidadPACC: ['', Validators.required],
-    identidadC: ['', Validators.required],
-    pacienteC: ['', Validators.required],
-    procedimientoC: ['', Validators.required],
-    dientesC: ['', Validators.required],
-    cuadrantesC: ['', Validators.required],
-    maxilarC: ['', Validators.required],
+      //---------------------------------------------------------------------------------Citas Clinicas
 
-    //---------------------------------------------------------------------------------Tratamiento
 
-    pacienteT: ['', Validators.required],
-    identidadPACT: ['', Validators.required],
-    identidadT: ['', Validators.required],
-    fechaT: ['', Validators.required],
-    claseEsqueleticaT: ['', Validators.required],
-    claseMolar: ['', Validators.required],
-    piezasT: ['', Validators.required], 
-    apinamientoT: ['', Validators.required],
-    perfilT: ['', Validators.required],
-    clasificacion: ['', Validators.required],    
-    habitosT: ['', Validators.required],
-    observacionesT: ['', Validators.required],
-    
-    
-  //---------------------------------------------------------------------------------Historial
+      fechaC: ['', Validators.required],
+      identidadPACC: ['', Validators.required],
+      identidadC: ['', Validators.required],
+      pacienteC: ['', Validators.required],
+      procedimientoC: ['', Validators.required],
+      dientesC: ['', Validators.required],
+      cuadrantesC: ['', Validators.required],
+      maxilarC: ['', Validators.required],
 
-  fechaH: ['', Validators.required],
-  identidadPACH: ['', Validators.required],
-  pacienteH: ['', Validators.required],
-  p1: ['', Validators.required],
-  p2: ['', Validators.required],
-  p3: ['', Validators.required],
-  p4: ['', Validators.required],
-  p5: ['', Validators.required],
-  p6: ['', Validators.required],
-  p7: ['', Validators.required],
-  p8: ['', Validators.required],
-  p9: ['', Validators.required],
+      //---------------------------------------------------------------------------------Tratamiento
 
-  });
+      pacienteT: ['', Validators.required],
+      identidadPACT: ['', Validators.required],
+      identidadT: ['', Validators.required],
+      fechaT: ['', Validators.required],
+      claseEsqueleticaT: ['', Validators.required],
+      claseMolar: ['', Validators.required],
+      piezasT: ['', Validators.required],
+      apinamientoT: ['', Validators.required],
+      perfilT: ['', Validators.required],
+      clasificacion: ['', Validators.required],
+      habitosT: ['', Validators.required],
+      observacionesT: ['', Validators.required],
+
+
+      //---------------------------------------------------------------------------------Historial
+
+      fechaH: ['', Validators.required],
+      identidadPACH: ['', Validators.required],
+      pacienteH: ['', Validators.required],
+      p1: ['', Validators.required],
+      p2: ['', Validators.required],
+      p3: ['', Validators.required],
+      p4: ['', Validators.required],
+      p5: ['', Validators.required],
+      p6: ['', Validators.required],
+      p7: ['', Validators.required],
+      p8: ['', Validators.required],
+      p9: ['', Validators.required],
+
+    });
   }
 
   // add new patient

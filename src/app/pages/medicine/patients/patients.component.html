@@ -84,6 +84,7 @@
 <ng-container>
   <ng-template #modalBody>
     <form [formGroup]="patientForm" novalidate class="new-patient-form">
+      
       <tc-form-group class="avatar-box d-flex">
         <input type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput hidden>
 
@@ -94,8 +95,7 @@
           [afterIcon]="'icofont-ui-user'"
           [view]="'accent'"
           [outline]="true"
-          (click)="fileInput.click()"
-        >
+          (click)="fileInput.click()">
           Seleccionar Imagen
         </button> 
       </tc-form-group>

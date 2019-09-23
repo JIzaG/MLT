@@ -1,6 +1,5 @@
 <tc-card class="mb-0">
     <tc-table [rows]="appointments" [hovered]="true" [pagination]="true"[headerBgColor]="'#336cfb'" [headerColor]="'#fff'">
-
       <tc-table-col [columnTitle]="'Paciente'" [columnName]="'pacienteC'" [enableSorting]="true">
         <ng-template #tableTDTemplate let-value>
           <strong>{{ value }}</strong>
@@ -66,6 +65,17 @@
   <ng-template #modalBody>
     <form [formGroup]="appointmentForm" novalidate>
 
+      <tc-form-group class="avatar-box d-flex">
+        <input type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput hidden>
+        <button
+          tc-button
+          [type]="'button'"
+          [view]="'accent'"
+          [outline]="true"
+          (click)="fileInput.click()">
+          Seleccionar Imagen adjunto
+        </button> 
+      </tc-form-group>
 
       <tc-form-group>
         <tc-input [placeholder]="'Nombre del Paciente'" formControlName="pacienteC" [(ngModel)]="pacienteC"></tc-input>
