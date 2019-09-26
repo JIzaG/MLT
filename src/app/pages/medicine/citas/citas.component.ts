@@ -10,6 +10,9 @@ import {PacientesService} from '../../../services/pacientes/pacientes.service';
 import { id } from '@swimlane/ngx-charts/release/utils';
 import { IOption } from '../../../ui/interfaces/option';
 
+import {TratamientoService} from '../../../services/expediente/tratamiento.service';
+import { FileUpload } from '../../../interfaces/FileUpload';
+
 
 @Component({
   selector: 'app-citas',
@@ -19,6 +22,11 @@ import { IOption } from '../../../ui/interfaces/option';
 export class CitasComponent extends BasePageComponent implements OnInit, OnDestroy {
   @ViewChild('modalBody', { static: true }) modalBody: ElementRef<any>;
   @ViewChild('modalFooter', { static: true }) modalFooter: ElementRef<any>;
+
+
+  selectedFiles: FileList;
+  currentFileUpload: FileUpload;
+  progress: { percentage: number } = { percentage: 0 };
 
   appointments: any[];
   appointmentForm: FormGroup;
@@ -60,8 +68,11 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
     httpSv: HttpService,
     private modal: TCModalService,
     private formBuilder: FormBuilder,
-
     private patientService: PacientesService,
+    private uploadService: TratamientoService,
+
+
+
   ) {
     super(store, httpSv);
 
@@ -308,6 +319,33 @@ export class CitasComponent extends BasePageComponent implements OnInit, OnDestr
       this.appointments = newTableData;
       this.closeModal();
     }
+  }
+
+
+
+  //-----------------------------------Imagenes
+
+
+
+
+  selectFile(event) {
+    const file = event.target.files.item(0);
+
+    if (file.type.match('image.*')) {
+      this.selectedFiles = event.target.files;
+    } else {
+      alert('invalid format!');
+    }
+
+    this.upload();
+  }
+
+  upload() {
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+
+    this.currentFileUpload = new FileUpload(file);
+
   }
 
 }

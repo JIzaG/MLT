@@ -1,3 +1,4 @@
+import { AngularFireList } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -23,6 +24,7 @@ import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
+
 
 
 

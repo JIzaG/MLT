@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IOption } from '../../../../ui/interfaces/option';
 import {PacientesService} from '../../../../services/pacientes/pacientes.service';
 
+declare var paypal;
+
 @Component({
   selector: 'page-edit-account',
   templateUrl: './edit-account.component.html',
