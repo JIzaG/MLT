@@ -51,4 +51,12 @@
     },
     "routing": "tratamiento"
   }
+  ,
+  {
+    "title": "Dashboard",
+    "icon": {
+      "class": "icofont-stethoscope-alt"
+    },
+    "routing": "default-dashboard"
+  }
 ]
