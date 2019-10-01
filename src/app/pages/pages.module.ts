@@ -75,6 +75,7 @@ import { HistoriaClinicaComponent } from './medicine/historia-clinica/historia-c
 import { TratamientoComponent } from './medicine/tratamiento/tratamiento.component';
 import { GaleriaComponent } from './medicine/galeria/galeria.component';
 import { SaludDentalComponent } from './medicine/salud-dental/salud-dental.component';
+import { SaludDentalPatientComponent } from './medicie/salud-dental-patient/salud-dental-patient.component';
 
 @NgModule({
   imports: [
@@ -155,7 +156,8 @@ import { SaludDentalComponent } from './medicine/salud-dental/salud-dental.compo
     HistoriaClinicaComponent,
     TratamientoComponent,
     GaleriaComponent,
-    SaludDentalComponent
+    SaludDentalComponent,
+    SaludDentalPatientComponent
   ],
   exports: [ ],
   entryComponents: [ ]
