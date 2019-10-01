@@ -13,35 +13,18 @@
   border: 1px solid #cacaca;
 }
 
+.colums{
+  margin: auto;
+}
+
 .input{
-  height: 30px;
-  width: 100px;
-  margin: 5px 0;
+  height: 35px;
+  width: 100%;
+  margin: 3px 0;
   &:focus{
     outline: none;
     border: 2px solid #2199e8;
   }
-}
-
-.th-parent{
-  fill:none;
-  stroke:#000000;
-  stroke-width:1;
-  stroke-linecap:round;
-  stroke-linejoin:miter;
-  stroke-miterlimit:4;
-  stroke-opacity:1;
-  stroke-dasharray:none
-}
-.th-parent2{
-  fill:none;
-  stroke:#000000;
-  stroke-width:1;
-  stroke-linecap:round;
-  stroke-linejoin:miter;
-  stroke-miterlimit:4;
-  stroke-opacity:1;
-  stroke-dasharray:none
 }
 
 .th{
@@ -55,12 +38,6 @@
   stroke-dasharray:none
 }
 
-.th-parent:hover{
-  fill:#2199e8;
-  stroke:#2199e8;
-}
-
 .th:hover{
-  fill:#2199e8;
-  stroke:#2199e8;
+  cursor: pointer;
 }
