@@ -134,6 +134,18 @@ getCalendario(){
   return this.db.collection('/agenda').snapshotChanges();
 }
 
+//Contar Documentos
+getDocumentosPacientes(){
+  return this.db.collection('/doctores/0801199023459/pacientes').ref.get().then(function(querySnapshot){querySnapshot.size});
+}
+
+
+//Salud Dental Servicios
+
+getSaludDental(){
+  return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/saluddental').snapshotChanges();
+}
+
 
 }
 

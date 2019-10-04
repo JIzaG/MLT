@@ -5,6 +5,7 @@ import { EChartOption } from 'echarts';
 import { BasePageComponent } from '../../base-page';
 import { IAppState } from '../../../interfaces/app-state';
 import { HttpService } from '../../../services/http/http.service';
+import {PacientesService} from '../../../services/pacientes/pacientes.service';
 
 @Component({
   selector: 'page-dashboard',
@@ -23,9 +24,12 @@ export class PageDashboardComponent extends BasePageComponent implements OnInit,
   piePatternImg: any;
   pieStyle: any;
 
+  public contarpacientes : any[];
+
   constructor(
     store: Store<IAppState>,
-    httpSv: HttpService
+    httpSv: HttpService,
+    private patientService: PacientesService,
   ) {
     super(store, httpSv);
 
@@ -61,6 +65,8 @@ export class PageDashboardComponent extends BasePageComponent implements OnInit,
 
   ngOnInit() {
     super.ngOnInit();
+
+
 
     this.getData('assets/data/last-appointments.json', 'appointments', 'setLoaded');
 

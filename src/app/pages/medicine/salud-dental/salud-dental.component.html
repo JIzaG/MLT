@@ -2,28 +2,29 @@
   <div class="row">
     <div class="col">
       <p>Superior Izquierdo</p>
-      1<input type="text" class="input input-tooth-1" placeholder="1" [(ngModel)]=dientes[0].descripcion><br>
-      2<input type="text" class="input input-tooth-2" placeholder="2" [(ngModel)]=dientes[1].descripcion><br>
-      3<input type="text" class="input input-tooth-3" placeholder="3" [(ngModel)]=dientes[2].descripcion><br>
-      4<input type="text" class="input input-tooth-4" placeholder="4" [(ngModel)]=dientes[3].descripcion><br>
-      5<input type="text" class="input input-tooth-5" placeholder="5" [(ngModel)]=dientes[4].descripcion><br>
-      6<input type="text" class="input input-tooth-6" placeholder="6" [(ngModel)]=dientes[5].descripcion><br>
-      7<input type="text" class="input input-tooth-7" placeholder="7" [(ngModel)]=dientes[6].descripcion><br>
-      8<input type="text" class="input input-tooth-8" placeholder="8" [(ngModel)]=dientes[7].descripcion><br>
+      1<input type="text" class="input input-tooth-1" placeholder="1" [(ngModel)]="dientes[diente1][3]"><br>
+      2<input type="text" class="input input-tooth-2" placeholder="2" [(ngModel)]="dientes[diente2][3]"><br>
+      3<input type="text" class="input input-tooth-3" placeholder="3" [(ngModel)]="dientes[diente3][3]"><br>
+      4<input type="text" class="input input-tooth-4" placeholder="4" [(ngModel)]="dientes[diente4][3]"><br>
+      5<input type="text" class="input input-tooth-5" placeholder="5" [(ngModel)]="dientes[diente5][3]"><br>
+      6<input type="text" class="input input-tooth-6" placeholder="6" [(ngModel)]="dientes[diente6][3]"><br>
+      7<input type="text" class="input input-tooth-7" placeholder="7" [(ngModel)]="dientes[diente7][3]"><br>
+      8<input type="text" class="input input-tooth-8" placeholder="8" [(ngModel)]="dientes[diente8][3]"><br>
     </div>
     <div class="col">
       <p>Superior Derecho</p>
-           9<input type="text" class="input input-tooth-9" placeholder="9" [(ngModel)]="dientes[8].descripcion"><br>
-        10<input type="text" class="input input-tooth-10" placeholder="10" [(ngModel)]="dientes[9].descripcion"><br>
-        11<input type="text" class="input input-tooth-11" placeholder="11" [(ngModel)]="dientes[10].descripcion"><br>
-        12<input type="text" class="input input-tooth-12" placeholder="12" [(ngModel)]="dientes[11].descripcion"><br>
-        13<input type="text" class="input input-tooth-13" placeholder="13" [(ngModel)]="dientes[12].descripcion"><br>
-        14<input type="text" class="input input-tooth-14" placeholder="14" [(ngModel)]="dientes[13].descripcion"><br>
-        15<input type="text" class="input input-tooth-15" placeholder="15" [(ngModel)]="dientes[14].descripcion"><br>
-        16<input type="text" class="input input-tooth-16" placeholder="16" [(ngModel)]="dientes[15].descripcion"><br>
+           9<input type="text" class="input input-tooth-9" placeholder="9" [(ngModel)]="dientes[diente9][3]"><br>
+        10<input type="text" class="input input-tooth-10" placeholder="10" [(ngModel)]="dientes[diente10][3]"><br>
+        11<input type="text" class="input input-tooth-11" placeholder="11" [(ngModel)]="dientes[diente11][3]"><br>
+        12<input type="text" class="input input-tooth-12" placeholder="12" [(ngModel)]="dientes[diente12][3]"><br>
+        13<input type="text" class="input input-tooth-13" placeholder="13" [(ngModel)]="dientes[diente13][3]"><br>
+        14<input type="text" class="input input-tooth-14" placeholder="14" [(ngModel)]="dientes[diente14][3]"><br>
+        15<input type="text" class="input input-tooth-15" placeholder="15" [(ngModel)]="dientes[diente15][3]"><br>
+        16<input type="text" class="input input-tooth-16" placeholder="16" [(ngModel)]="dientes[diente16][3]"><br>
     </div>
   </div>
 </div>
+<hr>
 <div class="container">
   <div class="row">
     <div class="colums">
@@ -33,7 +34,7 @@
         d="m 113.894,31.723601 c 0.0561,0.43476 3.08165,4.91178 3.84449,6.93412 1.03137,2.18327 2.67371,4.15697 7.0469,5.19412 3.57083,-0.36803 7.19248,-0.4467 10.19825,-4.03315 l 7.38989,-9.40518 1.34756,-2.99193 c 0.97308,-2.16029 -1.13419,-4.14679 -3.10702,-4.99829 l -5.34936,-1.19716 c -3.12438,-0.16807 -5.19809,-0.93656 -11.30278,0.59905 l -5.72815,1.04816 c -2.08382,0.77109 -4.86648,0.46927 -4.92056,4.35665 0.10953,1.48595 -0.58405,2.8577 0.58078,4.49361 z"
         [style.fill]="dientes[0].color"
         (click)="changedColor(0)"
-        />
+        /><!--String(dientess['diente1'][0])-->
       <path
         class="th"
         d="m 119.37781,37.475811 -1.30961,-9.17465 c 0.71031,0 -0.79931,-1.85218 1.86701,-2.67885 9.73684,-3.18201 15.36382,-0.84956 16.95192,-0.1499 1.58809,0.69959 2.96678,2.61285 2.6621,4.62294 -0.30463,2.01002 -0.97137,2.49278 -1.42348,3.49091"
@@ -1121,7 +1122,7 @@
         [style.fill]="dientes[31].color"
         (click)="changedColor(31)"
          />
-      <text xml:space="preserve" x="120.37785" y="17.284296" class="number">
+      <text xml:space="preserve" x="120.37785" y="17.284296" style="font-size:10.13467216px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans">
         <tspan class="num" x="120.37785" y="17.284296">1</tspan>
       </text>
       <text xml:space="preserve" x="85.630409" y="28.142862" style="font-size:10.13467216px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans">
@@ -1221,6 +1222,7 @@
     </div>
   </div>
 </div>
+<hr>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -1247,3 +1249,5 @@
     </div>
   </div>
 </div>
+
+

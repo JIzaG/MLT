@@ -55,6 +55,17 @@
     <tc-table-col [columnTitle]="'Acciones'" [columnName]="'actions'">
       <ng-template #tableTDTemplate let-row="row">
         <div class="actions">
+
+            <a
+            href="#"
+            tc-button
+            [routerLink]="['../', 'events-calendar']"
+            [afterIcon]="'icofont-external-link'"
+            [square]="true"
+            [tcShape]="500"
+            [size]="'sm'"
+          ></a>
+
           <button tc-button [afterIcon]="'icofont-ui-edit'" [view]="'info'" [square]="true" [tcShape]="500"
             [size]="'sm'" (click)="edit(row)"></button>
 

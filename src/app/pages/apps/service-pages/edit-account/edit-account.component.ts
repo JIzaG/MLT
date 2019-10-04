@@ -38,6 +38,8 @@ export class PageEditAccountComponent extends BasePageComponent implements OnIni
   celular:string;
   telefono:string;
 
+  
+
 
   //---------------------------------------------------------
 
@@ -90,6 +92,17 @@ export class PageEditAccountComponent extends BasePageComponent implements OnIni
     this.currentAvatar = this.defaultAvatar;
     this.changes = false;
     this.userInfo = [];
+
+    this.nombre="Joaquin Alberto Izaguirre Gomez";
+    this.edad="27";
+    this.genero="Masculino";
+    this.fechan="26-10-2019";
+    this.especialidad="Cirujano Dentista";
+    this.clinica="Zona Dental";
+    this.direccion="Jardines del Valle, edificio monte olivos 200 metros de Galerias del Valle";
+    this.email="joaquin.izaguirre.g@gmail.com";
+    this.celular="+504 87661094";
+    this.telefono="+504 88661094";
   }
 
 
@@ -97,39 +110,42 @@ export class PageEditAccountComponent extends BasePageComponent implements OnIni
   ngOnInit() {
     super.ngOnInit();
 
+    // this.patientService.getPerfilDoctor().subscribe(data=>{
+    //   this.userInfo=data.map(e=>{
+    //     return {
+    //       id: e.payload.doc.id,
+    //       idEdit: true,
+    //       nombre: e.payload.doc.data()['nombre'],
+    //       edad: e.payload.doc.data()['edad'],
+    //       genero: e.payload.doc.data()['genero'],
+    //       fechan: e.payload.doc.data()['fechan'],
+    //       especialidad: e.payload.doc.data()['especialidad'],
+    //       clinica: e.payload.doc.data()['clinica'],
+    //       direccion: e.payload.doc.data()['direccion'],
+    //       email: e.payload.doc.data()['email'],
+    //       celular: e.payload.doc.data()['celular'],
+    //       telefono: e.payload.doc.data()['telefono']  
+    //  };
+    //   })
+    //   console.log(this.userInfo);
 
-    this.patientService.getPerfilDoctor().subscribe(data=>{
-      this.userInfo=data.map(e=>{
-        return {
-          id: e.payload.doc.id,
-          idEdit: true,
-          nombre: e.payload.doc.data()['nombre'],
-          edad: e.payload.doc.data()['edad'],
-          genero: e.payload.doc.data()['genero'],
-          fechan: e.payload.doc.data()['fechan'],
-          especialidad: e.payload.doc.data()['especialidad'],
-          clinica: e.payload.doc.data()['clinica'],
-          direccion: e.payload.doc.data()['direccion'],
-          email: e.payload.doc.data()['email'],
-          celular: e.payload.doc.data()['celular'],
-          telefono: e.payload.doc.data()['telefono']  
-     };
-      })
-      console.log(this.userInfo);
-
-    })
+    // })
 
  
 
-    this.userForm.valueChanges.subscribe(() => {
-      this.changes = true;
-    });
+    // this.userForm.valueChanges.subscribe(() => {
+    //   this.changes = true;
+    // });
+    this.patientService.getHistoriaClinica().subscribe(data=>{
+    })
 
 
 
     //  this.getData('assets/data/account-data.json', 'userInfo', 'loadedDetect');
      this.loadedDetect();
   }
+
+
 
   inici(){
 
