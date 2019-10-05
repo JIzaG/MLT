@@ -1,26 +1,27 @@
+
 <div class="container">
   <div class="row">
     <div class="col">
       <p>Superior Izquierdo</p>
-      1<input type="text" class="input input-tooth-1" placeholder="1" [(ngModel)]="dientes[diente1][3]"><br>
-      2<input type="text" class="input input-tooth-2" placeholder="2" [(ngModel)]="dientes[diente2][3]"><br>
-      3<input type="text" class="input input-tooth-3" placeholder="3" [(ngModel)]="dientes[diente3][3]"><br>
-      4<input type="text" class="input input-tooth-4" placeholder="4" [(ngModel)]="dientes[diente4][3]"><br>
-      5<input type="text" class="input input-tooth-5" placeholder="5" [(ngModel)]="dientes[diente5][3]"><br>
-      6<input type="text" class="input input-tooth-6" placeholder="6" [(ngModel)]="dientes[diente6][3]"><br>
-      7<input type="text" class="input input-tooth-7" placeholder="7" [(ngModel)]="dientes[diente7][3]"><br>
-      8<input type="text" class="input input-tooth-8" placeholder="8" [(ngModel)]="dientes[diente8][3]"><br>
+      1<input type="text" class="input input-tooth-1" placeholder="1" [(ngModel)]="dientes['diente1'][3]"><br>
+      2<input type="text" class="input input-tooth-2" placeholder="2" [(ngModel)]="dientes['diente2'][3]"><br>
+      3<input type="text" class="input input-tooth-3" placeholder="3" [(ngModel)]="dientes['diente3'][3]"><br>
+      4<input type="text" class="input input-tooth-4" placeholder="4" [(ngModel)]="dientes['diente4'][3]"><br>
+      5<input type="text" class="input input-tooth-5" placeholder="5" [(ngModel)]="dientes['diente5'][3]"><br>
+      6<input type="text" class="input input-tooth-6" placeholder="6" [(ngModel)]="dientes['diente6'][3]"><br>
+      7<input type="text" class="input input-tooth-7" placeholder="7" [(ngModel)]="dientes['diente7'][3]"><br>
+      8<input type="text" class="input input-tooth-8" placeholder="8" [(ngModel)]="dientes['diente8'][3]"><br>
     </div>
     <div class="col">
       <p>Superior Derecho</p>
-           9<input type="text" class="input input-tooth-9" placeholder="9" [(ngModel)]="dientes[diente9][3]"><br>
-        10<input type="text" class="input input-tooth-10" placeholder="10" [(ngModel)]="dientes[diente10][3]"><br>
-        11<input type="text" class="input input-tooth-11" placeholder="11" [(ngModel)]="dientes[diente11][3]"><br>
-        12<input type="text" class="input input-tooth-12" placeholder="12" [(ngModel)]="dientes[diente12][3]"><br>
-        13<input type="text" class="input input-tooth-13" placeholder="13" [(ngModel)]="dientes[diente13][3]"><br>
-        14<input type="text" class="input input-tooth-14" placeholder="14" [(ngModel)]="dientes[diente14][3]"><br>
-        15<input type="text" class="input input-tooth-15" placeholder="15" [(ngModel)]="dientes[diente15][3]"><br>
-        16<input type="text" class="input input-tooth-16" placeholder="16" [(ngModel)]="dientes[diente16][3]"><br>
+           9<input type="text" class="input input-tooth-9" placeholder="9" [(ngModel)]="dientes['diente9'][3]"><br>
+        10<input type="text" class="input input-tooth-10" placeholder="10" [(ngModel)]="dientes['diente10'][3]"><br>
+        11<input type="text" class="input input-tooth-11" placeholder="11" [(ngModel)]="dientes['diente11'][3]"><br>
+        12<input type="text" class="input input-tooth-12" placeholder="12" [(ngModel)]="dientes['diente12'][3]"><br>
+        13<input type="text" class="input input-tooth-13" placeholder="13" [(ngModel)]="dientes['diente13'][3]"><br>
+        14<input type="text" class="input input-tooth-14" placeholder="14" [(ngModel)]="dientes['diente14'][3]"><br>
+        15<input type="text" class="input input-tooth-15" placeholder="15" [(ngModel)]="dientes['diente15'][3]"><br>
+        16<input type="text" class="input input-tooth-16" placeholder="16" [(ngModel)]="dientes['diente16'][3]"><br>
     </div>
   </div>
 </div>
@@ -32,25 +33,24 @@
       <path
         class="th"
         d="m 113.894,31.723601 c 0.0561,0.43476 3.08165,4.91178 3.84449,6.93412 1.03137,2.18327 2.67371,4.15697 7.0469,5.19412 3.57083,-0.36803 7.19248,-0.4467 10.19825,-4.03315 l 7.38989,-9.40518 1.34756,-2.99193 c 0.97308,-2.16029 -1.13419,-4.14679 -3.10702,-4.99829 l -5.34936,-1.19716 c -3.12438,-0.16807 -5.19809,-0.93656 -11.30278,0.59905 l -5.72815,1.04816 c -2.08382,0.77109 -4.86648,0.46927 -4.92056,4.35665 0.10953,1.48595 -0.58405,2.8577 0.58078,4.49361 z"
-        [style.fill]="dientes[0].color"
-        (click)="changedColor(0)"
-        /><!--String(dientess['diente1'][0])-->
+        [ngStyle]="asignarColor(0)"
+        (click)="changedColor(0)"/>
       <path
         class="th"
         d="m 119.37781,37.475811 -1.30961,-9.17465 c 0.71031,0 -0.79931,-1.85218 1.86701,-2.67885 9.73684,-3.18201 15.36382,-0.84956 16.95192,-0.1499 1.58809,0.69959 2.96678,2.61285 2.6621,4.62294 -0.30463,2.01002 -0.97137,2.49278 -1.42348,3.49091"
-          [style.fill]="dientes[0].color"
+          [ngStyle]="asignarColor(0)"
           (click)="changedColor(0)"
         />
       <path
         class="th"
         d="m 91.428666,35.605041 c 11.503464,-6.33738 9.146764,-4.4876 14.070254,-5.89646 1.71617,-0.51474 3.14074,-0.59168 3.86485,0.38286 l 2.6696,2.25199 c 1.81413,1.91332 1.6934,2.3195 1.92366,2.99912 0.8546,5.9162 -0.13307,5.84195 -0.32349,8.35998 -1.31549,2.1432 -2.9041,4.05602 -5.59189,5.04156 -1.65863,0.98199 -3.95557,0.88559 -6.39559,0.54752 l -4.012326,-0.81993 c -1.573083,0.19851 -2.928476,-0.68202 -4.307691,-1.44457 -2.910666,-1.71458 -3.662865,-4.14821 -4.663646,-6.49914 -0.201289,-1.52053 0.314192,-2.86745 1.499619,-4.05225 z"
-        [style.fill]="dientes[1].color"
+        [ngStyle]="asignarColor(1)"
         (click)="changedColor(1)"
         />
       <path
         class="th"
         d="m 94.666436,46.343741 c -1.544027,-2.01495 -4.015778,-3.64326 -1.017236,-7.55177 2.750396,-1.80114 4.902858,-2.35706 7.29674,-3.41563 2.06063,-0.87054 4.10556,-1.71496 5.58118,-1.60995 6.1448,-0.49504 3.61491,0.73686 5.2752,1.13465"
-        [style.fill]="dientes[1].color"
+        [ngStyle]="asignarColor(1)"
         (click)="changedColor(1)"
         />
       <path
@@ -1227,27 +1227,25 @@
   <div class="row">
     <div class="col">
       <p>Inferior Izquierdo</p>
-       25<input type="text" class="input input-tooth-9" placeholder="25" [(ngModel)]="dientes[24].descripcion"><br>
-      26<input type="text" class="input input-tooth-10" placeholder="26" [(ngModel)]="dientes[25].descripcion"><br>
-      27<input type="text" class="input input-tooth-11" placeholder="27" [(ngModel)]="dientes[26].descripcion"><br>
-      28<input type="text" class="input input-tooth-12" placeholder="28" [(ngModel)]="dientes[27].descripcion"><br>
-      29<input type="text" class="input input-tooth-13" placeholder="29" [(ngModel)]="dientes[28].descripcion"><br>
-      30<input type="text" class="input input-tooth-14" placeholder="30" [(ngModel)]="dientes[29].descripcion"><br>
-      31<input type="text" class="input input-tooth-15" placeholder="31" [(ngModel)]="dientes[30].descripcion"><br>
-      32<input type="text" class="input input-tooth-16" placeholder="32" [(ngModel)]="dientes[31].descripcion"><br>
+       25<input type="text" class="input input-tooth-9" placeholder="25" [(ngModel)]="dientes['diente25'][3]"><br>
+      26<input type="text" class="input input-tooth-10" placeholder="26" [(ngModel)]="dientes['diente26'][3]"><br>
+      27<input type="text" class="input input-tooth-11" placeholder="27" [(ngModel)]="dientes['diente27'][3]"><br>
+      28<input type="text" class="input input-tooth-12" placeholder="28" [(ngModel)]="dientes['diente28'][3]"><br>
+      29<input type="text" class="input input-tooth-13" placeholder="29" [(ngModel)]="dientes['diente29'][3]"><br>
+      30<input type="text" class="input input-tooth-14" placeholder="30" [(ngModel)]="dientes['diente30'][3]"><br>
+      31<input type="text" class="input input-tooth-15" placeholder="31" [(ngModel)]="dientes['diente31'][3]"><br>
+      32<input type="text" class="input input-tooth-16" placeholder="32" [(ngModel)]="dientes['diente32'][3]"><br>
     </div>
     <div class="col">
       <p>Inferior Derecho</p>
-      17<input type="text" class="input input-tooth-1" placeholder="17" [(ngModel)]="dientes[16].descripcion"><br>
-      18<input type="text" class="input input-tooth-2" placeholder="18" [(ngModel)]="dientes[17].descripcion"><br>
-      19<input type="text" class="input input-tooth-3" placeholder="19" [(ngModel)]="dientes[18].descripcion"><br>
-      20<input type="text" class="input input-tooth-4" placeholder="20" [(ngModel)]="dientes[19].descripcion"><br>
-      21<input type="text" class="input input-tooth-5" placeholder="21" [(ngModel)]="dientes[20].descripcion"><br>
-      22<input type="text" class="input input-tooth-6" placeholder="22" [(ngModel)]="dientes[21].descripcion"><br>
-      23<input type="text" class="input input-tooth-7" placeholder="23" [(ngModel)]="dientes[22].descripcion"><br>
-      24<input type="text" class="input input-tooth-8" placeholder="24" [(ngModel)]="dientes[23].descripcion"><br>
+      17<input type="text" class="input input-tooth-1" placeholder="17" [(ngModel)]="dientes['diente17'][3]"><br>
+      18<input type="text" class="input input-tooth-2" placeholder="18" [(ngModel)]="dientes['diente18'][3]"><br>
+      19<input type="text" class="input input-tooth-3" placeholder="19" [(ngModel)]="dientes['diente19'][3]"><br>
+      20<input type="text" class="input input-tooth-4" placeholder="20" [(ngModel)]="dientes['diente20'][3]"><br>
+      21<input type="text" class="input input-tooth-5" placeholder="21" [(ngModel)]="dientes['diente21'][3]"><br>
+      22<input type="text" class="input input-tooth-6" placeholder="22" [(ngModel)]="dientes['diente22'][3]"><br>
+      23<input type="text" class="input input-tooth-7" placeholder="23" [(ngModel)]="dientes['diente23'][3]"><br>
+      24<input type="text" class="input input-tooth-8" placeholder="24" [(ngModel)]="dientes['diente24'][3]"><br>
     </div>
   </div>
 </div>
-
-

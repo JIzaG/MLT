@@ -19,10 +19,7 @@ export class SaludDentalComponent extends BasePageComponent implements OnInit, O
   @ViewChild('modalBody', { static: true }) modalBody: ElementRef<any>;
   @ViewChild('modalFooter', { static: true }) modalFooter: ElementRef<any>;
 
-   dd: any[];
-
- dientes: any;
-
+  dientes;
 
   constructor(
     store: Store<IAppState>,
@@ -30,39 +27,13 @@ export class SaludDentalComponent extends BasePageComponent implements OnInit, O
     private patientService: PacientesService,
   ) {
     super(store, httpSv);
-
-    this.pageData = {
-      title: 'Salud Dental',
-      breadcrumbs: [
-        {
-          title: 'Medicine',
-          route: 'default-appointments'
-        },
-        {
-          title: 'Salud Dental'
-        }
-      ]
-    };
   }
 
   ngOnInit() {
      super.ngOnInit();
-
-
-
-
-
      this.patientService.getSaludDental().subscribe(async data=>{
-      
-      //console.log();
       this.dientes = await data[0]['payload']['doc'].data();
-      console.log(this.dientes['diente1'][0]);
-      
     })
-
-
-    //  this.patientService.getHistoriaClinica().subscribe(data=>{
-    // })
 
     this.getData('assets/data/appointments.json', 'appointments', 'setLoaded');
     this.getData('assets/data/doctors.json', 'doctors');
@@ -70,6 +41,12 @@ export class SaludDentalComponent extends BasePageComponent implements OnInit, O
 
   ngOnDestroy() {
     super.ngOnDestroy();
+  }
+
+  asignarColor(indice){
+    return {
+      'fill': String(this.dientes[[Object.keys(this.dientes)[indice]][0]][0])
+    }
   }
 
   // init form
@@ -81,23 +58,23 @@ export class SaludDentalComponent extends BasePageComponent implements OnInit, O
   }
 
   changedColor(index){
-    // switch(this.dientes[index].id_estado){
-    //   case 1:
-    //     this.dientes[index].id_estado++;
-    //     this.dientes[index].color = "#efd613";
-    //   break;
-    //   case 2:
-    //     this.dientes[index].id_estado++;
-    //     this.dientes[index].color = "#71bf4c";
-    //   break;
-    //   case 3:
-    //     this.dientes[index].id_estado++;
-    //     this.dientes[index].color = "#ff5454";
-    //   break;
-    //   case 4:
-    //     this.dientes[index].id_estado = 1;
-    //     this.dientes[index].color = "#ffffff";
-    //   break;
-    // }
+    switch(this.dientes[[Object.keys(this.dientes)[index]][0]][2]){
+      case 1:
+        this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
+        this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#efd613";
+      break;
+      case 2:
+        this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
+        this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#71bf4c";
+      break;
+      case 3:
+        this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
+        this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#ff5454";
+      break;
+      case 4:
+        this.dientes[[Object.keys(this.dientes)[index]][0]][2] = 1;
+        this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#ffffff";
+      break;
+    }
   }
 }
