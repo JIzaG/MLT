@@ -6,7 +6,7 @@ import { IAppState } from '../../../interfaces/app-state';
 import { HttpService } from '../../../services/http/http.service';
 import { TCModalService } from '../../../ui/services/modal/modal.service';
 import { IUser } from '../../../ui/interfaces/user';
-import {PacientesService} from '../../../services/pacientes/pacientes.service';
+import { PacientesService } from '../../../services/pacientes/pacientes.service';
 import { id } from '@swimlane/ngx-charts/release/utils';
 import { IOption } from '../../../ui/interfaces/option';
 
@@ -15,24 +15,27 @@ import { IOption } from '../../../ui/interfaces/option';
   templateUrl: './salud-dental.component.html',
   styleUrls: ['./salud-dental.component.scss']
 })
-export class SaludDentalComponent extends BasePageComponent implements OnInit, OnDestroy  {
+export class SaludDentalComponent extends BasePageComponent implements OnInit, OnDestroy {
   @ViewChild('modalBody', { static: true }) modalBody: ElementRef<any>;
   @ViewChild('modalFooter', { static: true }) modalFooter: ElementRef<any>;
 
-  dientes;
+  dientes: any;
 
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
     private patientService: PacientesService,
+    private modal: TCModalService,
   ) {
     super(store, httpSv);
   }
 
   ngOnInit() {
-     super.ngOnInit();
-     this.patientService.getSaludDental().subscribe(async data=>{
+    super.ngOnInit();
+    this.patientService.getSaludDental().subscribe(async data => {
       this.dientes = await data[0]['payload']['doc'].data();
+      console.log(this.dientes);
+      
     })
 
     this.getData('assets/data/appointments.json', 'appointments', 'setLoaded');
@@ -53,28 +56,29 @@ export class SaludDentalComponent extends BasePageComponent implements OnInit, O
   initForm(data: any) {
   }
 
-  SalvarCambio(){
-    // this.modalFooter;
+  SalvarCambio() {
+
+    this.patientService.updateSaludDental(this.dientes);
   }
 
-  changedColor(index){
-    switch(this.dientes[[Object.keys(this.dientes)[index]][0]][2]){
+  changedColor(index) {
+    switch (this.dientes[[Object.keys(this.dientes)[index]][0]][2]) {
       case 1:
         this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
         this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#efd613";
-      break;
+        break;
       case 2:
         this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
         this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#71bf4c";
-      break;
+        break;
       case 3:
         this.dientes[[Object.keys(this.dientes)[index]][0]][2]++;
         this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#ff5454";
-      break;
+        break;
       case 4:
         this.dientes[[Object.keys(this.dientes)[index]][0]][2] = 1;
         this.dientes[[Object.keys(this.dientes)[index]][0]][0] = "#ffffff";
-      break;
+        break;
     }
   }
 }

@@ -146,6 +146,10 @@ getSaludDental(){
   return this.db.collection('/doctores/0801199023459/pacientes/0501199601023/saluddental').snapshotChanges();
 }
 
+updateSaludDental(dientes){
+  this.db.collection('/doctores/0801199023459/pacientes/0501199601023/saluddental').doc('ha1iRYGJEmMSEAtZgVFj').update(dientes);
+}
+
 
 }
 
