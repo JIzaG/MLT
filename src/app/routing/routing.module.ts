@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HistoriaClinicaComponent } from '../pages/medicine/historia-clinica/historia-clinica.component';
 import { SaludDentalComponent } from '../pages/medicine/salud-dental/salud-dental.component';
-import { SaludDentalPatientComponent } from '../pages/medicine/salud-dental-patient/salud-dental-patient.component';
+
 
 import { VerticalLayoutComponent } from '../layout/vertical';
 import { HorizontalLayoutComponent } from '../layout/horizontal';
