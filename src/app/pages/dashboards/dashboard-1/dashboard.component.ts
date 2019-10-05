@@ -26,6 +26,12 @@ export class PageDashboardComponent extends BasePageComponent implements OnInit,
 
   public contarpacientes : any[];
 
+  agenda: string;
+  tratamiento:string;
+  pacientes:string;
+  citas: string;
+
+
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -65,6 +71,33 @@ export class PageDashboardComponent extends BasePageComponent implements OnInit,
 
   ngOnInit() {
     super.ngOnInit();
+
+    this.patientService.getAgendaPaciente().subscribe(data=>{
+       
+      console.log(data.length);
+      this.agenda=String(data.length);
+    })
+
+
+    this.patientService.getPacientes().subscribe(data=>{
+      console.log(data.length);
+      this.pacientes=String(data.length);
+
+    })
+
+    
+    this.patientService.getTratamiento().subscribe(data=>{
+
+      console.log(data.length);
+      this.tratamiento=String(data.length);
+    })
+
+    this.patientService.getCitasClinica().subscribe(data=>{
+
+      console.log(data.length);
+      this.citas=String(data.length);
+    })
+
 
 
 

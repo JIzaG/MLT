@@ -29,8 +29,8 @@
         </div>
 
         <div class="col col-7">
-          <h6 class="mt-0 mb-1">Citas Agendadas</h6>
-          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">213</div>
+          <h6 class="mt-0 mb-1">Agenda</h6>
+          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">{{agenda}}</div>
         </div>
       </div>
     </tc-card>
@@ -50,7 +50,7 @@
 
         <div class="col col-7">
           <h6 class="mt-0 mb-1 nowrap">Pacientes</h6>
-          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">104</div>
+          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">{{pacientes}}</div>
         </div>
       </div>
     </tc-card>
@@ -70,7 +70,7 @@
 
         <div class="col col-7">
           <h6 class="mt-0 mb-1">Tratamientos</h6>
-          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">23</div>
+          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">{{tratamiento}}</div>
         </div>
       </div>
     </tc-card>
@@ -90,7 +90,7 @@
 
         <div class="col col-7">
           <h6 class="mt-0 mb-1 nowrap">Citas Clinicas</h6>
-          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">$5238</div>
+          <div class="count" [tcFontSize]="20" [tcColor]="'#336cfb'">{{citas}}</div>
         </div>
       </div>
     </tc-card>
